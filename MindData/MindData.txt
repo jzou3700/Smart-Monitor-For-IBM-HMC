@@ -1,0 +1,40 @@
+MindData
+
+History
+	Why IBM Cloud didn't work well?
+	Smart Monitor For IBM Power
+	Performance Monitor for CTSI
+	
+Pain Point
+	RDBMS cannot deal with vary data structure
+	NoSQL decreased SQL layer, vary data structure
+	Iteration? 
+	传统信息系统的缺乏应对数据结构性变化的能力是信息系统失败的原因
+	
+MindData
+	以类似记忆的方式存储结构化数据
+	字符通过组合成词汇，MindData返回词汇的ID
+	组合词汇ID形成更复杂的短语组合，返回ID
+	混合字符与各种ID形成有任意组合，表达任意的结合化数据
+	
+MindData 与 MindMap的区别
+	业内的MindMap重在图示上表达数据结构，对象是小量数据
+	MindData则是数据的存储格式，处理的是大量数据
+	
+MindData 处理表格
+	Key Value Pair
+	使用KVPairg表达一个单元格，将平面数据表转换成树
+
+MindData 近似产品
+	NoSQL数据库 比如 sequoiadb，carrsandra, mongodb
+	Full Text Search
+	
+MindData 的优势
+	精确结构化检索
+	结构化搜索与传统搜索的区别，比如搜索苹果
+
+市场定位
+	传统数据库的替代产品
+	
+弱点
+	复杂变化的结构数据的展现

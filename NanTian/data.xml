@@ -1,0 +1,236 @@
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<lparview>
+   <HMC value="9.181.159.41" link="1">
+      <SERVER value="SVRP7720-01-SN10418EP" link="2">
+         <category value="LPAR" link="3">
+            <LPAR value="P720_01_VIOS(1)" link="4">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="2"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="(none)" link="5">
+                
+            </LPAR>
+         </category>
+         <category value="SYS" link="6">
+             <configurable_sys_proc_units value="8.0"></configurable_sys_proc_units>
+             <curr_avail_sys_proc_units value="7.6"></curr_avail_sys_proc_units>
+             <configurable_sys_mem value="32768"></configurable_sys_mem>
+         </category>
+      </SERVER>
+      <SERVER value="SVRP7750-05-SN062DA7P" link="7">
+         <category value="LPAR" link="8">
+            <LPAR value="lightpoclpar1263(6)" link="9">
+                <state value="Running"></state>
+                <run_proc_units value="0.8"></run_proc_units>
+                <run_procs value="2"></run_procs>
+                <run_mem value="16384"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P750_05_VIOS(1)" link="10">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="(none)" link="11">
+                
+            </LPAR>
+         </category>
+         <category value="SYS" link="12">
+             <configurable_sys_proc_units value="16.0"></configurable_sys_proc_units>
+             <curr_avail_sys_proc_units value="14.8"></curr_avail_sys_proc_units>
+             <configurable_sys_mem value="131072"></configurable_sys_mem>
+         </category>
+      </SERVER>
+      <SERVER value="SVRP7720-06-SN064E9ER" link="13">
+         <category value="LPAR" link="14">
+            <LPAR value="bso(7)" link="15">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_VIOC3_22(6)" link="16">
+                <state value="Running"></state>
+                <run_proc_units value="2.0"></run_proc_units>
+                <run_procs value="2"></run_procs>
+                <run_mem value="16384"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_VIOC2_193(5)" link="17">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="6144"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_VIOC1_SWREP(4)" link="18">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="6144"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_NIM_SMIA(3)" link="19">
+                <state value="Running"></state>
+                <run_proc_units value="1.0"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="8192"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_Director(2)" link="20">
+                <state value="Running"></state>
+                <run_proc_units value="2.0"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="16384"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P720_06_VIOS(1)" link="21">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="4"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="(none)" link="22">
+                
+            </LPAR>
+         </category>
+         <category value="SYS" link="23">
+             <configurable_sys_proc_units value="8.0"></configurable_sys_proc_units>
+             <curr_avail_sys_proc_units value="1.4"></curr_avail_sys_proc_units>
+             <configurable_sys_mem value="131072"></configurable_sys_mem>
+         </category>
+      </SERVER>
+      <SERVER value="SVRP7750-11-SN0681F7P" link="24">
+         <category value="LPAR" link="25">
+            <LPAR value="BP665(17)" link="26">
+                <state value="Open Firmware"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="LPOC1466(10)" link="27">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="RT1498(8)" link="28">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="P750_11_VIOS(3)" link="29">
+                <state value="Running"></state>
+                <run_proc_units value="0.6"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="RT232(2)" link="30">
+                <state value="Open Firmware"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP625(1)" link="31">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="RT1548(5)" link="32">
+                <state value="Not Activated"></state>
+                <run_proc_units value="0.0"></run_proc_units>
+                <run_procs value="0"></run_procs>
+                <run_mem value="256"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="RT1555(15)" link="33">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="8192"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="LPOC1550(18)" link="34">
+                <state value="Running"></state>
+                <run_proc_units value="0.8"></run_proc_units>
+                <run_procs value="2"></run_procs>
+                <run_mem value="8192"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="RT1551(19)" link="35">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP696(4)" link="36">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP697(6)" link="37">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP698(7)" link="38">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP699(9)" link="39">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP700(11)" link="40">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="BP701(12)" link="41">
+                <state value="Running"></state>
+                <run_proc_units value="0.4"></run_proc_units>
+                <run_procs value="1"></run_procs>
+                <run_mem value="4096"></run_mem>
+                <mem_mode value="ded"></mem_mode>
+            </LPAR>
+            <LPAR value="(none)" link="42">
+                
+            </LPAR>
+         </category>
+         <category value="SYS" link="43">
+             <configurable_sys_proc_units value="32.0"></configurable_sys_proc_units>
+             <curr_avail_sys_proc_units value="24.6"></curr_avail_sys_proc_units>
+             <configurable_sys_mem value="262144"></configurable_sys_mem>
+         </category>
+      </SERVER>
+   </HMC>
+</lparview>

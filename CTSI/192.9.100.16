@@ -1,0 +1,610 @@
+
+
+http://localhost:8686/zsh?cmd=top&subcommand=addhmc&hmc=xxxxx&user=hscroot&password=xxxxxx
+
+
+1）如何打开终端
+2) 耗电量
+	pmcycles -m或 prtconf
+3）风扇，电池故障，硬盘故障
+
+
+Last login: Fri Jan 17 03:56:48 2014 from 192.168.6.103
+hscroot@localhost:~> 
+hscroot@localhost:~> 
+hscroot@localhost:~> 
+hscroot@localhost:~> ls
+jobsMonitorThread.txt  tmp
+hscroot@localhost:~> cd /usr/bin
+bash: cd: restricted
+hscroot@localhost:~> ls
+jobsMonitorThread.txt  tmp
+hscroot@localhost:~> cd /usr/bin
+bash: cd: restricted
+hscroot@localhost:~> ls
+jobsMonitorThread.txt  tmp
+hscroot@localhost:~> pwd
+/home/hscroot
+hscroot@localhost:~> echo $PATH
+/hmcrbin/:/usr/hmcrbin
+hscroot@localhost:~> cd /hmcrbin
+bash: cd: restricted
+hscroot@localhost:~> ls /hmcrbin
+cat  date  ls  mount  netstat  ping  ping6  sleep  sort  umount  uname
+hscroot@localhost:~> ls /usr/hmcrbin
+OS_install  chlparstate   cpdump         getcimstatus2    lpar_netboot  lsipsec       lsrsrc-api    mkdir          rmaccfg        rsthwres     utilcollect
+asmmenu     chlparutil    cpfile         getdump          lpcfgop       lsled         lssacfg       mkhmcusr       rmdir          rstprofdata  utilhmcevent
+basename    chnportlogin  cpsysplan      getfile          lsaccfg       lslic         lsstat        mkhmcusr_ldap  rmdump         rstupgdata   utilpurge
+bkconsdata  chpsm         csmlicutil     getopt           lsavailres    lslock        lssvc         mkmigrkeys     rmfile         runlpcmd     utilsnapmoni
+bkprofdata  chpwdpolicy   cut            getpcietopology  lscod         lslogon       lssvcevents   mkpwdpolicy    rmhmcusr       saveupgdata  viosvrcmd
+chaccfg     chpwrmgmt     defsysplanres  getriotopology   lscomgmt      lslparmigr    lssyscfg      mkrsrc-api     rmlock         scp          vtmenu
+chcod       chsacfg       deploysysplan  getupgfiles      lscuod        lslparutil    lssysconn     mksyscfg       rmlparutil     sed          which
+chcomgmt    chstat        diagrmc        grep             lsdump        lsmediadev    lssysplan     mksysconn      rmprofdata     sendfile     who
+chcuod      chsvc         diff           head             lsfru         lsmemdev      lssysplanres  mksysplan      rmpwdpolicy    setkeyoncec  whoami
+chhmc       chsvcevent    dircolors      hmcshutdown      lshmc         lsmemopt      lstskey       mkvterm        rmrsrc-api     setlparcap
+chhmcencr   chsyscfg      dlslic         hmcwin           lshmcencr     lsnodeid      lsusrtca      monhmc         rmsyscfg       ssh
+chhmcfs     chsyspwd      du             host             lshmcfs       lsnportlogin  lsvet         more           rmsysconn      ssh-keygen
+chhmcldap   chsysstate    dump           hwdbg            lshmcldap     lspartition   man           optmem         rmsysplan      startdump
+chhmcusr    chtskey       egrep          installios       lshmcusr      lspsm         migrcfg       osinstall      rmsysplanres   sum
+chhwres     chusrtca      expdata        ldapsearch       lshsc         lspwdpolicy   migrlpar      pedbg          rmvterm        tail
+chipsec     chvet         expr           less             lshwinfo      lspwrmgmt     migrremote    pesh           rnvi           termtask
+chkmedia    clear         fgrep          locale           lshwres       lsrefcode     mkaccfg       refdev         rrlpar         updhmc
+chled       cp            gen_backup_db  logssh           lsiotopo      lsrsdevsize   mkauthkeys    rm             rsMMRioServer  updlic
+hscroot@localhost:~> showlog
+bash: showlog: command not found
+hscroot@localhost:~> showLog
+bash: showLog: command not found
+hscroot@localhost:~> ls -l /usr/hmcrbin | grep log
+lrwxrwxrwx 1 root root     25 Aug 12 08:52 chnportlogin -> /opt/hsc/bin/chnportlogin
+lrwxrwxrwx 1 root root     28 Aug 12 08:52 getpcietopology -> /opt/hsc/bin/getpcietopology
+lrwxrwxrwx 1 root root     27 Aug 12 08:52 getriotopology -> /opt/hsc/bin/getriotopology
+-r-xr-xr-x 1 bin  bin    1484 May  8  2009 logssh
+lrwxrwxrwx 1 root root     20 Aug 12 08:52 lslogon -> /opt/hsc/bin/lslogon
+lrwxrwxrwx 1 root root     25 Aug 12 08:52 lsnportlogin -> /opt/hsc/bin/lsnportlogin
+hscroot@localhost:~> showLog
+bash: showLog: command not found
+hscroot@localhost:~> echo $PATH
+/hmcrbin/:/usr/hmcrbin
+hscroot@localhost:~> ls -l hmcrbin | grep log
+ls: cannot access hmcrbin: No such file or directory
+hscroot@localhost:~> ls -l hmcrbin
+ls: cannot access hmcrbin: No such file or directory
+hscroot@localhost:~> ls -l /hmcrbin | grep log
+hscroot@localhost:~> ls -l /hmcrbin
+total 920
+-rwxr-xr-x 2 root root  42840 May 18  2010 cat
+-rwxr-xr-x 2 root root  55104 May 18  2010 date
+-rwxr-xr-x 2 root root 100556 May 18  2010 ls
+-rwsr-xr-x 2 root root  84652 May 20  2011 mount
+-rwxr-xr-x 2 root root 351565 Jul  1  2010 netstat
+-rwsr-xr-x 2 root root  38984 May 18  2010 ping
+-rwsr-xr-x 2 root root  34808 May 18  2010 ping6
+-rwxr-xr-x 2 root root  22240 May 18  2010 sleep
+-rwxr-xr-x 2 root root  79996 May 18  2010 sort
+-rwsr-xr-x 2 root root  63660 May 20  2011 umount
+-rwxr-xr-x 2 root root  22248 May 18  2010 uname
+hscroot@localhost:~> ls
+jobsMonitorThread.txt  tmp
+hscroot@localhost:~> ls -F
+jobsMonitorThread.txt  tmp/
+hscroot@localhost:~> echo $PATH
+/hmcrbin/:/usr/hmcrbin
+hscroot@localhost:~> ls /usr/hmcrbin
+OS_install  chlparstate   cpdump         getcimstatus2    lpar_netboot  lsipsec       lsrsrc-api    mkdir          rmaccfg        rsthwres     utilcollect
+asmmenu     chlparutil    cpfile         getdump          lpcfgop       lsled         lssacfg       mkhmcusr       rmdir          rstprofdata  utilhmcevent
+basename    chnportlogin  cpsysplan      getfile          lsaccfg       lslic         lsstat        mkhmcusr_ldap  rmdump         rstupgdata   utilpurge
+bkconsdata  chpsm         csmlicutil     getopt           lsavailres    lslock        lssvc         mkmigrkeys     rmfile         runlpcmd     utilsnapmoni
+bkprofdata  chpwdpolicy   cut            getpcietopology  lscod         lslogon       lssvcevents   mkpwdpolicy    rmhmcusr       saveupgdata  viosvrcmd
+chaccfg     chpwrmgmt     defsysplanres  getriotopology   lscomgmt      lslparmigr    lssyscfg      mkrsrc-api     rmlock         scp          vtmenu
+chcod       chsacfg       deploysysplan  getupgfiles      lscuod        lslparutil    lssysconn     mksyscfg       rmlparutil     sed          which
+chcomgmt    chstat        diagrmc        grep             lsdump        lsmediadev    lssysplan     mksysconn      rmprofdata     sendfile     who
+chcuod      chsvc         diff           head             lsfru         lsmemdev      lssysplanres  mksysplan      rmpwdpolicy    setkeyoncec  whoami
+chhmc       chsvcevent    dircolors      hmcshutdown      lshmc         lsmemopt      lstskey       mkvterm        rmrsrc-api     setlparcap
+chhmcencr   chsyscfg      dlslic         hmcwin           lshmcencr     lsnodeid      lsusrtca      monhmc         rmsyscfg       ssh
+chhmcfs     chsyspwd      du             host             lshmcfs       lsnportlogin  lsvet         more           rmsysconn      ssh-keygen
+chhmcldap   chsysstate    dump           hwdbg            lshmcldap     lspartition   man           optmem         rmsysplan      startdump
+chhmcusr    chtskey       egrep          installios       lshmcusr      lspsm         migrcfg       osinstall      rmsysplanres   sum
+chhwres     chusrtca      expdata        ldapsearch       lshsc         lspwdpolicy   migrlpar      pedbg          rmvterm        tail
+chipsec     chvet         expr           less             lshwinfo      lspwrmgmt     migrremote    pesh           rnvi           termtask
+chkmedia    clear         fgrep          locale           lshwres       lsrefcode     mkaccfg       refdev         rrlpar         updhmc
+chled       cp            gen_backup_db  logssh           lsiotopo      lsrsdevsize   mkauthkeys    rm             rsMMRioServer  updlic
+hscroot@localhost:~> lssvcevents
+Usage: lssvcevents -t hardware | console
+                   [-m <managed system>]
+                   [-d <number of days> | -i <number of minutes>]
+                   [--filter "<filter data>"]
+                   [-F [<attribute names>]]
+                   [--header]
+                   [--help]
+
+List console or serviceable events.
+
+    -t hardware|console      - The type of event to display:
+                                 hardware - for serviceable events
+                                 console  - for console events
+    -m <managed system>      - The managed system's name.
+    -d <number of days>      - The number of days to go back and search for
+                               events.  For hardware (serviceable) events
+                               (-t hardware), if this parameter is not
+                               specified, all serviceable events will be
+                               selected.  For console events (-t console),
+                               if this parameter is not specified, console
+                               events that occurred within the past 7 days
+                               will be selected.
+    -i <number of minutes>   - The number of minutes to go back and search for
+                               events.  This search is based on the time that
+                               the event was initially created on the
+                               management console, and is not affected by later
+                               updates to the event.
+    --filter "<filter data>" - filters the serviceable events to be listed.
+                               The format is:
+                                 "filter_name1=value,filter_name2=value,..."
+                               or
+                                 ""filter_name1=value1,value2,...",..."
+                               Valid filter names are:
+                                 status, problem_nums
+    -F [<attribute names>]   - delimiter-separated list of the names of the
+                               attributes to be listed for the selected events.
+                               If no attribute names are specified, then all
+                               attributes will be listed.
+    --header                 - prints a header of attribute names when -F is
+                               also specified
+    --help                   - prints this help
+hscroot@localhost:~> lssvcevents -t console -d 0
+time=01/20/2014 07:06:32,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>2007660458</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:55:34,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>1429427507</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:55:26,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>39191126</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:54:44,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>333452256</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:54:38,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>1300516228</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:54:28,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>1984132675</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:54:20,"text=[EVENT 1831]: A TIMER TASK HAS BEEN SCHEDULED ON A NAMED TIMER <br/>
+Named Timer Thread: PM-TaskPortal Timer  <br/>
+Timer Task ID: <b>1967682888</b> <br/>
+Date:   <br/>
+Delay (s): 0 <br/>
+Period (s): "
+time=01/20/2014 06:52:21,"text=User hscroot of session 68 is using user interface ""Tree Style""."
+time=01/20/2014 06:52:20,"text=User hscroot has logged on from location 192.168.14.166 to session id 68.  The user's maximum role is ""hmcsuperadmin""."
+time=01/20/2014 06:05:30,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -npiv -field name clntid physloc fc fcphysloc -fmt
+ , command was executed successfully."
+time=01/20/2014 06:05:30,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev fcs1 -vpd command was executed successfully.
+time=01/20/2014 06:05:30,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev fcs0 -vpd command was executed successfully.
+time=01/20/2014 06:05:29,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name description physloc status parent -fmt , co
+mmand was executed successfully."
+time=01/20/2014 06:05:29,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsnports -field name fabric tports aports swwpns awwpns -fmt 
+, command was executed successfully."
+time=01/20/2014 06:05:29,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg -lv rootvg -field lvname type lps pps lvstate command was
+ executed successfully.
+time=01/20/2014 06:05:29,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -type FBPOOL -field alloc free pool size -fmt , command 
+was executed successfully."
+time=01/20/2014 06:05:29,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -bd -sp rootvg -field name size -fmt , command was execu
+ted successfully."
+time=01/20/2014 06:05:29,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk24 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk24 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk23 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk23 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk22 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk22 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk21 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk21 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk20 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk20 -attr command was executed successfully.
+time=01/20/2014 06:05:28,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk19 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk19 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk18 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk18 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk17 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk17 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk16 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk16 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk15 -attr command was executed successfully.
+time=01/20/2014 06:05:27,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk15 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk14 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk14 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk13 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk13 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk12 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk12 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk11 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk11 -attr command was executed successfully.
+time=01/20/2014 06:05:26,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk9 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk8 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk7 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk6 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk5 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk4 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk3 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk2 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk1 -attr command was executed successfully.
+time=01/20/2014 06:05:25,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk0 -attr command was executed successfully.
+time=01/20/2014 06:05:24,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name physloc -fmt , command was executed success
+fully."
+time=01/20/2014 06:05:24,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lspv -avail -field name pvid size -fmt , command was executed
+ successfully."
+time=01/20/2014 06:05:23,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg rootvg -field vgname ppsize stalepps -fmt , command was 
+executed successfully."
+time=01/20/2014 06:05:23,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg -pv rootvg -field pvname totalpps freepps pvstate command
+ was executed successfully.
+time=01/20/2014 06:05:23,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -field Pool -fmt , command was executed successfully."
+time=01/20/2014 06:05:23,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg rootvg -field vgname ppsize totalpps freepps usedpps vgs
+tate vgid quorum lvs openlvs maxlvs totalpvs activepvs maxpvs -fmt , command was executed successfully."
+time=01/20/2014 06:05:23,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -field pool alloc size free -fmt , command was executed 
+successfully."
+time=01/20/2014 06:05:22,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name description physloc -fmt , -type optical -s
+tate available command was executed successfully."
+time=01/20/2014 06:05:22,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c viosmgr -t vrm -f query_storage -s pv -I -L -V 2 command was e
+xecuted successfully.
+time=01/20/2014 06:05:22,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -field svsa physloc lun vtd backing -fmt , command
+ was executed successfully."
+time=01/20/2014 06:05:21,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -net -field svea physloc bdphysloc sea backing -fm
+t , command was executed successfully."
+time=01/20/2014 05:40:08,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -npiv -field name clntid physloc fc fcphysloc -fmt ,
+ command was executed successfully."
+time=01/20/2014 05:40:08,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev fcs1 -vpd command was executed successfully.
+time=01/20/2014 05:40:08,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev fcs0 -vpd command was executed successfully.
+time=01/20/2014 05:40:07,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name description physloc status parent -fmt , comm
+and was executed successfully."
+time=01/20/2014 05:40:07,"text=HSCE2124 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsnports -field name fabric tports aports swwpns awwpns -fmt , 
+command failed."
+time=01/20/2014 05:40:06,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg -lv rootvg -field lvname type lps pps lvstate command was e
+xecuted successfully.
+time=01/20/2014 05:40:06,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -type FBPOOL -field alloc free pool size -fmt , command wa
+s executed successfully."
+time=01/20/2014 05:40:06,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -bd -sp rootvg -field name size -fmt , command was execute
+d successfully."
+time=01/20/2014 05:40:05,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk4 -attr command was executed successfully.
+time=01/20/2014 05:40:05,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk3 -attr command was executed successfully.
+time=01/20/2014 05:40:00,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk2 -attr command was executed successfully.
+time=01/20/2014 05:40:00,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk1 -attr command was executed successfully.
+time=01/20/2014 05:40:00,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk0 -attr command was executed successfully.
+time=01/20/2014 05:40:00,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name physloc -fmt , command was executed successfu
+lly."
+time=01/20/2014 05:39:59,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lspv -avail -field name pvid size -fmt , command was executed s
+uccessfully."
+time=01/20/2014 05:39:59,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg rootvg -field vgname ppsize stalepps -fmt , command was ex
+ecuted successfully."
+time=01/20/2014 05:39:58,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg -pv rootvg -field pvname totalpps freepps pvstate command w
+as executed successfully.
+time=01/20/2014 05:39:58,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -field Pool -fmt , command was executed successfully."
+time=01/20/2014 05:39:58,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg rootvg -field vgname ppsize totalpps freepps usedpps vgsta
+te vgid quorum lvs openlvs maxlvs totalpvs activepvs maxpvs -fmt , command was executed successfully."
+time=01/20/2014 05:39:57,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -field pool alloc size free -fmt , command was executed su
+ccessfully."
+time=01/20/2014 05:39:57,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name description physloc -fmt , -type optical -sta
+te available command was executed successfully."
+time=01/20/2014 05:39:57,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c viosmgr -t vrm -f query_storage -s pv -I -L -V 2 command was exe
+cuted successfully.
+time=01/20/2014 05:39:56,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -field svsa physloc lun vtd backing -fmt , command w
+as executed successfully."
+time=01/20/2014 05:39:55,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -net -field svea physloc bdphysloc sea backing -fmt 
+, command was executed successfully."
+time=01/20/2014 00:26:03,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -npiv -field name clntid physloc fc fcphysloc -fmt
+ , command was executed successfully."
+time=01/20/2014 00:26:03,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev fcs1 -vpd command was executed successfully.
+time=01/20/2014 00:26:03,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev fcs0 -vpd command was executed successfully.
+time=01/20/2014 00:26:03,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name description physloc status parent -fmt , co
+mmand was executed successfully."
+time=01/20/2014 00:26:02,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsnports -field name fabric tports aports swwpns awwpns -fmt 
+, command was executed successfully."
+time=01/20/2014 00:26:02,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg -lv rootvg -field lvname type lps pps lvstate command was
+ executed successfully.
+time=01/20/2014 00:26:02,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -type FBPOOL -field alloc free pool size -fmt , command 
+was executed successfully."
+time=01/20/2014 00:26:02,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -bd -sp rootvg -field name size -fmt , command was execu
+ted successfully."
+time=01/20/2014 00:26:02,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk24 -attr command was executed successfully.
+time=01/20/2014 00:26:02,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk24 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk23 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk23 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk22 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk22 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk21 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk21 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk20 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk20 -attr command was executed successfully.
+time=01/20/2014 00:26:01,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk19 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk19 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk18 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk18 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk17 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk17 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk16 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk16 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk15 -attr command was executed successfully.
+time=01/20/2014 00:26:00,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk15 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk14 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk14 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk13 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk13 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk12 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk12 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk11 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk11 -attr command was executed successfully.
+time=01/20/2014 00:25:59,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk9 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk8 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk7 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk6 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk5 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk4 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk3 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk2 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk1 -attr command was executed successfully.
+time=01/20/2014 00:25:58,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -dev hdisk0 -attr command was executed successfully.
+time=01/20/2014 00:25:57,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name physloc -fmt , command was executed success
+fully."
+time=01/20/2014 00:25:57,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lspv -avail -field name pvid size -fmt , command was executed
+ successfully."
+time=01/20/2014 00:25:56,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg rootvg -field vgname ppsize stalepps -fmt , command was 
+executed successfully."
+time=01/20/2014 00:25:56,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg -pv rootvg -field pvname totalpps freepps pvstate command
+ was executed successfully.
+time=01/20/2014 00:25:56,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -field Pool -fmt , command was executed successfully."
+time=01/20/2014 00:25:56,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsvg rootvg -field vgname ppsize totalpps freepps usedpps vgs
+tate vgid quorum lvs openlvs maxlvs totalpvs activepvs maxpvs -fmt , command was executed successfully."
+time=01/20/2014 00:25:56,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lssp -field pool alloc size free -fmt , command was executed 
+successfully."
+time=01/20/2014 00:25:55,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsdev -field name description physloc -fmt , -type optical -s
+tate available command was executed successfully."
+time=01/20/2014 00:25:55,text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c viosmgr -t vrm -f query_storage -s pv -I -L -V 2 command was e
+xecuted successfully.
+time=01/20/2014 00:25:55,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -field svsa physloc lun vtd backing -fmt , command
+ was executed successfully."
+time=01/20/2014 00:25:54,"text=HSCE2123 User name diradmin: viosvrcmd -m 8233-E8B*0661FBP --id 1 -c lsmap -all -net -field svea physloc bdphysloc sea backing -fm
+t , command was executed successfully."
+time=01/20/2014 00:24:02,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -npiv -field name clntid physloc fc fcphysloc -fmt ,
+ command was executed successfully."
+time=01/20/2014 00:24:02,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev fcs1 -vpd command was executed successfully.
+time=01/20/2014 00:24:02,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev fcs0 -vpd command was executed successfully.
+time=01/20/2014 00:24:01,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name description physloc status parent -fmt , comm
+and was executed successfully."
+time=01/20/2014 00:24:00,"text=HSCE2124 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsnports -field name fabric tports aports swwpns awwpns -fmt , 
+command failed."
+time=01/20/2014 00:24:00,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg -lv rootvg -field lvname type lps pps lvstate command was e
+xecuted successfully.
+time=01/20/2014 00:24:00,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -type FBPOOL -field alloc free pool size -fmt , command wa
+s executed successfully."
+time=01/20/2014 00:24:00,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -bd -sp rootvg -field name size -fmt , command was execute
+d successfully."
+time=01/20/2014 00:23:59,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk4 -attr command was executed successfully.
+time=01/20/2014 00:23:59,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk3 -attr command was executed successfully.
+time=01/20/2014 00:23:59,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk2 -attr command was executed successfully.
+time=01/20/2014 00:23:59,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk1 -attr command was executed successfully.
+time=01/20/2014 00:23:59,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -dev hdisk0 -attr command was executed successfully.
+time=01/20/2014 00:23:58,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name physloc -fmt , command was executed successfu
+lly."
+time=01/20/2014 00:23:58,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lspv -avail -field name pvid size -fmt , command was executed s
+uccessfully."
+time=01/20/2014 00:23:57,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg rootvg -field vgname ppsize stalepps -fmt , command was ex
+ecuted successfully."
+time=01/20/2014 00:23:57,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg -pv rootvg -field pvname totalpps freepps pvstate command w
+as executed successfully.
+time=01/20/2014 00:23:57,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -field Pool -fmt , command was executed successfully."
+time=01/20/2014 00:23:56,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsvg rootvg -field vgname ppsize totalpps freepps usedpps vgsta
+te vgid quorum lvs openlvs maxlvs totalpvs activepvs maxpvs -fmt , command was executed successfully."
+time=01/20/2014 00:23:56,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lssp -field pool alloc size free -fmt , command was executed su
+ccessfully."
+time=01/20/2014 00:23:56,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsdev -field name description physloc -fmt , -type optical -sta
+te available command was executed successfully."
+time=01/20/2014 00:23:56,text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c viosmgr -t vrm -f query_storage -s pv -I -L -V 2 command was exe
+cuted successfully.
+time=01/20/2014 00:23:55,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -field svsa physloc lun vtd backing -fmt , command w
+as executed successfully."
+time=01/20/2014 00:23:54,"text=HSCE2123 User name new710: viosvrcmd -m 8231-E2B*064B1AR --id 1 -c lsmap -all -net -field svea physloc bdphysloc sea backing -fmt 
+, command was executed successfully."
+hscroot@localhost:~> 
+
+
+ ----------------------------------------------------------
+  Partitions On Managed System:  SVRP7750-08-SN0661FBP
+  OS/400 Partitions not listed
+ ----------------------------------------------------------
+   1)    p750client1                          Running
+   2)    p750client2                          Running
+   3)    p750client3                          Running
+   4)    p750client4                          Running
+   5)    p750vios1                            Running
+   6)    test1                                Running
+   7)    vm124                                Not Activated
+   8)    vmcontroldeploy                      Not Activated
+
+
+ Enter Number of Running Partition (q to quit): 5
+5
+    Opening Virtual Terminal On Partition p750vios1 . . .
+
+
+ Open in progress  
+ 
+ Open Completed. 
+  IBM Virtual I/O Server
+
+                        login: padmin
+padmin's Password: 
+Last unsuccessful login: Fri Jan 17 14:10:26 BEIST 2014 on /dev/pts/0 from 192.168.6.60
+Last login: Mon Jan 20 14:48:15 BEIST 2014 on /dev/pts/0 from 192.168.14.85
+
+padmin@p750vios1:/home/padmin>
+padmin@p750vios1:/home/padmin>
+padmin@p750vios1:/home/padmin>
+padmin@p750vios1:/home/padmin>pmcycles
+rksh: pmcycles:  not found.
+padmin@p750vios1:/home/padmin>pmcycle
+rksh: pmcycle:  not found.
+padmin@p750vios1:/home/padmin>pmcycles
+rksh: pmcycles:  not found.
+padmin@p750vios1:/home/padmin>prtconf
+rksh: prtconf:  not found.
+padmin@p750vios1:/home/padmin>oem_setup_env
+# pmcycles
+This machine runs at 3550 MHz
+# pmcycles -m
+CPU 0 runs at 3550 MHz
+CPU 1 runs at 3550 MHz
+CPU 2 runs at 3550 MHz
+CPU 3 runs at 3550 MHz
+# prtconf   
+System Model: IBM,8233-E8B
+Machine Serial Number: 0661FBP
+Processor Type: PowerPC_POWER7
+Processor Implementation Mode: POWER 7
+Processor Version: PV_7_Compat
+Number Of Processors: 1
+Processor Clock Speed: 3550 MHz
+CPU Type: 64-bit
+Kernel Type: 64-bit
+LPAR Info: 1 p750vios1
+Memory Size: 4352 MB
+Good Memory Size: 4352 MB
+Platform Firmware level: AL730_035
+Firmware Version: IBM,AL730_035
+Console Login: enable
+Auto Restart: true
+Full Core: false
+NX Crypto Acceleration: Not Capable
+ 
+Network Information
+        Host Name: p750vios1
+        IP Address: 192.168.13.100
+        Sub Netmask: 255.255.255.0
+        Gateway: 192.168.13.254
+        Name Server: 
+        Domain Name: 
+ 
+Paging Space Information
+        Total Paging Space: 1536MB
+        Percent Used: 1%
+ 
+Volume Groups Information
+============================================================================== 
+Active VGs
+============================================================================== 
+rootvg:
+PV_NAME           PV STATE          TOTAL PPs   FREE PPs    FREE DISTRIBUTION
+hdisk0            active            546         415         109..88..00..109..109
+hdisk1            active            546         266         110..00..00..47..109
+============================================================================== 
+ 
+INSTALLED RESOURCE LIST
+
+The following resources are installed on the machine.
++/- = Added or deleted from Resource List.
+*   = Diagnostic support not available.
+        
+  Model Architecture: chrp
+  Model Implementation: Multiple Processor, PCI bus
+        
++ sys0                                                                           System Object
++ sysplanar0                                                                     System Planar
+* lhea0            U78A0.001.DNWK2YB-P1                                          Logical Host Ethernet Adapter (l-hea)
++ ent3             U78A0.001.DNWK2YB-P1-C6-T3                                    Logical Host Ethernet Port (lp-hea)
++ ent2             U78A0.001.DNWK2YB-P1-C6-T1                                    Logical Host Ethernet Port (lp-hea)
+* vio0                                                                           Virtual I/O Bus
+* vhost7           U8233.E8B.0661FBP-V1-C5                                       Virtual SCSI Server Adapter
+* vtscsi7          U8233.E8B.0661FBP-V1-C5-L1                                    Virtual Target Device - Disk
+* vhost10          U8233.E8B.0661FBP-V1-C8                                       Virtual SCSI Server Adapter
+* vtscsi10         U8233.E8B.0661FBP-V1-C8-L1                                    Virtual Target Device - Disk
+* vhost6           U8233.E8B.0661FBP-V1-C300                                     Virtual SCSI Server Adapter
+* testlvlv         U8233.E8B.0661FBP-V1-C300-L2                                  Virtual Target Device - Logical Volume
+* vtopt3           U8233.E8B.0661FBP-V1-C300-L1                                  Virtual Target Device - File-backed Optical
+* vhost5           U8233.E8B.0661FBP-V1-C3                                       Virtual SCSI Server Adapter
+* vtscsi5          U8233.E8B.0661FBP-V1-C3-L1                                    Virtual Target Device - Disk
+* vhost4           U8233.E8B.0661FBP-V1-C2                                       Virtual SCSI Server Adapter
+* vtscsi4          U8233.E8B.0661FBP-V1-C2-L1                                    Virtual Target Device - Disk
+* vhost3           U8233.E8B.0661FBP-V1-C213                                     Virtual SCSI Server Adapter
+* vtopt0           U8233.E8B.0661FBP-V1-C213-L2                                  Virtual Target Device - File-backed Optical
+* vtopt2           U8233.E8B.0661FBP-V1-C213-L3                                  Virtual Target Device - File-backed Optical
+* vtscsi3          U8233.E8B.0661FBP-V1-C213-L1                                  Virtual Target Device - Disk
+* vhost2           U8233.E8B.0661FBP-V1-C212                                     Virtual SCSI Server Adapter
+* vtopt5           U8233.E8B.0661FBP-V1-C212-L4                                  Virtual Target Device - File-backed Optical
+* vtopt4           U8233.E8B.0661FBP-V1-C212-L3                                  Virtual Target Device - File-backed Optical
+* vtopt1           U8233.E8B.0661FBP-V1-C212-L2                                  Virtual Target Device - File-backed Optical
+* vtscsi2          U8233.E8B.0661FBP-V1-C212-L1                                  Virtual Target Device - Disk
+* vhost1           U8233.E8B.0661FBP-V1-C211                                     Virtual SCSI Server Adapter
+* vtscsi1          U8233.E8B.0661FBP-V1-C211-L1                                  Virtual Target Device - Disk
+* vhost0           U8233.E8B.0661FBP-V1-C210                                     Virtual SCSI Server Adapter
+* vtscsi0          U8233.E8B.0661FBP-V1-C210-L1                                  Virtual Target Device - Disk
+* vasi0            U8233.E8B.0661FBP-V1-C32769                                   Virtual Asynchronous Services Interface (VASI)
+* vbsd0            U8233.E8B.0661FBP-V1-C32769-L0                                Virtual Block Storage Device (VBSD)
+* pager0           U8233.E8B.0661FBP-V1-C32769-L0-L0                             Pager Kernel Extension
+* ent1             U8233.E8B.0661FBP-V1-C201-T1                                  Virtual I/O Ethernet Adapter (l-lan)
+* ent0             U8233.E8B.0661FBP-V1-C200-T1                                  Virtual I/O Ethernet Adapter (l-lan)
+* vsa0             U8233.E8B.0661FBP-V1-C0                                       LPAR Virtual Serial Adapter
+* vty0             U8233.E8B.0661FBP-V1-C0-L0                                    Asynchronous Terminal
+* pci1             U78A0.001.DNWK2YB-P1                                          PCI Express Bus
++ fcs0             U78A0.001.DNWK2YB-P1-C2-T1                                    8Gb PCI Express Dual Port FC Adapter (df1000f114108a03)
+* fcnet0           U78A0.001.DNWK2YB-P1-C2-T1                                    Fibre Channel Network Protocol Device
++ fscsi0           U78A0.001.DNWK2YB-P1-C2-T1                                    FC SCSI I/O Controller Protocol Device
+* hdisk12          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L8000000000000   MPIO IBM 2076 FC Disk
+* hdisk9           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L4000000000000   MPIO IBM 2076 FC Disk
+* hdisk10          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L5000000000000   MPIO IBM 2076 FC Disk
+* hdisk11          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L7000000000000   MPIO IBM 2076 FC Disk
+* hdisk16          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-LC000000000000   MPIO IBM 2076 FC Disk
+* hdisk15          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B1-LB000000000000   MPIO IBM 2076 FC Disk
+* hdisk13          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B1-L9000000000000   MPIO IBM 2076 FC Disk
+* hdisk14          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-LA000000000000   MPIO IBM 2076 FC Disk
+* hdisk18          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-LE000000000000   MPIO IBM 2076 FC Disk
+* hdisk21          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B1-L11000000000000  MPIO IBM 2076 FC Disk
+* hdisk20          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L10000000000000  MPIO IBM 2076 FC Disk
+* hdisk19          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B1-LF000000000000   MPIO IBM 2076 FC Disk
+* hdisk17          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-LD000000000000   MPIO IBM 2076 FC Disk
+* hdisk22          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L12000000000000  MPIO IBM 2076 FC Disk
+* hdisk23          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L13000000000000  MPIO IBM 2076 FC Disk
+* hdisk24          U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L14000000000000  MPIO IBM 2076 FC Disk
+* sfwcomm0         U78A0.001.DNWK2YB-P1-C2-T1-W0-L0                              Fibre Channel Storage Framework Comm
+* hdisk4           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L0               MPIO IBM 2076 FC Disk
+* hdisk5           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L1000000000000   MPIO IBM 2076 FC Disk
+* hdisk6           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L2000000000000   MPIO IBM 2076 FC Disk
+* hdisk7           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B0-L3000000000000   MPIO IBM 2076 FC Disk
+* hdisk8           U78A0.001.DNWK2YB-P1-C2-T1-W50050768021007B1-L6000000000000   MPIO IBM 2076 FC Disk
++ fcs1             U78A0.001.DNWK2YB-P1-C2-T2                                    8Gb PCI Express Dual Port FC Adapter (df1000f114108a03)
+* fcnet1           U78A0.001.DNWK2YB-P1-C2-T2                                    Fibre Channel Network Protocol Device
++ fscsi1           U78A0.001.DNWK2YB-P1-C2-T2                                    FC SCSI I/O Controller Protocol Device
+* sfwcomm1         U78A0.001.DNWK2YB-P1-C2-T2-W0-L0                              Fibre Channel Storage Framework Comm
+* pci0             U78A0.001.DNWK2YB-P1                                          PCI Bus
++ sissas0          U78A0.001.DNWK2YB-P1-T9                                       PCI-X266 Planar 3Gb SAS Adapter
+* sas0             U78A0.001.DNWK2YB-P1-T9                                       Controller SAS Protocol
+* sfwcomm2                                                                       SAS Storage Framework Comm
++ rmt0             U78A0.001.DNWK2YB-P2-D1                                       SAS 4mm Tape Drive (80000 MB)
++ hdisk0           U78A0.001.DNWK2YB-P2-D3                                       SAS Disk Drive (146800 MB)
++ hdisk1           U78A0.001.DNWK2YB-P2-D4                                       SAS Disk Drive (146800 MB)
++ hdisk2           U78A0.001.DNWK2YB-P2-D5                                       SAS Disk Drive (146800 MB)
++ hdisk3           U78A0.001.DNWK2YB-P2-D6                                       SAS Disk Drive (146800 MB)
++ ses0             U78A0.001.DNWK2YB-P2-Y2                                       SAS Enclosure Services Device
++ ses1             U78A0.001.DNWK2YB-P2-Y1                                       SAS Enclosure Services Device
++ ses2             U78A0.001.DNWK2YB-P2-Y1                                       SAS Enclosure Services Device
+* sata0            U78A0.001.DNWK2YB-P1-T9                                       Controller SATA Protocol
++ cd0              U78A0.001.DNWK2YB-P2-D2                                       SATA DVD-RAM Drive
++ L2cache0                                                                       L2 Cache
++ mem0                                                                           Memory
++ proc0                                                                          Processor
+# 

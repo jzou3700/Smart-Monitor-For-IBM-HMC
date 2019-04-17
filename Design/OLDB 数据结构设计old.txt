@@ -1,0 +1,581 @@
+ZTOP
+	HMCCommands
+		Category=Status
+			Command=LPAR { CLI="lshwres -r proc --level sys -m " + $serverName }
+			Command=LPARUTIL { 
+				CLI="lslparutil -r lpar -m " + $serverName + "-n 10" 
+					transient=true
+			};	
+		Category=Physical
+			Command=PROC_SYS { CLI="lshwres -r proc --level sys -m " + $serverName"	}
+			Command=PROC_LPAR { CLI="lshwres -r proc --level lpar -m " + $serverName"	}
+			Command=MEM_SYS { CLI="lshwres -r proc --level -m " + $serverName"	}
+			.
+		Category=Virtual
+			.
+		Category=Hybird
+			.
+			.
+			.
+			Command=VIRTUALIO_SLOT_LPAR { CLI="lshwres -r virtualio --rsubtype slot --level lpar -m " + $serverName }
+	HMCServers
+		HMC=hscroot@9.181.159.41
+			Server=Server1
+				#HMCCommands
+			Server=Server2
+			Server=Server3
+			
+		HMC
+			"lssyscfg -r sys"=server1
+					#HMCCommands		
+			"lssyscfg -r sys"=server2
+					#HMCCommands		
+			"lssyscfg -r sys"=server3
+					#HMCCommands
+			"lssyscfg -r sys"=server4
+					#HMCCommands
+ZTOP commands { addhmc }
+HMC Commands { ssh hscroot@hmc "lssyscfg -r sys -F name" }
+Server Commands {
+	ssh hscroot@hmc "lshwres -r proc --level sys -m" $serverName
+	.
+	.
+	.
+}
+
+ZTOP { HMC }
+HMC { Server }
+
+ZTOP Commands
+HMC Commands
+Server Commands
+
+ZTOP + addhmc = HMC
+	HMC + "lssyscfg -r sys" = Server
+		.map 
+			Server -> LPAR
+		Server + LSHWRES = Component
+		Component + LPARClassify = LPAR
+		LPAR + PS = ProcessDetail
+
+ZTOP
+	HMC = ZTOP + addhmc
+		Server = HMC + "lssyscfg -r sys" {
+			map 
+				server -> LPAR
+		}
+			Component = Server + LSHWRES
+			LPAR = Component + LPARClassify
+				ProcessStatus = LPAR + VIOCMDPS
+				ETC_HOSTS = LPAR + VIOCMD_CATHOSTS
+	Server = ZTOP + addVMhost
+		
+ROOT=ZTOP
+	#DTD { 
+		HMC = addhmc()
+			SYS = HMC.funcSYS()										// lssyscfg -r sys
+			"COMP VIEW" = #PREV select name rename to SERVER 		// select from the previous sibling node. .. mean parent directory node
+				Component = SERVER.ServerInventoryGroupCommands()
+				"LPAR View" = #PREV select LPAR 
+					LPAR.addCatalog(OSInventory)
+						LPAR.VIOCMDPS() = ProcessStatus
+						LPAR.VIOCMD_CATHOSTS() = ETC_HOSTS
+		Server = addVMhost()															// designed for VMWare
+			...
+	}
+	HMC=172.16.15.41
+		SYS
+			name=SVRP7750-11-SN0681F7P,type_model=8233-E8B,serial_num=0681F7P,ipaddr=10.255.255.249,state=Operating,detailed_state=None,sys_time=10/25/2013 01:08:46,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=320,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=320,max_suspend_capable_lpars=320,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+			name=SVRP7720-06-SN064E9ER,type_model=8202-E4C,serial_num=064E9ER,ipaddr=10.255.255.254,state=Operating,detailed_state=None,sys_time=10/25/2013 01:10:13,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=80,max_suspend_capable_lpars=80,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=autostart,power_on_lpar_start_policy=autostart,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=01,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=60,vtpm_version=1
+			name=SVRP7750-05-SN062DA7P,type_model=8233-E8B,serial_num=062DA7P,ipaddr=10.255.255.253,state=Operating,detailed_state=None,sys_time=10/25/2013 01:12:18,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,lpar_suspend_capable=0,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=160,max_power_ctrl_lpars=1,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=fast,pend_power_on_speed=fast,curr_power_on_speed_override=none,pend_power_on_speed_override=none,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+			name=SVRP7720-01-SN10418EP,type_model=8202-E4B,serial_num=10418EP,ipaddr=10.255.255.248,state=Operating,detailed_state=None,sys_time=10/25/2013 01:14:23,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,lpar_suspend_capable=0,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=perm,pend_power_on_side=perm,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+		#83 select name to SERVER name as "Component"			// 查询name转成SERVER，查询宜用TAB显示， 可称之为 Component View
+			SERVER=SVP7750-11-SN0681F7P # { 					// 基于查询到的服务器名，执行ServerInventoryGroupCommands
+					default=#146
+				}
+				COMMAND=PROFILE
+					name=P750_11_VIOS,lpar_name=P750_11_VIOS,lpar_id=3,lpar_env=vioserver,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=8192,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.6,max_proc_units=1.0,min_procs=1,desired_procs=1,max_procs=1,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,"io_slots=21010121/none/1,21010203/none/0,21010128/none/1",lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1","virtual_scsi_adapters=128/server/4//4/0,130/server/8/RT1498/4/0,132/server/9/BP669/4/0,134/server/10/LPOC1466/4/0,136/server/11/BP663/4/0,138/server/12/BP664/4/0,140/server/15//4/0,142/server/1/BP625/4/0,144/server/11/BP663/4/0,146/server/12/BP664/4/0,148/server/13//4/0,150/server/15//4/0,152/server/14//4/0,154/server/4//4/0,156/server/4//4/0,158/server/5/BP666/4/0,160/server/1/BP625/4/0,162/server/4//4/0,164/server/6/BP667/4/0,166/server/7/BP668/4/0,168/server/8/RT1498/4/0,170/server/5/BP666/4/0,172/server/9/BP669/4/0,174/server/10/LPOC1466/4/0,176/server/7/BP668/4/0,178/server/11/BP663/4/0,180/server/4//4/0,182/server/6/BP667/4/0,184/server/5/BP666/4/0,186/server/8/RT1498/4/0,188/server/7/BP668/4/0,190/server/9/BP669/4/0,192/server/4//4/0,194/server/5/BP666/4/0,196/server/6/BP667/4/0,198/server/7/BP668/4/0,200/server/8/RT1498/4/0,202/server/9/BP669/4/0,204/server/4//4/0,206/server/5/BP666/4/0,208/server/6/BP667/4/0,210/server/7/BP668/4/0,212/server/8/RT1498/4/0,214/server/9/BP669/4/0,216/server/10/LPOC1466/4/0,218/server/11/BP663/4/0,220/server/10/LPOC1466/4/0,94/server/6/BP667/4/0,222/server/12/BP664/4/0,96/server/13//4/1,224/server/4//4/0,98/server/14//4/0,226/server/5/BP666/4/0,228/server/6/BP667/4/0,230/server/7/BP668/4/0,232/server/8/RT1498/4/0,234/server/9/BP669/4/0,118/server/1/BP625/4/0,120/server/5/BP666/4/0,122/server/6/BP667/4/0,124/server/7/BP668/4/0,126/server/6/BP667/4/0","virtual_eth_adapters=""2/1/1/352,353,258,354,355,356,357,358,359,350,159,351/1/1/ETHERNET0//all/none""",vtpm_adapters=none,"virtual_fc_adapters=193/server/5/BP666/3//0,129/server/8/RT1498/3//0,195/server/6/BP667/3//0,197/server/7/BP668/3//0,133/server/10/LPOC1466/3//0,199/server/8/RT1498/3//0,135/server/11/BP663/3//0,201/server/9/BP669/3//0,139/server/15//3//0,217/server/11/BP663/3//0,219/server/10/LPOC1466/3//0,93/server/6/BP667/3//0,221/server/12/BP664/3//0,159/server/1/BP625/3//0,225/server/5/BP666/3//0,227/server/6/BP667/3//0,229/server/7/BP668/3//0,231/server/8/RT1498/3//0,233/server/9/BP669/3//0,179/server/4//3//0,181/server/6/BP667/3//0,183/server/5/BP666/3//0,185/server/8/RT1498/3//0,187/server/7/BP668/3//0,189/server/9/BP669/3//0,191/server/4//3//0",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,virtual_vasi_adapters=none,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default
+					name=RT232,lpar_name=RT232,lpar_id=2,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=0,desired_num_huge_pages=0,max_num_huge_pages=0,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/120/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/119/c0507603c32001a4,c0507603c32001a5/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP625,lpar_name=BP625,lpar_id=1,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=0,desired_num_huge_pages=0,max_num_huge_pages=0,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/160/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/159/c0507603c32001d2,c0507603c32001d3/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP663,lpar_name=BP663,lpar_id=11,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/218/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/217/c0507603c3200218,c0507603c3200219/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=LPOC1466,lpar_name=LPOC1466,lpar_id=10,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/220/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/219/c0507603c320021a,c0507603c320021b/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP664,lpar_name=BP664,lpar_id=12,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/222/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/221/c0507603c320021c,c0507603c320021d/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP666,lpar_name=BP666,lpar_id=5,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/226/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/225/c0507603c3200220,c0507603c3200221/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP667,lpar_name=BP667,lpar_id=6,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/228/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/227/c0507603c3200222,c0507603c3200223/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP668,lpar_name=BP668,lpar_id=7,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/230/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/229/c0507603c3200224,c0507603c3200225/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=RT1498,lpar_name=RT1498,lpar_id=8,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/232/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/231/c0507603c3200226,c0507603c3200227/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP669,lpar_name=BP669,lpar_id=9,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/234/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/233/c0507603c3200228,c0507603c3200229/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+				Catalog=Physical
+					COMMAND=LPAR cmd="lssyscfg -r lpar -m SVRP7750-11-SN0681F7P"
+						name=P750_11_VIOS,lpar_id=3,lpar_env=vioserver,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P3,default_profile=P750_11_VIOS,curr_profile=P750_11_VIOS,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.15.84,msp=1,time_ref=0,lpar_avail_priority=191,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,affinity_group_id=none
+						name=RT232,lpar_id=2,lpar_env=aixlinux,state=Open Firmware,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P2,default_profile=RT232,curr_profile=RT232,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP625,lpar_id=1,lpar_env=aixlinux,state=Not Activated,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P1,default_profile=BP625,curr_profile=BP625,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP663,lpar_id=11,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7PB,default_profile=BP663,curr_profile=BP663,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=LPOC1466,lpar_id=10,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7PA,default_profile=LPOC1466,curr_profile=LPOC1466,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.97,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP664,lpar_id=12,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7PC,default_profile=BP664,curr_profile=BP664,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP666,lpar_id=5,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P5,default_profile=BP666,curr_profile=BP666,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP667,lpar_id=6,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P6,default_profile=BP667,curr_profile=BP667,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP668,lpar_id=7,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P7,default_profile=BP668,curr_profile=BP668,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER6+,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=RT1498,lpar_id=8,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P8,default_profile=RT1498,curr_profile=RT1498,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.54,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP669,lpar_id=9,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P9,default_profile=BP669,curr_profile=BP669,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.55,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+					COMMAND=LPARUTIL cmd="lslparutil -r lpar -m SVRP7750-11-SN0681F7P -n 10"
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP664,lpar_id=12,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=111513874408655,capped_cycles=1188151132583,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=602188232844,run_latch_instructions=1455587574378,run_latch_cycles=4428685004338
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP663,lpar_id=11,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=193376293885532,capped_cycles=254646329236,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=371513398646,run_latch_cycles=1060090054360
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=LPOC1466,lpar_id=10,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=169233790497195,capped_cycles=2319873086983,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=1068721161872,run_latch_instructions=4388130822802,run_latch_cycles=10539161164346
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP669,lpar_id=9,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=7929166656737,capped_cycles=147718363394,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=54876083336,run_latch_instructions=462766977129,run_latch_cycles=1080218997184
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=RT1498,lpar_id=8,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=7984758068638,capped_cycles=149095145290,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=57291975040,run_latch_instructions=437564528853,run_latch_cycles=1025709632255
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP668,lpar_id=7,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59674538675251,capped_cycles=3305005846697,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=1134740503671,run_latch_cycles=2047192731553
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP667,lpar_id=6,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59690989998758,capped_cycles=80863918877,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=115911731086,run_latch_cycles=332350302965
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP666,lpar_id=5,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59707519256890,capped_cycles=40166028709,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=66446857945,run_latch_cycles=206321081199
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=P750_11_VIOS,lpar_id=3,curr_proc_mode=shared,curr_proc_units=0.6,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=422787103559442,capped_cycles=10713791521139,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=5076828777796,run_latch_instructions=20046529924302,run_latch_cycles=51031143062436
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=RT232,lpar_id=2,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=70642332090620,capped_cycles=1845925806602,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=9598906716,run_latch_cycles=20782625622
+					COMMAND=PROC_SYS cmd="lshwres -r proc --level sys -m SVRP7750-11-SN0681F7P"
+						configurable_sys_proc_units=32.0,curr_avail_sys_proc_units=27.4,pend_avail_sys_proc_units=27.4,installed_sys_proc_units=32.0,max_capacity_sys_proc_units=deprecated,deconfig_sys_proc_units=0,min_proc_units_per_virtual_proc=0.1,max_virtual_procs_per_lpar=256,max_procs_per_lpar=256,max_curr_virtual_procs_per_aixlinux_lpar=64,max_curr_virtual_procs_per_vios_lpar=64,max_curr_virtual_procs_per_os400_lpar=64,max_curr_procs_per_aixlinux_lpar=64,max_curr_procs_per_vios_lpar=64,max_curr_procs_per_os400_lpar=64,max_shared_proc_pools=64
+					COMMAND=PROC_LPAR cmd="lshwres -r proc --level lpar -m SVRP7750-11-SN0681F7P"
+						lpar_name=P750_11_VIOS,lpar_id=3,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.6,curr_max_proc_units=1.0,curr_min_procs=1,curr_procs=1,curr_max_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.6,pend_max_proc_units=1.0,pend_min_procs=1,pend_procs=1,pend_max_procs=1,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.6,run_procs=1,run_uncap_weight=0
+						lpar_name=RT232,lpar_id=2,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP625,lpar_id=1,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.0,run_procs=0,run_uncap_weight=0
+						lpar_name=BP663,lpar_id=11,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=LPOC1466,lpar_id=10,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP664,lpar_id=12,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP666,lpar_id=5,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP667,lpar_id=6,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP668,lpar_id=7,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=RT1498,lpar_id=8,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+					lpar_name=BP669,lpar_id=9,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+				Catalog=Virtual
+					...
+				Catalog=Hybird
+					...
+				#89 Query=LPAR										// 或者叫 LPAR View. 联动操作。点击LPAR View后，所有服务器节点切换到LPAR View
+					LPAR=P750_11_VIOS(3)
+						#91											// Profile
+							#92										//		name=P750_11_VIOS,... relationship copied from #original, 可保持一致，也可不一致
+						#103
+							#105
+							#130
+							...
+					LPAR=RT232(2)
+					LPAR=BP625(1)
+					LPAR=BP663(11)
+					LPAR=LPOC1466(10)
+					LPAR=BP667(6)
+					LPAR=BP668(7)
+					LPAR=BP666(5)
+					LPAR=(None)
+					Not Matched  : SYS
+						PROC
+						MEM
+						SLOT
+			SERVER=SVRP7750-06-SN064E9ER
+				Profile
+					...
+				Physical
+					...
+				Virtual
+					...
+				Hybird
+					...
+			SERVER=SVP7750-11-SN0681F7P
+			
+	
+ROOT=ZTOP for dedicate user
+	#USER
+		jzou3700
+	#ALIAS
+		Original : Component
+	#URL(ODB://172.16.15.41)
+	#URL(ODB://172.16.15.40)
+	#QUERY
+		HMC->SERVER->LPAR
+			#cd ODB://172.16.15.41
+				HMC=172.16.15.41
+					SERVER=SVR720-1
+						LPAR=VIOSA
+							#XXX1
+							#XXX2
+						LPAR=VIOC1
+							#XXX3
+						LPAR=VIOC2
+							#XXX4
+					SERVER=SVR720-2
+						...
+					SERVER=SVR780-1
+						...
+					SERVER=SVR750-1
+						...
+			#cd ODB://172.16.15.40
+				HMC=172.16.5.240
+					SVR=SVR740-2
+							LPAR=VIOSC
+							#XXX1
+							#XXX2
+						LPAR=VIOC21
+							#XXX3
+						LPAR=VIOC22
+							#XXX4
+					SERVER=SVR720-3
+						...
+		Running,	target=LPAR
+			Matched=Running			
+				#cd ODB://172.16.15.40
+					HMC=172.16.5.240
+						Server=SVR740-2
+							LPAR=...
+			Unmatched=Running
+				#cd ODB://172.16.15.40
+					HMC=172.16.5.240
+						Server=SVR740-2
+							LPAR=...
+			
+
+			
+用户的持续性信息与会话信息的区别
+	简单的认证，使用无密码的认证，简单认证过程。
+
+信息的关联。
+	人类可以通过联想能力，将不同的信息联系起来，形成逻辑思维，找到解决问题的方案。MindMap中以相同的关键字来建立信息之间的关联。不同的设备数据之间可以通过相同的
+关键字形成关联，通过搜索再搜索将数据级联起来，形成关联的数据。
+    信息关联还可以应用在对现有数据的注释或者评论。当某些分区被分配，或者服务器被分配，管事员或使用员，可以通过对相应信息进行注释的方式来共享信息。这一做法与现实
+中给服务器贴标签是一致的。通过给信息标注，收集到的信息与使用者人脑中的信息便利的集成在一起。它也同样使用信息关联技术。
+    
+分类功能的改进。
+	一重复数据统计。
+	二计算重复数据的相同父结构， 在相同父结构下，双向表部分用矩阵表示
+	三建立双方链表，允许数据即可从部件访问到分区，也可从分区访问到部件
+		关系型数据库中使用的矩阵实际可以使用任意字段排序，实际相当于图从不同字段进入时的效果。MindMap中可以引入矩阵，组成树与矩阵的混合结构。以Smart Monitor中Power
+	虚拟化监控数据为例，
+	
+	HMC=172.16.15.41
+		SERVER=SVR720-1
+			CMD=CPU
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=MEM
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=IO_SLOT
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+		SERVER=SVR720-2
+		SERVER=SVR720-3
+		SERVER=SVR720-4
+		SERVER=SVR740-1
+		SERVER=SVR740-2
+		SERVER=SVR740-3
+		SERVER=SVR740-4
+	
+	将CMD与LPAR两列组成矩阵，需要实现两点：在SERVER结点标记矩阵的组成列，{CMD, LPAR}, 即每一行纪录都包括CMD与LPAR两个字段，需要一起载入，一起删除。浏览到SERVER结点时
+	用户可以选择任意一个入口点，即可以是先CMD再LPAR, 也可相反。
+	
+	原始数据经过上述重复数据统计分析，发现矩阵结构存在后，将数据库重新排序，把矩阵数据聚集在一起，数据库浏览里遇到矩阵进行一次性载入。
+	
+L1	#TABLE
+L2		my1stTable
+L3			CMD=CPU
+L4				LPAR=bso(7)
+L5				LPAR=P720_06_VIOC1_SWREP(4)
+L6			CMD=MEM
+L7				LPAR=bso(7)
+L8				LPAR=P720_06_VIOC1_SWREP(4)
+L9			CMD=IO_SLOT
+L10				LPAR=bso(7)
+L11				LPAR=P720_06_VIOC1_SWREP(4)
+
+
+	载入后
+	
+	CMD		LPAR					REF
+	-------	-----					---
+	CPU		bso(7)					L4
+	CPU		P720_06_VIOC1_SWREP(4)	L5
+	MEM		bso(7)					.
+	MEM		P720_06_VIOC1_SWREP(4)	.
+	IO_SLOT	bso(7)					.
+	IO_SLOT	P720_06_VIOC1_SWREP(4)
+	
+	default entry : CMD
+	second entry : LPAR
+	user be able to select the different entry to traverse 
+	
+	#L4	
+		curr_shared_proc_pool_id=0
+			curr_shared_proc_pool_name==DefaultPool
+				curr_proc_mode=shared
+					curr_min_proc_units=0.1
+						curr_proc_units=0.4
+							curr_max_proc_units=128.0
+								...
+	#L5
+		curr_shared_proc_pool_id=0
+			curr_shared_proc_pool_name==DefaultPool
+				curr_proc_mode=shared
+					curr_min_proc_units=0.1
+						curr_proc_units=0.8
+							curr_max_proc_units=0.8
+								...
+		
+	发现重复数据，生成TABLE的过程
+	1.遍历树，发现重复数据后，计算相同的路径，获得table path
+	2.将table path下原子节点与发现的重复节点一起，添加到table表中,获得行ID
+		行ID加入到table path下
+		原子节点的子节点被增加到行ID下。
+	程序浏览到#L4时，会访问Table中的L4行，并根据当前的环境变量设置选择正确的入口点。。
+	
+	
+	#QUERY						
+		DD						// mound point's line number
+			LPAR=bso(7)			// 查询到的目标结点
+				CMD=CPU
+					...
+						#		// 指向原数据
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			LPAR=P720_06_VIOC1_SWREP(4)	
+				CMD=CPU
+					...
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+
+	取消#QUERY, 直接用#DD来表达挂接结点，位于要根目录下。即目录下的#DD表示挂接点。与linx中的父结点指针不同的是，
+	挂接点与该结点下的原有数据是不同视图的关系，一旦选择从挂接点显示，则不显示原数据。挂接点将被预载入，
+	
+	#DD在不同位置表达不同的含义，当它在根目录下时，是数据进入的方向，当它在其它位置上时，而表示为指针。
+	
+	字典。当一个Key=value pair被引用后，会在多个位置出现。比如LPAR=bso(7), 生成查询表后，会在#QUERY下出现相同的LPAR. 对LPAR=bso(7)的解释需要对所有实例生效，
+	因此该问题升级为字符串指针，LINIX是行指针，通过NameService将字符串指针转变行指针。
+	
+	#NAME2LN
+		CMD=CPU
+			#DD
+		LPAR=bso(7)
+			#DD
+			
+	通过NAME2LN的转换，一个名词可以包括更多的内含。
+	
+	给特定分支做标注。比如给一台服务器或者一个分区做标注，包括状态信息，申请及审批流程等。通过类似CSS的selector来确定，存在多个选择条件的情况下，需要对数据进行预扫描，将选中的结点建立
+	与注解内容的关联。
+	
+	字典的作用范围，或者叫名字空间。相同的分区名称可能出现在不同的服务器上，如果仅根据分区名称来标注数据，会造成混淆。区分相同的名称是一个问题。
+	
+	名字服务里，要解释的是词条可能有多个修饰条件，以达到精确命中的目的。
+	
+	服务器名和分区名构成联合条件，多个联合条件构成表格，以集合运算操作。
+	
+	搜索再搜索！多个搜索条件命中目标结点，对该搜索结果标注。搜索加，搜索减。对当前搜索结果中的关键字进行联想式搜索，称为搜索加。搜索加可以建立当前搜索结果与次级搜索之间在关联。
+	搜索减是通过增加搜索条件进一步过滤结果，以获得精确的搜索结果。
+	
+	增加分区内OS信息
+	
+	vioscmd -m P720-1 -p p720-vios1 ifconfig eth0 192.168.1.11 
+		
+	ssh root@192.168.1.11
+		cmd
+			xxx
+		cmd
+			xxx
+	
+	搜索P720-vios1获得分区的信息，通过搜索加 192.168.1.11， 获得P720-vios1与192.168.1.11的关联
+	
+	今天的代码修改内容：翻页功能与定点选择的差异。增加offset与cwdPath配合使用，缺省offset是0, 点击折叠的tab里，仅改变offset而不是cwdPath. 点击展开的结点时才改变cwdPath.
+	
+	搜索后建立一个字典，比如搜索完LPAR后，在服务器结点下建立LPAR的字典，当为LPAR=P720-vioc1建立标注时，引用session下的用户发言，将引用#DD放在
+	#DICTIONARY
+		LPAR=P720-vioc1
+			#DD
+			
+	#SESSIONS
+		USER=jzou3700
+#DD			服务器外借，2014技术峰会，销售张三，技术李四
+			
+	数据聚类存放，每个人的发言放在各自的目录下，通过引用链将不同位置的数据以逻辑关系整合起来。即通过引用链，将字典中的标注连接到用户的发言。
+	
+	查询之后产生字典，对字典中的词汇可进行标注。象wiki. 字典中的热词，比如分区名，可形成热link. 
+	
+	保留的查询结果，会生成字典的词条。查询结果也可废弃。通过删除字典中的词条，可达到删除查询结果的目的。
+	
+	Transaction标志。每个session含有transaction目录，所有的transaction被放在此目录下。在tranction执行前，记录交易时间，并把交易内容放在目录下。
+	
+	问题：搜索词会产生多个重复，是采用单一词汇的引用，避免数据冗余，还是重复记录这些词汇，以便于访问？
+	解决方案：使用单一词汇，通过长链接#DD, 指向原始数据。比如原数据LPAR=P720-voic1, 被#DD替换。仅需要更改LINX, 无需更改，而#DD正好是原数据的行号，非常易于操作。
+		替换后,需要做重新排序，乱序文件无法做scan.
+		给MMAP增加标志，是否为排好序的文件。
+		#L16, 意为第16行的等效链接。
+		例如:
+#16		LPAR=P720-vioc1
+			
+		要不要将所有的LPAR=P720-vioc1全部替换成#L16?
+		查询后将数据重新生成？
+		
+		给原始数据中每一个LPAR=P720-vioc1，增加一个属性：comment=#查询结果入口，可以显示成红点，或者显示comment的数量
+	 
+	#QUERY						
+		#LPAR #select ^PART= from ^SERVER=
+			LPAR=bso(7)			// 查询到的目标结点
+				CMD=CPU
+					...
+						#		// 指向原数据
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			LPAR=P720_06_VIOC1_SWREP(4)	
+				CMD=CPU
+					...
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			#QUERY=IP	#select ^IP= from #QUERY=LPAR
+
+	查询后，记录查询有下面两种方式：
+		A: 在查询的起始结点产生分岔结点，分岔结点类似铁轨上扳道岔，或者收音机开关，产生唯一的选择，让浏览器可以显示所有分岔供用户选择。
+		B: 查询都以远程挂接的方式挂在查询的起始结点下, 在查询的起始结点下，生成属性，记录其下的查询，给浏览器以选择
+	
+	HMC=172.16.15.41
+		SERVER=SVR720-1
+			#
+				queries
+					LPARVIEW 
+						#L1
+			CMD=CPU
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=MEM
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=IO_SLOT
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+		SERVER=SVR720-2
+		SERVER=SVR720-3
+		SERVER=SVR720-4
+		SERVER=SVR740-1
+		SERVER=SVR740-2
+		SERVER=SVR740-3
+		SERVER=SVR740-4
+	#QUERY						
+		#LPAR #select ^PART= from ^SERVER=
+			#
+				queries
+					IPVIEW
+L1			LPAR=bso(7)			// 查询到的目标结点
+				CMD=CPU
+					...
+						#		// 指向原数据
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			LPAR=P720_06_VIOC1_SWREP(4)	
+				CMD=CPU
+					...
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+		#IPVIEW	#select ^IP= from #QUERY=LPAR
+			#L1
+				CMD=CPU
+					...
+						#		// 指向原数据
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			
+	数据结构介绍
+	
+	ZTOP运行后，数据存放在两个目录下。persistance目录下存放数据采集线程采集到的设备数据，该数据是持续层的数据，相当于数据库，即使ztop系统停止运行，该数据也长期存在。
+	sessions目录。该目录在系统运行时被重建，存放session相关的临时文件
+		显示在屏幕上的数据结点，存放在shadow文件里，当用户点击某一结点时，通过shadow文件，找到对应结点的路径，使用该路径，DisplayOLDB程序重建数据库的显示画面。
+		ZTOP系统中，用户可能选择多个持续层中采集的数据，因此需要建立一个文件通过指针的方式指向采集到的数据，此文件称为用户数据选择文件。文件名以会话id+客户端IP地址构成
+		
+	搜索 
+		当用户搜索数据后，被命中的结点，将存放在与数据库MMAP文件相对应的索引文件中。用户数据选择文件是一个指针型文件，指向包含大量数据的设备数据文件。搜索结果是一linx文件，在命名时
+		
+	搜索与分类操作有区别么？
+	
+	搜索又搜索后产生搜索路径，如 {#LPAR X} {#IPVIEW X} Search : ______________________________
+	用户可选择其它视图，并甚于选定的视图进行进一步搜索，最后一个搜索结果（当前搜索）可保存成为视图，一旦保存为视图，搜索起始结点会更新，生成视图选择项。比如在服务器内搜索^LPAR=, 在所
+	有的服务器结点内重复。当生成了IPVIEW以后，对oracle进程进行搜索，一种是树形搜索，一种是顺序扫描，称为scan. 给每个分枝增加叶结点数总和，则可用于判断搜索起始结点有否覆盖所有叶结点，
+	如全覆盖，则使用SCAN, 否则树型搜索
+	
+	#行号 代表一个集合， #L行号代表就此一行
+	
+	挂接点 用ln  #L行号来表示。 子树挂接到当前节点直接用#行号， #行号代表相应的子集，其父结点已经被显示，不再重复的路径。 当有后续引用ln时，首先显示#L行号对应的路径，然后显示其子树，显示
+	结果与直接从#ORIGINAL处相一致。
+	
+	重复的单词形成单词表，单词表宜置于MMAP文件开头，以便于载入。如SERVER=P720-1, 因为有很多重复引用，故将其生成为单词表，当数据文件中使用该词汇时，直接引用行号即可。该单词下应带两个不同的
+	入口地址，即原数据缺省入口和LPARView入口。当显示服务器P720-1时将给用户提示选择不同的视图入口
+	
+	字典式的数据结构如何选择根目录？词汇入口及覆盖面。字典中的词汇总数，以及单一词汇的解释中关联的词汇数量，构成词汇的覆盖面。举例，字典中仅有一个词汇，则该词汇覆盖字典中的所有词汇，即该词
+	汇是根目录词汇，如果该词汇在其它词汇的解释中被引用，则为非根目录词汇。
+	
+	在内存中建立词汇toLineNumbe对照表。可快速获取词汇的实际地址
+	
+	词汇的属性。当前的设计是想词汇的属性置于当前词汇下，在载入当前行时，将属性一并载入。这种方式的潜在问题是，如果属性是一独立发展的大型数据结构，则不便于发展和载入。如果使用#L行号指针，
+	则可指向词汇表中任意命名或者匿名的分支树， 
+	
+	单一词汇表，Key-value pair词汇表。全文词汇表，使用全文词汇表可直接定位任意行，问题在于state=1这样的行有可能出现在不同的表中，比如服务器状态state=1, 板卡的状态也有state=1, 虚拟板卡也有
+	state=1, 它们具有相似而不同的内涵，因此使用全文词汇表有可能产生一定的混淆。
+	
+	服务器下根据LPAR进行分类时，应当产生服务器相关的词汇表，即不同的分区名称。词汇表位于服务器结点下，不同的服务器有自己的词汇表，因此，不同的服务器上可能有同名分区存在。服务器下数据通过
+	重复KV统计，生成包括LPAR=P720-viocN在内的大量词汇，选择LPAR则意味着选中所有LPAR=.*， 这些分区包括大部分服务器数据，*
+	
+	将重复的KV放入字典内，用户可对字典内的关键字以回复的方式进行注释。
+	
+persistence/comment.mmap
+	#HOST
+		172.16.15.41.MMAP
+			HMC=172.16.15.41
+#L0				SERVER=P720-2
+				SERVER=P720-1
+					#DICT
+#L1						LPAR=P720-1-vioc1			// 该结点亦可为服务器字典里的一个词汇, 字典词汇与路径的关系？
+					CMD=CPU
+						LPAR=P720-1-vioc1
+#L11						name=CPU0			
+
+	#TRANSACTION
+#L2		2014/8/13 17:17
+
+	#SESSION
+		user=jzou3700
+			#L2
+#L3				该分区用于移动集采测试
+			#L3
+#L4				该服务器FC卡故障，不稳定
+			#L11
+				Aug. 11更换为新CPU, 神码服务，联系人：XXX
+
+	#COMMENT
+		#L1
+			#L3
+		#L0
+			#L4
+	
+	如何将上述路径#L0或者L1与HMC采集的数据关联起来？
+	答：如需要将comment映射在显示页面上，则需类似statusTree的处理结构，statusTree下挂接comments, 通过显示转换页面将comment数据挂接到对应的数据上。
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,71 @@
+Lines
+	lineM							# ln, parent_ln
+		lineN						# ln, parent_ln
+			lineK					# ln, parent_ln 
+			
+DeltaType	
+	Single Select
+		NEW
+		CHNAGE
+			ORIGINAL
+		DELETED
+
+Display
+	Radio 
+		GRID
+		TEXT
+		FORM
+		DEFAULT
+
+Attributes							# ln, parent_ln
+	lineM ln						# ln, parent_ln
+		Form
+			ln of Display
+				Grid					# ln, parent_ln
+					Hidden				# ln, parent_ln
+						lpar_id			# ln, parent_ln
+						lpar_name		# ln, parent_ln
+	lineK ln
+		DelaType
+			CHANGE
+
+	
+#X the line is discarded.
+#N
+#C
+#D
+
+行信息可被复制或者修改后增加到文件尾部，如果ln号相同，则后面的行覆盖前面的。当程序载入数据后，可重新输出工整的新输出，被覆盖行将被彻底删除。
+
+
+DeltaType	
+	NEW
+	CHNAGE
+		ORIGINAL
+	DELETED
+	
+<!REF 0 ATTRIBUTES>
+	lineM ln						# ln, parent_ln 
+		Dislay=Grid					# ln, parent_ln
+			Hidden					# ln, parent_ln
+				lpar_id				# ln, parent_ln
+				lpar_name			# ln, parent_ln
+        lineK ln
+		Dislay=Grid					# ln, parent_ln
+		
+		
+
+
+Lines
+	lineM							# ln, parent_ln
+		<!Attributes>
+			Display
+				GRID
+			Hidden
+				lpar_id
+				lpar_name
+		lineN						# ln, parent_ln
+			lineK					# ln, parent_ln 
+				lineL				# ln, parent_ln 
+	
+

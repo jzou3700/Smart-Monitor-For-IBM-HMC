@@ -1,0 +1,3831 @@
+ZTOP
+	HMCCommands
+		Category=Status
+			Command=LPAR { CLI="lshwres -r proc --level sys -m " + $serverName }
+			Command=LPARUTIL { 
+				CLI="lslparutil -r lpar -m " + $serverName + "-n 10" 
+					transient=true
+			};	
+		Category=Physical
+			Command=PROC_SYS { CLI="lshwres -r proc --level sys -m " + $serverName"	}
+			Command=PROC_LPAR { CLI="lshwres -r proc --level lpar -m " + $serverName"	}
+			Command=MEM_SYS { CLI="lshwres -r proc --level -m " + $serverName"	}
+			.
+		Category=Virtual
+			.
+		Category=Hybird
+			.
+			.
+			.
+			Command=VIRTUALIO_SLOT_LPAR { CLI="lshwres -r virtualio --rsubtype slot --level lpar -m " + $serverName }
+	HMCServers
+		HMC=hscroot@9.181.159.41
+			Server=Server1
+				#HMCCommands
+			Server=Server2
+			Server=Server3
+			
+		HMC
+			"lssyscfg -r sys"=server1
+					#HMCCommands		
+			"lssyscfg -r sys"=server2
+					#HMCCommands		
+			"lssyscfg -r sys"=server3
+					#HMCCommands
+			"lssyscfg -r sys"=server4
+					#HMCCommands
+ZTOP commands { addhmc }
+HMC Commands { ssh hscroot@hmc "lssyscfg -r sys -F name" }
+Server Commands {
+	ssh hscroot@hmc "lshwres -r proc --level sys -m" $serverName
+	.
+	.
+	.
+}
+
+ZTOP { HMC }
+HMC { Server }
+
+ZTOP Commands
+HMC Commands
+Server Commands
+
+ZTOP + addhmc = HMC
+	HMC + "lssyscfg -r sys" = Server
+		.map 
+			Server -> LPAR
+		Server + LSHWRES = Component
+		Component + LPARClassify = LPAR
+		LPAR + PS = ProcessDetail
+
+ZTOP
+	HMC = ZTOP + addhmc
+		Server = HMC + "lssyscfg -r sys" {
+			map 
+				server -> LPAR
+		}
+			Component = Server + LSHWRES
+			LPAR = Component + LPARClassify
+				ProcessStatus = LPAR + VIOCMDPS
+				ETC_HOSTS = LPAR + VIOCMD_CATHOSTS
+	Server = ZTOP + addVMhost
+		
+ROOT=ZTOP
+	#DTD { 
+		HMC = addhmc()
+			SYS = HMC.funcSYS()										// lssyscfg -r sys
+			"COMP VIEW" = #PREV select name rename to SERVER 		// select from the previous sibling node. .. mean parent directory node
+				Component = SERVER.ServerInventoryGroupCommands()
+				"LPAR View" = #PREV select LPAR 
+					LPAR.addCatalog(OSInventory)
+						LPAR.VIOCMDPS() = ProcessStatus
+						LPAR.VIOCMD_CATHOSTS() = ETC_HOSTS
+		Server = addVMhost()															// designed for VMWare
+			...
+	}
+	HMC=172.16.15.41
+		SYS
+			name=SVRP7750-11-SN0681F7P,type_model=8233-E8B,serial_num=0681F7P,ipaddr=10.255.255.249,state=Operating,detailed_state=None,sys_time=10/25/2013 01:08:46,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=320,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=320,max_suspend_capable_lpars=320,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+			name=SVRP7720-06-SN064E9ER,type_model=8202-E4C,serial_num=064E9ER,ipaddr=10.255.255.254,state=Operating,detailed_state=None,sys_time=10/25/2013 01:10:13,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=80,max_suspend_capable_lpars=80,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=autostart,power_on_lpar_start_policy=autostart,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=01,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=60,vtpm_version=1
+			name=SVRP7750-05-SN062DA7P,type_model=8233-E8B,serial_num=062DA7P,ipaddr=10.255.255.253,state=Operating,detailed_state=None,sys_time=10/25/2013 01:12:18,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,lpar_suspend_capable=0,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=160,max_power_ctrl_lpars=1,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=fast,pend_power_on_speed=fast,curr_power_on_speed_override=none,pend_power_on_speed_override=none,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+			name=SVRP7720-01-SN10418EP,type_model=8202-E4B,serial_num=10418EP,ipaddr=10.255.255.248,state=Operating,detailed_state=None,sys_time=10/25/2013 01:14:23,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,lpar_suspend_capable=0,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,curr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25.0/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=manual,curr_power_on_side=perm,pend_power_on_side=perm,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=autostart,pend_power_on_lpar_start_policy=autostart,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+		#83 select name to SERVER name as "Component"			// 查询name转成SERVER，查询宜用TAB显示， 可称之为 Component View
+			SERVER=SVP7750-11-SN0681F7P # { 					// 基于查询到的服务器名，执行ServerInventoryGroupCommands
+					default=#146
+				}
+				COMMAND=PROFILE
+					name=P750_11_VIOS,lpar_name=P750_11_VIOS,lpar_id=3,lpar_env=vioserver,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=8192,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.6,max_proc_units=1.0,min_procs=1,desired_procs=1,max_procs=1,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,"io_slots=21010121/none/1,21010203/none/0,21010128/none/1",lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1","virtual_scsi_adapters=128/server/4//4/0,130/server/8/RT1498/4/0,132/server/9/BP669/4/0,134/server/10/LPOC1466/4/0,136/server/11/BP663/4/0,138/server/12/BP664/4/0,140/server/15//4/0,142/server/1/BP625/4/0,144/server/11/BP663/4/0,146/server/12/BP664/4/0,148/server/13//4/0,150/server/15//4/0,152/server/14//4/0,154/server/4//4/0,156/server/4//4/0,158/server/5/BP666/4/0,160/server/1/BP625/4/0,162/server/4//4/0,164/server/6/BP667/4/0,166/server/7/BP668/4/0,168/server/8/RT1498/4/0,170/server/5/BP666/4/0,172/server/9/BP669/4/0,174/server/10/LPOC1466/4/0,176/server/7/BP668/4/0,178/server/11/BP663/4/0,180/server/4//4/0,182/server/6/BP667/4/0,184/server/5/BP666/4/0,186/server/8/RT1498/4/0,188/server/7/BP668/4/0,190/server/9/BP669/4/0,192/server/4//4/0,194/server/5/BP666/4/0,196/server/6/BP667/4/0,198/server/7/BP668/4/0,200/server/8/RT1498/4/0,202/server/9/BP669/4/0,204/server/4//4/0,206/server/5/BP666/4/0,208/server/6/BP667/4/0,210/server/7/BP668/4/0,212/server/8/RT1498/4/0,214/server/9/BP669/4/0,216/server/10/LPOC1466/4/0,218/server/11/BP663/4/0,220/server/10/LPOC1466/4/0,94/server/6/BP667/4/0,222/server/12/BP664/4/0,96/server/13//4/1,224/server/4//4/0,98/server/14//4/0,226/server/5/BP666/4/0,228/server/6/BP667/4/0,230/server/7/BP668/4/0,232/server/8/RT1498/4/0,234/server/9/BP669/4/0,118/server/1/BP625/4/0,120/server/5/BP666/4/0,122/server/6/BP667/4/0,124/server/7/BP668/4/0,126/server/6/BP667/4/0","virtual_eth_adapters=""2/1/1/352,353,258,354,355,356,357,358,359,350,159,351/1/1/ETHERNET0//all/none""",vtpm_adapters=none,"virtual_fc_adapters=193/server/5/BP666/3//0,129/server/8/RT1498/3//0,195/server/6/BP667/3//0,197/server/7/BP668/3//0,133/server/10/LPOC1466/3//0,199/server/8/RT1498/3//0,135/server/11/BP663/3//0,201/server/9/BP669/3//0,139/server/15//3//0,217/server/11/BP663/3//0,219/server/10/LPOC1466/3//0,93/server/6/BP667/3//0,221/server/12/BP664/3//0,159/server/1/BP625/3//0,225/server/5/BP666/3//0,227/server/6/BP667/3//0,229/server/7/BP668/3//0,231/server/8/RT1498/3//0,233/server/9/BP669/3//0,179/server/4//3//0,181/server/6/BP667/3//0,183/server/5/BP666/3//0,185/server/8/RT1498/3//0,187/server/7/BP668/3//0,189/server/9/BP669/3//0,191/server/4//3//0",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,virtual_vasi_adapters=none,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default
+					name=RT232,lpar_name=RT232,lpar_id=2,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=0,desired_num_huge_pages=0,max_num_huge_pages=0,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/120/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/119/c0507603c32001a4,c0507603c32001a5/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP625,lpar_name=BP625,lpar_id=1,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=0,desired_num_huge_pages=0,max_num_huge_pages=0,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=0,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/160/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/159/c0507603c32001d2,c0507603c32001d3/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP663,lpar_name=BP663,lpar_id=11,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/218/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/217/c0507603c3200218,c0507603c3200219/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=LPOC1466,lpar_name=LPOC1466,lpar_id=10,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/220/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/219/c0507603c320021a,c0507603c320021b/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP664,lpar_name=BP664,lpar_id=12,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/222/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/221/c0507603c320021c,c0507603c320021d/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP666,lpar_name=BP666,lpar_id=5,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/226/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/225/c0507603c3200220,c0507603c3200221/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP667,lpar_name=BP667,lpar_id=6,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/228/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/227/c0507603c3200222,c0507603c3200223/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP668,lpar_name=BP668,lpar_id=7,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/230/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/229/c0507603c3200224,c0507603c3200225/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=RT1498,lpar_name=RT1498,lpar_id=8,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/232/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/231/c0507603c3200226,c0507603c3200227/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+					name=BP669,lpar_name=BP669,lpar_id=9,lpar_env=aixlinux,all_resources=0,min_mem=1024,desired_mem=4096,max_mem=65536,min_num_huge_pages=null,desired_num_huge_pages=null,max_num_huge_pages=null,mem_mode=ded,mem_expansion=0.0,hpt_ratio=1:64,proc_mode=shared,min_proc_units=0.1,desired_proc_units=0.4,max_proc_units=128.0,min_procs=1,desired_procs=1,max_procs=128,sharing_mode=cap,uncap_weight=null,shared_proc_pool_id=0,shared_proc_pool_name=DefaultPool,affinity_group_id=none,io_slots=none,lpar_io_pool_ids=none,max_virtual_slots=1000,"virtual_serial_adapters=0/server/1/any//any/1,1/server/1/any//any/1",virtual_scsi_adapters=4/client/3/P750_11_VIOS/234/0,virtual_eth_adapters=2/0/258//0/0/ETHERNET0//all/none,vtpm_adapters=none,"virtual_fc_adapters=""3/client/3/P750_11_VIOS/233/c0507603c3200228,c0507603c3200229/0""",hca_adapters=none,boot_mode=norm,conn_monitoring=1,auto_start=0,power_ctrl_lpar_ids=none,work_group_id=none,redundant_err_path_reporting=0,bsr_arrays=0,lhea_logical_ports=none,lhea_capabilities=none,lpar_proc_compat_mode=default,electronic_err_reporting=null
+				Catalog=Physical
+					COMMAND=LPAR cmd="lssyscfg -r lpar -m SVRP7750-11-SN0681F7P"
+						name=P750_11_VIOS,lpar_id=3,lpar_env=vioserver,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P3,default_profile=P750_11_VIOS,curr_profile=P750_11_VIOS,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.15.84,msp=1,time_ref=0,lpar_avail_priority=191,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,affinity_group_id=none
+						name=RT232,lpar_id=2,lpar_env=aixlinux,state=Open Firmware,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P2,default_profile=RT232,curr_profile=RT232,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP625,lpar_id=1,lpar_env=aixlinux,state=Not Activated,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P1,default_profile=BP625,curr_profile=BP625,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP663,lpar_id=11,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7PB,default_profile=BP663,curr_profile=BP663,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=LPOC1466,lpar_id=10,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7PA,default_profile=LPOC1466,curr_profile=LPOC1466,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.97,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP664,lpar_id=12,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7PC,default_profile=BP664,curr_profile=BP664,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP666,lpar_id=5,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P5,default_profile=BP666,curr_profile=BP666,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP667,lpar_id=6,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P6,default_profile=BP667,curr_profile=BP667,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP668,lpar_id=7,lpar_env=aixlinux,state=Running,resource_config=1,os_version=Unknown,logical_serial_num=0681F7P7,default_profile=BP668,curr_profile=BP668,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=none,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER6+,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=RT1498,lpar_id=8,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P8,default_profile=RT1498,curr_profile=RT1498,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.54,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+						name=BP669,lpar_id=9,lpar_env=aixlinux,state=Running,resource_config=1,os_version=AIX 6.1 6100-07-04-1216,logical_serial_num=0681F7P9,default_profile=BP669,curr_profile=BP669,work_group_id=none,shared_proc_pool_util_auth=0,allow_perf_collection=0,power_ctrl_lpar_ids=none,boot_mode=norm,lpar_keylock=norm,auto_start=0,redundant_err_path_reporting=0,rmc_state=active,rmc_ipaddr=172.16.158.55,time_ref=0,lpar_avail_priority=127,desired_lpar_proc_compat_mode=default,curr_lpar_proc_compat_mode=POWER7,suspend_capable=0,remote_restart_capable=0,affinity_group_id=none
+					COMMAND=LPARUTIL cmd="lslparutil -r lpar -m SVRP7750-11-SN0681F7P -n 10"
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP664,lpar_id=12,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=111513874408655,capped_cycles=1188151132583,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=602188232844,run_latch_instructions=1455587574378,run_latch_cycles=4428685004338
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP663,lpar_id=11,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=193376293885532,capped_cycles=254646329236,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=371513398646,run_latch_cycles=1060090054360
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=LPOC1466,lpar_id=10,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=169233790497195,capped_cycles=2319873086983,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=1068721161872,run_latch_instructions=4388130822802,run_latch_cycles=10539161164346
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP669,lpar_id=9,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=7929166656737,capped_cycles=147718363394,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=54876083336,run_latch_instructions=462766977129,run_latch_cycles=1080218997184
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=RT1498,lpar_id=8,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=7984758068638,capped_cycles=149095145290,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=57291975040,run_latch_instructions=437564528853,run_latch_cycles=1025709632255
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP668,lpar_id=7,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59674538675251,capped_cycles=3305005846697,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=1134740503671,run_latch_cycles=2047192731553
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP667,lpar_id=6,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59690989998758,capped_cycles=80863918877,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=115911731086,run_latch_cycles=332350302965
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=BP666,lpar_id=5,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=59707519256890,capped_cycles=40166028709,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=66446857945,run_latch_cycles=206321081199
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=P750_11_VIOS,lpar_id=3,curr_proc_mode=shared,curr_proc_units=0.6,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=422787103559442,capped_cycles=10713791521139,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=5076828777796,run_latch_instructions=20046529924302,run_latch_cycles=51031143062436
+						time=10/25/2013 19:13:31,event_type=sample,resource_type=lpar,sys_time=10/25/2013 09:07:59,time_cycles=704770942579183,lpar_name=RT232,lpar_id=2,curr_proc_mode=shared,curr_proc_units=0.4,curr_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,curr_shared_proc_pool_name=DefaultPool,curr_shared_proc_pool_id=0,curr_5250_cpw_percent=0.0,mem_mode=ded,curr_mem=4096,entitled_cycles=70642332090620,capped_cycles=1845925806602,uncapped_cycles=0,shared_cycles_while_active=0,idle_cycles=0,run_latch_instructions=9598906716,run_latch_cycles=20782625622
+					COMMAND=PROC_SYS cmd="lshwres -r proc --level sys -m SVRP7750-11-SN0681F7P"
+						configurable_sys_proc_units=32.0,curr_avail_sys_proc_units=27.4,pend_avail_sys_proc_units=27.4,installed_sys_proc_units=32.0,max_capacity_sys_proc_units=deprecated,deconfig_sys_proc_units=0,min_proc_units_per_virtual_proc=0.1,max_virtual_procs_per_lpar=256,max_procs_per_lpar=256,max_curr_virtual_procs_per_aixlinux_lpar=64,max_curr_virtual_procs_per_vios_lpar=64,max_curr_virtual_procs_per_os400_lpar=64,max_curr_procs_per_aixlinux_lpar=64,max_curr_procs_per_vios_lpar=64,max_curr_procs_per_os400_lpar=64,max_shared_proc_pools=64
+					COMMAND=PROC_LPAR cmd="lshwres -r proc --level lpar -m SVRP7750-11-SN0681F7P"
+						lpar_name=P750_11_VIOS,lpar_id=3,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.6,curr_max_proc_units=1.0,curr_min_procs=1,curr_procs=1,curr_max_procs=1,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.6,pend_max_proc_units=1.0,pend_min_procs=1,pend_procs=1,pend_max_procs=1,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.6,run_procs=1,run_uncap_weight=0
+						lpar_name=RT232,lpar_id=2,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP625,lpar_id=1,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.0,run_procs=0,run_uncap_weight=0
+						lpar_name=BP663,lpar_id=11,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=LPOC1466,lpar_id=10,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP664,lpar_id=12,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP666,lpar_id=5,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP667,lpar_id=6,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=BP668,lpar_id=7,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+						lpar_name=RT1498,lpar_id=8,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+					lpar_name=BP669,lpar_id=9,curr_shared_proc_pool_id=0,curr_shared_proc_pool_name=DefaultPool,curr_proc_mode=shared,curr_min_proc_units=0.1,curr_proc_units=0.4,curr_max_proc_units=128.0,curr_min_procs=1,curr_procs=1,curr_max_procs=128,curr_sharing_mode=cap,curr_uncap_weight=0,pend_shared_proc_pool_id=0,pend_shared_proc_pool_name=DefaultPool,pend_proc_mode=shared,pend_min_proc_units=0.1,pend_proc_units=0.4,pend_max_proc_units=128.0,pend_min_procs=1,pend_procs=1,pend_max_procs=128,pend_sharing_mode=cap,pend_uncap_weight=0,run_proc_units=0.4,run_procs=1,run_uncap_weight=0
+				Catalog=Virtual
+					...
+				Catalog=Hybird
+					...
+				#89 Query=LPAR										// 或者叫 LPAR View. 联动操作。点击LPAR View后，所有服务器节点切换到LPAR View
+					LPAR=P750_11_VIOS(3)
+						#91											// Profile
+							#92										//		name=P750_11_VIOS,... relationship copied from #original, 可保持一致，也可不一致
+						#103
+							#105
+							#130
+							...
+					LPAR=RT232(2)
+					LPAR=BP625(1)
+					LPAR=BP663(11)
+					LPAR=LPOC1466(10)
+					LPAR=BP667(6)
+					LPAR=BP668(7)
+					LPAR=BP666(5)
+					LPAR=(None)
+					Not Matched  : SYS
+						PROC
+						MEM
+						SLOT
+			SERVER=SVRP7750-06-SN064E9ER
+				Profile
+					...
+				Physical
+					...
+				Virtual
+					...
+				Hybird
+					...
+			SERVER=SVP7750-11-SN0681F7P
+			
+	
+ROOT=ZTOP for dedicate user
+	#USER
+		jzou3700
+	#ALIAS
+		Original : Component
+	#URL(ODB://172.16.15.41)
+	#URL(ODB://172.16.15.40)
+	#QUERY
+		HMC->SERVER->LPAR
+			#cd ODB://172.16.15.41
+				HMC=172.16.15.41
+					SERVER=SVR720-1
+						LPAR=VIOSA
+							#XXX1
+							#XXX2
+						LPAR=VIOC1
+							#XXX3
+						LPAR=VIOC2
+							#XXX4
+					SERVER=SVR720-2
+						...
+					SERVER=SVR780-1
+						...
+					SERVER=SVR750-1
+						...
+			#cd ODB://172.16.15.40
+				HMC=172.16.5.240
+					SVR=SVR740-2
+							LPAR=VIOSC
+							#XXX1
+							#XXX2
+						LPAR=VIOC21
+							#XXX3
+						LPAR=VIOC22
+							#XXX4
+					SERVER=SVR720-3
+						...
+		Running,	target=LPAR
+			Matched=Running			
+				#cd ODB://172.16.15.40
+					HMC=172.16.5.240
+						Server=SVR740-2
+							LPAR=...
+			Unmatched=Running
+				#cd ODB://172.16.15.40
+					HMC=172.16.5.240
+						Server=SVR740-2
+							LPAR=...
+			
+
+			
+用户的持续性信息与会话信息的区别
+	简单的认证，使用无密码的认证，简单认证过程。
+
+信息的关联。
+	人类可以通过联想能力，将不同的信息联系起来，形成逻辑思维，找到解决问题的方案。MindMap中以相同的关键字来建立信息之间的关联。不同的设备数据之间可以通过相同的
+关键字形成关联，通过搜索再搜索将数据级联起来，形成关联的数据。
+    信息关联还可以应用在对现有数据的注释或者评论。当某些分区被分配，或者服务器被分配，管事员或使用员，可以通过对相应信息进行注释的方式来共享信息。这一做法与现实
+中给服务器贴标签是一致的。通过给信息标注，收集到的信息与使用者人脑中的信息便利的集成在一起。它也同样使用信息关联技术。
+    
+分类功能的改进。
+	一重复数据统计。
+	二计算重复数据的相同父结构， 在相同父结构下，双向表部分用矩阵表示
+	三建立双方链表，允许数据即可从部件访问到分区，也可从分区访问到部件
+		关系型数据库中使用的矩阵实际可以使用任意字段排序，实际相当于图从不同字段进入时的效果。MindMap中可以引入矩阵，组成树与矩阵的混合结构。以Smart Monitor中Power
+	虚拟化监控数据为例，
+	
+	HMC=172.16.15.41
+		SERVER=SVR720-1
+			CMD=CPU
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=MEM
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+			CMD=IO_SLOT
+				LPAR=bso(7)
+					...
+				LPAR=P720_06_VIOC1_SWREP(4)
+					...
+		SERVER=SVR720-2
+		SERVER=SVR720-3
+		SERVER=SVR720-4
+		SERVER=SVR740-1
+		SERVER=SVR740-2
+		SERVER=SVR740-3
+		SERVER=SVR740-4
+	
+	将CMD与LPAR两列组成矩阵，需要实现两点：在SERVER结点标记矩阵的组成列，{CMD, LPAR}, 即每一行纪录都包括CMD与LPAR两个字段，需要一起载入，一起删除。浏览到SERVER结点时
+	用户可以选择任意一个入口点，即可以是先CMD再LPAR, 也可相反。
+	
+	原始数据经过上述重复数据统计分析，发现矩阵结构存在后，将数据库重新排序，把矩阵数据聚集在一起，数据库浏览里遇到矩阵进行一次性载入。
+	
+L1	#TABLE
+L2		my1stTable
+L3			CMD=CPU
+L4				LPAR=bso(7)
+L5				LPAR=P720_06_VIOC1_SWREP(4)
+L6			CMD=MEM
+L7				LPAR=bso(7)
+L8				LPAR=P720_06_VIOC1_SWREP(4)
+L9			CMD=IO_SLOT
+L10				LPAR=bso(7)
+L11				LPAR=P720_06_VIOC1_SWREP(4)
+
+
+	载入后
+	
+	CMD		LPAR					REF
+	-------	-----					---
+	CPU		bso(7)					L4
+	CPU		P720_06_VIOC1_SWREP(4)	L5
+	MEM		bso(7)					.
+	MEM		P720_06_VIOC1_SWREP(4)	.
+	IO_SLOT	bso(7)					.
+	IO_SLOT	P720_06_VIOC1_SWREP(4)
+	
+	default entry : CMD
+	second entry : LPAR
+	user be able to select the different entry to traverse 
+	
+	#L4	
+		curr_shared_proc_pool_id=0
+			curr_shared_proc_pool_name==DefaultPool
+				curr_proc_mode=shared
+					curr_min_proc_units=0.1
+						curr_proc_units=0.4
+							curr_max_proc_units=128.0
+								...
+	#L5
+		curr_shared_proc_pool_id=0
+			curr_shared_proc_pool_name==DefaultPool
+				curr_proc_mode=shared
+					curr_min_proc_units=0.1
+						curr_proc_units=0.8
+							curr_max_proc_units=0.8
+								...
+		
+	发现重复数据，生成TABLE的过程
+	1.遍历树，发现重复数据后，计算相同的路径，获得table path
+	2.将table path下原子节点与发现的重复节点一起，添加到table表中,获得行ID
+		行ID加入到table path下
+		原子节点的子节点被增加到行ID下。
+	程序浏览到#L4时，会访问Table中的L4行，并根据当前的环境变量设置选择正确的入口点。。
+	
+	
+	#QUERY						
+		DD						// mound point's line number
+			LPAR=bso(7)			// 查询到的目标结点
+				CMD=CPU
+					...
+						#		// 指向原数据
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+			LPAR=P720_06_VIOC1_SWREP(4)	
+				CMD=CPU
+					...
+				CMD=MEM
+					...
+				CMD=IOSLOT
+					...
+
+	取消#QUERY, 直接用#DD来表达挂接结点，位于要根目录下。即目录下的#DD表示挂接点。与linx中的父结点指针不同的是，
+	挂接点与该结点下的原有数据是不同视图的关系，一旦选择从挂接点显示，则不显示原数据。挂接点将被预载入，
+	
+	#DD在不同位置表达不同的含义，当它在根目录下时，是数据进入的方向，当它在其它位置上时，而表示为指针。
+	
+	字典。当一个Key=value pair被引用后，会在多个位置出现。比如LPAR=bso(7), 生成查询表后，会在#QUERY下出现相同的LPAR. 对LPAR=bso(7)的解释需要对所有实例生效，
+	因此该问题升级为字符串指针，LINIX是行指针，通过NameService将字符串指针转变行指针。
+	
+	#NAME2LN
+		CMD=CPU
+			#DD
+		LPAR=bso(7)
+			#DD
+			
+	通过NAME2LN的转换，一个名词可以包括更多的内含。
+	
+	给特定分枝做标注。比如给一台服务器或者一个分区做标注，包括状态信息，申请及审批流程等。通过类似CSS的selector来确定，存在多个选择条件的情况下，需要对数据进行预扫描，将选中的结点建立
+	与注解内容的关联。
+	
+	
+L1	#ORIGINAL
+L2		HMC=172.16.15.41
+L3			SERVER=SVR720-1
+L4				CMD=CPU
+L5					LPAR=bso(7)
+L6						...
+L7					LPAR=P720_06_VIOC1_SWREP(4)
+L8						...
+L9				CMD=MEM
+L10					LPAR=bso(7)
+L11						...
+L12					LPAR=P720_06_VIOC1_SWREP(4)
+L13						...
+L14				CMD=IO_SLOT
+L15					LPAR=bso(7)
+L16						...
+L17					LPAR=P720_06_VIOC1_SWREP(4)
+L18						...
+L19			SERVER=SVR720-2
+L20			SERVER=SVR720-3
+			SERVER=SVR720-4
+			SERVER=SVR740-1
+			SERVER=SVR740-2
+			SERVER=SVR740-3
+			SERVER=SVR740-4
+#30	#DICT
+#31		LPAR=bso(7)
+#32		LPAR=P720_06_VIOC1_SWREF(4)
+
+	#REVISION
+		#L5
+			#31
+			
+	#QUERY
+		LPARView  #select ^LPAR= from ^SERVER=
+			#L3
+				#5
+					#L4
+						#L6
+					#L9	
+						#L11
+	#COMMENT
+		#L3
+			#L4
+				#L5
+					CPU更换过，注意稳定情况
+				
+				
+	直接增加注释内容，仅需要必要有tag即可，比如 tag=bso(7) tag=SVR720-1, tag=CPU, 通过分类搜索功能，注释信息将与原始数据结合在一起。
+	
+	#行号 表示引用与该行相关的整个子树。子树可表达任意结构，也可实现嵌套。如果将HTML转换成MMAP结构，则参考如下示例
+	
+	<html>
+		<head>
+			<title> hello <title>
+		</head>
+		<body>
+			<table>
+				<tbody>
+					<tr>
+						<td> a1 </td>
+						<td> a2 </td>
+					</tr>
+					<tr>
+						<td> b1 </td>
+						<td> b2 </td>
+					</tr>
+				</tbody>
+			</table>
+		</body>
+	</html>
+	
+	转换1
+	#html
+		#head
+			#title
+				hello
+		#body
+			#table
+				#tbody
+					#tr
+						#td
+							a1
+						#td
+							a2
+					#tr
+						#td
+							b1
+						#td
+							b2
+	
+	HTML DTD to mindmap
+1	#tr
+2		#{td}
+3			#DATA
+4			#5
+5	#table
+6		tbody
+7			#{1}
+8	#head
+9		#DATA
+10	#html
+11		#7
+12		#body
+13		#{4}
+			
+	#{行号｝表示允许0或者多个指定行号集存在
+			
+	判断一个子树有否被多个条件命中，可以利用Set. Set.contains("Keyword"); 如果search keyword在tag集中，则去掉该search keyword, 如果全部search keywords被去掉，则说明
+	此子树被全部条件命中。因此查询条件是无序的，但查询结果，可按查询顺序进行输出。
+	
+	select SERVER=P720-1 LPAR=P720-vioc1 CMD=CPU  （A)
+	与
+	select SERVER=P720-1 CMD=CPU LPAR=P720-vioc1  	(B)
+	
+	搜索结果相同，输出方式不同。有关CMD=CPU的注释如何显示？点击CMD=CPU后，弹出窗口中显示出全部查询条件即 “SERVER=P720-1 LPAR=P720-vioc1 CMD=CPU” 或者 
+	“SERVER=P720-1 CMD=CPU LPAR=P720-vioc1”	
+	
+	多条件搜索问题
+	
+		多条件搜索会减慢搜索速度，会有多大影响？
+		
+	对搜索结果集增加注释
+	
+	#Select SERVER=P720-01, LPAR=P720-vioc1
+	
+	结果集的保存。classify ^LPAR=， 将原始数据分类整理成以LPAR为核心的数据，
+	
+	通过搜索加的功能将LPAR数据与分区内的信息联系起来。当数据通过搜索加功能将数据重整理后，如何支持再搜索减？
+	
+	
+L1	#ORIGINAL
+L2		HMC=172.16.15.41
+L3			SERVER=SVR720-1
+L4				CMD=CPU
+L5					LPAR=bso(7)
+L6						...
+L7					LPAR=P720_06_VIOC1_SWREP(4)
+L8						...
+L9				CMD=MEM
+L10					LPAR=bso(7)
+L11						...
+L12					LPAR=P720_06_VIOC1_SWREP(4)
+L13						...
+L14				CMD=IO_SLOT
+L15					LPAR=bso(7)
+L16						...
+L17					LPAR=P720_06_VIOC1_SWREP(4)
+L18						...
+L19			SERVER=SVR720-2
+L20			SERVER=SVR720-3
+			SERVER=SVR720-4
+			SERVER=SVR740-1
+			SERVER=SVR740-2
+			SERVER=SVR740-3
+			SERVER=SVR740-4
+		
+	#QUERY
+		#L1						// 在#1下挂接另一个视图，此视图与原数据之间的选择是二选一的排他性关系。
+L21		  LPARVIEW	#select ^LPAR= from ^SERVER=
+			SERVER=SVR7220-1
+L22				LPAR=bso(7)
+					CMD=CPU
+						...
+					CMD=MEM
+						...
+					CMD=SLOT
+						...
+L28				LPAR=P720_06_VIOC1_SWREP(4)
+					CMD=CPU
+						...
+					CMD=MEM
+						...
+					CMD=SLOT
+						...
+					
+		
+	#ORIGINAL
+		#L22											// 仅引用L22行本身, 即SERVER=SVR7220-1, 同时给L22增加子结点#31
+L31			CMD=IPCONFIG								// #31做为L22的子结点，表达了自己的位置，#L22与#31是一对双向指针
+					IP=192.168.1.12
+						MASK=255.255.255.0
+							ROUNTE=192.168.1.1
+								....
+		#L28											// LPAR=P720_06_VIOC1_SWREP(4)
+L32			CMD=IPCONFIG
+					IP=192.168.1.13
+						MASK=255.255.255.0
+							ROUNTE=192.168.1.1
+								....
+		#L21											// LPARVIEW
+L41			SSH=192.168.1.12
+				CMD=find /
+					...
+				CMD=ps -ef
+					...
+				CMD=lscfg
+					...
+L42			SSH=192.168.1.13
+				CMD=find /
+					...
+				CMD=ps -ef
+					...
+				CMD=lscfg
+					...
+					
+	思考：L31挂接到为什么不直接挂在L22上？行L30 #L22仅是标题行，无实际意义。通过行指针#31, L22 SERVER=SVR720-1可直接访问#31子集
+	call $HMC $SERVER $LPAR CMD=IPCONFIG 
+	为LPARVIEW增加了CMD=IPCONFIG, 原数据如何获得增加的命令数据？
+	
+	
+	通过搜索加功能将相同的IP地址联系起来，select $IP 	
+	
+	#QUERY
+L51		#select $IP
+L52			192.168.1.12
+L53				#31
+					#41
+L55			192.168.1.13
+L56				#32
+					#42
+					
+	通过链表将不同的子树连结起来
+	
+
+			+-----------------------------------+
+L31			|CMD=IPCONFIG                       |
+			|		IP=192.168.1.12             |
+			|			MASK=255.255.255.0      |
+			|				ROUNTE=192.168.1.1  |
+			|					....            |
+			+-----------------------------------+
+			   |	+------------------+
+L41			   |	|SSH=192.168.1.12  |
+			   |	|	CMD=find /     |
+			    \--	|		...		   |
+					|	CMD=ps -ef     |
+					|		...		   |
+					|	CMD=lscfg      |
+					|		...        |
+					+------------------+
+	
+	#行号 形成的链表显示如上图。 推论#行号形成的树也可表达如上
+	
+	如果表达出迭代的引用关系，#22 -> #31 -> #41
+	
+	图A:
+		HMC=172.16.15.41
+			SERVER=SVR720-01
+				+----------------+
+L22				|LPAR=bso(7)     |
+				|	CMD=CPU      |
+				|		...      |
+				|	CMD=MEM      |
+				|		...      |
+				|	CMD=SLOT     |
+				|		...      |
+				|	+===================================+
+L31				|	|CMD=IPCONFIG                       |
+				|	|		IP=192.168.1.12             |
+				|	|			MASK=255.255.255.0      |
+				|	|				ROUNTE=192.168.1.1  |
+				|	|					....            |
+				|	+===================================+
+				+------+---------+
+					   |	+==================+
+		L41			   |	|SSH=192.168.1.12  |
+					   |	|	CMD=find /     |
+						\--	|		...		   |
+							|	CMD=ps -ef     |
+							|		...		   |
+							|	CMD=lscfg      |
+							|		...        |
+							+==================+
+		
+
+	图B:
+		HMC=172.16.15.41
+			SERVER=SVR720-01
+L22				 LPAR=bso(7)      
+				 	CMD=CPU       
+				 		...       
+				 	CMD=MEM       
+				 		...       
+				 	CMD=SLOT      
+				 		...       
+					+--------------------------------------+	
+				 	|+===================================+ |
+L31				 	||CMD=IPCONFIG                       | |
+				 	||		IP=192.168.1.12              | |
+				 	||			MASK=255.255.255.0       | |
+				 	||				ROUNTE=192.168.1.1   | |
+				 	||					....             | |
+				 	|+===================================+ |
+				    |	|								   |
+					|   |	+==================+		   |
+		L41			|   |	|SSH=192.168.1.12  |		   |
+					|   |	|	CMD=find /     |		   |
+					|	\--	|		...		   |		   |
+					|		|	CMD=ps -ef     |		   |
+					|		|		...		   |		   |
+					|		|	CMD=lscfg      |		   |
+					|		|		...        |		   |
+					|		+==================+		   |
+					+--------------------------------------+
+		
+		
+L22		LPAR=bso(7)
+			CMD=CPU
+				...
+			CMD=MEM
+				...
+			CMD=SLOT
+				...
+			#53
+	
+	新生查询视图与原数据的结构关系
+	
+	当页面显示当前的局部时，应当有联想功能向其它数据延伸。
+	
+	当指定一路径，显示其下数据，或者相邻的数据。第一次选择该结点，显示所有邻的数据，第二次选择该节点，则“仅”显示节点下的内容。
+	
+	#QUERY下的LPARVIEW实际是一查询结果，选择该查询结果，可查一步查询，建立IPVIEW, 多个查询条件生成查询路径。 IPVIEW是基于LPARVIEW的后续查询，需要在结构中显示出这一点，#QUERY形成嵌套。
+	
+	#ORIGINAL需要改成#DATAROOT=default
+	
+	#QUERY是#DATAROOT下的可嵌套目录。
+	
+#DATAROOT=default
+	HMC=172.16.15.41
+		SERVER=192.168.1.12
+			CMD=...
+			CMD=...
+			CMD=...
+	#QUERY=lparView
+		SERVER=192.168.1.1
+Q4			#LPARNAME=P720-vioc1
+				...
+					#xxx
+Q5			#LPARNAME=P720-vioc2
+				...
+					#xxx
+Q6			#LPARNAME=P720-vioc4
+				...
+					#xxx
+		SERVER=192.168.1.2
+Q1			#LPARNAME=P720-vioc1
+				...
+					#xxx
+Q2			#LPARNAME=P720-vioc2
+				...
+					#xxx
+Q3			#LPARNAME=P720-vioc4
+				...
+					#xxx
+		#QUERY=IPVIEW								//  IPVIEW是LPARVIEW的子视图，它对LPARVIEW的查询进行再分类，
+			#QUERY=statusView
+				SERVER=192.168.1.1
+					status=1
+						#Q4
+						#Q5
+					status=0
+						#Q6
+				SERVER=192.168.1.2
+					status=1
+						#Q1
+						#Q3
+					status=0
+						#Q2
+			#QUERY=poolView select pool
+				found=pool
+					#Q1
+					#Q2
+					#Q3
+				^found=pool
+					#Q4
+					#Q5
+					#Q6
+			#QUERY=oracleView
+				found=orcl
+					#Q4
+					#Q1
+				^found=orcl
+					#Q2
+					#Q3
+					#Q5
+					#Q6
+#ATTRIBUTES=final
+#REVISION=final
+		
+潜规则 #ATTRIBUTES  单一Key的形式等同于  #KEY=default
+
+
+	wdlw2002@163.com
+	
+
+	#L行号，代理行本身的引号，不涉及相关的父子行
+	#行号，表示整个子树
+	#P行号，表示行的路径
+	#B行号，表示行的子树
+	
+	工作目标，搜索再搜索的设计工作。注释功能。比对形成的历史。
+	
+	树的唯一ID及范围。 OS可能发生迁移，当迁移发生后，如何识别树的新位置？IP地址，OS UUID可能是合适的key. 发现树迁移后，将迁移的全部信息生成#DICTIIONARY里的一棵子树，原位置使用引用
+	
+	#PORTABLE
+		SERVER=192.168.1.1
+			
+			
+	#LOG
+		#time=2014/08/21 11:35:07			// some lines being changed or deleted. 如果太多行变动情况，甚至包括一些高频变动，产生大量日志，这些大量的日志与当前数据合并起来会比较消耗计算资源。
+			HMC=172.16.15.41
+				SERVER=192.168.1.1
+					#LPARNAME=P720-vioc1
+						CMD=MEM
+							curr_mem=0.8
+								#
+									nodeType=deleted    
+						CMD=IO_SLOT
+							io_slot
+								...
+									state=0
+										#
+											nodeType=deleted
+		#time=2014/08/21 11:35:09			// added a new LPAR sample
+			#BLOCK
+B1				LPAR=P720-vioc7
+					CMD=CPU
+						...
+					CMD=MEM
+						...
+					...
+			HMC=172.16.15.41
+				SERVER=192.168.1.1
+					#B1
+						#
+							nodeType=new
+		
+	把数据按时间分类和按地区分类，RDBMS通过时间列和地区列分别与数据联合获得很查询结果，RDBMS实际是数据的全展开形式。 MindMap是数据的压缩模式，更接逝于人脑的数据存储形式。
+		
+	以上述LOG为例，如果新增加的P720-vioc7, 需要增加注释，如何处理？
+	答：在#COMMENT下增加LPAR=P720-vioc7, 行B1,使用它的引用，
+	
+	
+	#SESSION
+		#BLOCK
+			Subject=SERVER
+B2				借出
+B3				归还
+			Subject=LPAR
+B4				Assigned
+B5				Release
+		user=zhang wen zhi
+S1			#B2
+	#COMMENT
+C1		LPAR=P720-vioc7
+			#S1
+	#LOG
+		#time=2014/08/21 11:35:07			// some lines being changed or deleted. 如果太多行变动情况，甚至包括一些高频变动，产生大量日志，这些大量的日志与当前数据合并起来会比较消耗计算资源。
+			HMC=172.16.15.41
+				SERVER=192.168.1.1
+					#LPARNAME=P720-vioc1
+						CMD=MEM
+M8							curr_mem=0.8
+								#
+									nodeType=deleted    
+						CMD=IO_SLOT
+							io_slot
+								...
+									state=0
+										#
+											nodeType=deleted
+		#time=2014/08/21 11:35:09			// added a new LPAR sample
+			#BLOCK
+B1				#C1
+					CMD=CPU
+						...
+					CMD=MEM
+						...
+					...
+			HMC=172.16.15.41
+				SERVER=192.168.1.1
+					#B1
+						#
+							nodeType=new
+	
+	引用链。LPAR=P720-vioc7获得一个注释，该注释#S1形成一个引用锭，引用链关连的结果如下
+		#S1 -> 
+			#SESSION
+				user=zhang wenzhi
+					服务器借出
+					
+	最初服务器由管理员文志标注为借出，归还等常用文字，逐渐被其它管理员费用，当第二个管理员引用广志的标注时，这些标注将成为所有管理员的共同标注。这个过程相当于概念得到升级。
+	
+	主谓宾. 争对服务器，动作可能是借出，归还，维修，分配，释放等选项，争对LPAR则是分配，释放等操作。
+	
+	用户通过将发言绑定在原始数据上，实现注释功能。再通过对他人发言的回复，实现类似讨论组的树形结构。为了规范化发言及回复可采用统一的form，甚至引入工作流的概念，从建立发言引子开始，限制用户在工作流的规范下，输入
+	相应的数据，以便于后期统计。
+	
+	建立一个工作流。工作流定义类似DTD, 比如实验室的设备使用流程：
+	#WORKFLOW
+		#BLOCK
+			application form
+				#BLOCK
+HW1					SERVER
+						LPAR
+				date from
+					date to
+HW2				hardware resources
+HW3					#HW1
+						#HW3
+						
+W1		user apply #application form
+			administrator review
+				approve
+					manager approve
+						assign user
+							release
+					reject
+						#L W1
+				reject
+					#L W1
+	
+	引用链和属性树。引用链通过链上相关的子树群，形成对结点的描述，链的远端点即引用行，中间的子树群相当于描述。属性树中存在共同部分，其共同部分如果用连接来消除冗余的话，同样会生成引用链，因此，引用链才是根本！因此
+	删除结点的行描述为
+	
+N1	NODETYPE=deleted
+		#M8
+	NODETYPE=added
+	NODETYPE=changed
+P1	#PRELOAD
+		#N1
+	
+	Category				// 尽可能消除所有的冗余。
+C1		Physical
+C2		Virtual
+C3		Hybird
+	
+	引用链双向问题。childrenMap, linkedMap 存放引用的反向链接。引用链存放多个结点共有的属性。属性树与引用链不冲突！属性树存放节点的私有信息，其中共有成份仍可用引用链来解决。
+	
+	引用链的两个方向，A是起点从原始数据开始，终点于数据本身，中间路过的森林是对终点的属性。B是从多个属性开始，指向原始数据。
+	    A方式便于浏览器找到全部属性，但增加属性不方便
+		B方式便于增加例，比如把公司按地区分类，按规模分类后，再增加行业属性，把所有的公司按行业分类。B方式增加属性很便捷。
+	
+	通过B方式为结点增加属性，再通过转换程序，将B方式转成A方式
+	
+	引用链的聚簇存放
+	
+	#L1
+L1	#L2					// path is .../nodeType=deleted
+L2	#L3					// path is .../tableHead
+		LPARID=7
+		LparName=BSO
+L3	P720-vioc1
+	
+	上例演示了聚簇存放的引用链，链上结点及其子结点被置于连续空间内，可以被顺序读写的方式载入。其路径可能被cache，从而避免随机IO的发生。
+	为保证路径被有效缓存，理想的处理方式是将描述过的行都放在缓存里。
+	
+	引用链，引用链端点子树，属性，哪一种模式是最优的，各自运用在什么场景下？     
+
+	任务：
+		1）将MindMap,甚于FileChannel.map()进行实现。
+		2）实现引用链读取，创建及相关的操作。引用链使用#行号对一结点行进行修饰，确保数据结构的完全非冗余
+		
+
+	#TABLE											// 系统字典词汇，系统知道如何解释Table
+T1		D1	
+T12			TableHead
+				LPAR=bso
+				LPARNAME=bso(7)
+T2		D2
+			...
+T3		D3	
+			...
+T4		D1
+T5		D2
+T6		D3
+
+	#DICTIONARY										// 本地字典， 字典入口即能覆盖所有词汇的大型知识结构，一个字典可能有多个入口
+D1		COMMAND=PROC
+D2		COMMAND=MEM
+D3		COMMAND=IOSLOT
+D11		#T1
+D12			max_proc=0.8
+				min_proc=0.1
+					curr_proc=0.4
+D13			max_proc=0.4
+				min_proc=0.1
+					curr_proc=0.4
+D21		#T2
+			max_mem=8192
+				....
+D31		#T3
+
+D41		#T4
+			max_proc=8
+				min_proc=1
+					curr_proc=4
+D51		#T5
+			max_mem=16384
+				....
+D61		#T6
+	
+	#VIEW=ORIGINAL
+S0		HMC=172.16.15.41
+S1			SERVER=192.168.1.1
+				D11
+				D21
+				D31
+S2			SERVER=192.168.1.2
+				D41
+				D51
+				D61
+				
+	#VIEW=LPAR
+		#S0
+			#S1
+B1				LPARNAME=bso(7)			// 分类后共有名称，被统一。原始的多个名词无需删除，被挂接在统一词下，（原地址可被
+					#D1					// COMMAND=PROC
+						#D12
+					...
+				LPARNAME=...
+					#D1					// COMMAND=PROC
+						#D13
+			#S2
+				LPARNAME=...
+				...
+	
+	
+	#D11 完全展开后，如下。展开的节点行在显示区间内的为
+	
+T1		COMMAND=PROC
+			#TABLE { 
+T12				Tablehead
+					LPAR=bso
+					LPARNAME=bso(7)
+			}
+D12			max_proc=0.8
+				min_proc=0.1
+					curr_proc=0.4
+	
+	如何给词汇增加注释，比如给SERVER=192.168.1.2增加注释。
+		1） 增加注释语句 #comment
+		2） 将SERVER=192.168.1.2添加到字典中，原始行S2处建立指针#S2，操作称之谓指针代换操作，简称为指代操作
+		3） 在字典词汇SERVER=192.168.1.2下建立指向#comment的指针。
+		
+	#SESSION
+		jzou3700
+S11			#P1
+		gloria5137
+	#POSTS
+P1		借出
+
+		#S1						// parent is S0 and take all S1's children, the S1 will become a dictionary vacabulary
+		
+	#DICTIONARY
+S1		SERVER=192.168.1.1		// 物理位置不因重新分组而改变。
+			#S11				// jzou3700 posts 借出
+			
+	上述结构，如何在重新HMC的数据扫描后继续更新？
+	
+	数据的回溯。根据指定的时间，浏览全数据后，仅显示指定时间区别内的内容。首先将时间转换成行号，然后检查当前显示节点的行号，如果符合显示条件则显示。
+	
+	如何区分显示结点与其它修饰性内容？符合显示区域内的节点为显示结点，其它为修饰性和延伸信息。
+	
+	当采集的数据不变动后，新采集的数据如何更新整个MindMap? 日志问题，增删数据的持续。
+		方案一：新采集数据可建立全新的数据库，原MindMap中的处理生成数据，根据结构翻抄过来。日志可按时间顺序放在采集数据前方，而采集数据代表最新的结果
+		方案二：日志仍按流式顺序添加到MindMap结尾处，但日志的先后顺序使用链表来表示，链表的入口端（根端，高端）为最新的日志，因此，最后的更新，通过链表的插入操作来实现。
+		日志与数据回溯问题。通过数据回溯，用户可以看到数据变化的历史，了解服务器资源变化的过程。对服务器资源在一个时间周期内的周期性变化形成更加直观的理解与分析，制订更好的资源利用办法，提高数据中心的生产率。这在
+		电力资源有限的前提下，有现实意义。
+		
+		
+	通过数据轮退的采集与比对，会发现数据发生增删改的变化。
+		add）结点增加情况。比如用户新建了分区，就会新增许多分区信息。新数据增加到LPAR分类的后方，有必要争对争新增加数据进行LPAR分类，甚至是更多的分类，使分类后生成的视图得以更新。
+		
+		delete) 删除操作。如果直接卸载被删除的数据，即在LINX中使用删除标志，不利于数据按时间操作回溯。因此建议通过指代操作，“在分类操作后增加指针，并将它删除”，然后，再处理分类操作以更新视图。*）删除指针操作有误，实际应该是建立一个删除类型结点。
+		...
+B1		LPARNAME=bso(7)
+	#NODETYPE=DELETED
+D1		#B1
+	
+		#D1
+		...
+		
+		
+		update) 修改操作。通过指代操作，有利于回溯。被修改和删除后的数据不需要重新进行分类操作。
+	
+	原始数据始终保持为最新，日志是通过比对生成数据变化记录。以修改为例，第一次修改记录在原数据中，再次信息变动发生后，将前一次修改置入日志中。
+	
+	问题，有一个分区，曾经存在过一段时间，通过回溯，能找到当年的注释和相关记录么？
+		因为分区虽然已经被删除，但被删除的仅是指针而已，当被删除结点迁移进行日志中后，相关的注释等后续被数据仍挂接在被删除的结点上。从对话中仍可以看到人工发出的注释
+		语句，但该注释语句的关联设备已经是被删除。在统计工作量的时候，这些借入借出的注释不可或缺，不能因为分区被删除，删除相关发生的事件。
+		
+	将库172.16.15.41.oldb进行修改，按重新规范成新格式。做一个小转换工具。第二步，载入新格式，完善相关的操作，比如指代操作，浏览操作等。
+	更新MindMap, 通过FileChannel.map()来提升内存利用效率。
+		
+	快速印象文件是数据的最新版本，通过比对，产生日志后存入日志文件中。img文件是快速变化的文件，不宜成为指针对象。新增分区的结点行宜存放在log中，img中的对应结点通过指
+	针，引用对就原日志文件中的结点行。日志是长郊文件，当有其它MindMap文件需要进行知识合并的时候，日志文件是合并对象。
+	172.16.15.41.img 172.16.15.41.log 172.16.15.41.linx
+	
+	日志文件的日志！被观察的数据有高频变化，也有低频变化。如何分解出不同的变化的数据，让高频数据与高频数据聚类，低频也低频数据聚类.
+		发现日志文件中的高频数据，消除高频数据。二次印象文件，记录日志文件中不变的部分。比如日志文件中出现时间变化数据，每次扫描均产生不同的数据，在低频的二次印象文件中仅记录不变动的部分。
+		
+		记录每次扫描的时间，可据此判断数据的变化频率，根据MindMap的实际容量，数据的变化速率，记录适当变化频率的数据，记低频变化数据成为框架性，纲领性数据，而高频数据保存时间短，侧重对细节的观察。这是理想状态。
+		
+		多层次的MindMap, 统称为knowledageBase. 简称为KBase.
+		
+		以时间确定MindMap的旧数据废弃周期。
+	
+		add) 
+		
+	增量记录与历史记录
+	
+		从旧数据出发，记录增量更新，则可继承一些对数据的修改，比如对数据显示的修改。因此session相关的数据，以增量方式保存。 
+		*
+		* 显示格式信息需要与原始数据紧密捆绑，但不同的用户可以有自己的选择，显示信息需要放在session文件中，同时在访问数据结点信息时要方便的得到。
+		* 故：session中需要有一个映射文件，当浏览器访问结点行时，通过映射文件可获得额外的session信息。
+		* 当前的设计是在内存中为每个session保留一个status tree
+		*
+		
+		从最新的数据回溯，可以最快的获取当前数据。数据日志宜用历史记录来保存。
+		 
+		
+	多层次MindMap构成的KBASE需要统一编址！让概念非冗余。
+		
+172.16.15.41.kbase
+	IMG
+		172.16.15.41.img
+	LOG
+		172.16.15.41.log
+		
+		
+	数据移动。服务器可能被切换到不同的HMC上，服务器上的分区也有可能通过迁移技术，运行在不同的宿主平台上。因此通过结构化对比，需要比较出这种迁移和变化。对于MindMap而言
+	迁移仅仅是改变结点行的父指针而已，但这处改变需要记录在数据文件中，形如
+	
+	#MIGRATION
+		#行号		
+			#父结点行号（原LINX值）
+			
+	浏览器遍历原始数据后，生成中间结果，随后遍历的修饰词汇，比如added, deleted, updated, migrated等对中间数据进行修改，使最终结果带有修饰效果。
+	
+	引用链与多重修饰的比较。引用链在访问结点行时，可一次读入所有相关的属性，适合控制浏览器显示的指令使用，比如浏览显示格式指令，浏览器可根据读出的属性决定按Tab显示，还是按树明细进行显示。
+	
+	多重修饰，适用应用在浏览器完成显示后，结点的修饰，比如新增，被修改，有注释等，宜用多重修饰。
+	
+	问题：分区迁移后，在分区视图里，仅有一个迁移操作，而在component视图中，则产生与CPU,MEM等相关的多个迁移操作。如何处理？
+	答：分区名称被统一后，所有对分区名的注释会影响所有引用的行，因此在Component视图中，部件视图会看到新行，新行中的分区名称有迁移的标注，点击标注可显示迁移的来源。在
+	移走的分区中，缺省不显示被删除的行，如果用户要求显示被删除的历史信息，则显示出被删除信息，其实涉及到分区名的结点会有标注，点击可显示分区转移的目标地址。进一步点击
+	目标地址，则显示分区的运行状态信息。
+	
+	SESSION赋予数据库显示相关的信息，比如结点的显示方式，TAB或者缺省树结点。读取共享数据库时（亦可能是他人的数据），需要获得当前session的信息，节点显示方式应当体现在StatusTree中。
+	StatusTree类似CSS, 由一系列selector构成。这些selector与树的展开约束行为需要结合在一起，当点选界面上结点时，可以根据statusTree按规则进行处理。
+	
+		如果遇到分区关闭，分区内的信息全部消失时,statusTree并不删除保存的状态信息，一旦分区打开，则可恢复显示状态。分区关闭，相当于一个分区节点被删除，通过删除操作，该结点进行删除组，节点的LINX变化信息被记录。当节点恢复时，将节点从删除组中移回，LINX变化的再次被记录。
+	#LINXLOG
+		1
+			...
+		n-1
+			...
+		n							// n为记录号
+			#<LPARLN>
+				<原父行号>
+		n+1
+			#<LPAR_LN>				// 通过查询LPAR结点的变动历史，可以看出它的操作情况，比如开关次数，迁移次数等！
+				<原父行号>
+		
+	增量法保存数据，使结点行始终保持在固定位置，修改，删除，移动均不影响其实际位置。修改时使用修订法，虽然内容修改，但结点行号不变。如果使用链表代换，会牵涉到许多许多linx的修改，
+	
+	新旧数据映射。如果新旧数据完全相同，则不产生映射表。当数据变动发生后，比如产生新的分区，新增加节点（以尾部添加新分区为例）的行号（在历史数据中的行号）可能也数据镜像结点中的行号不一致，因此需要建立一个映射表，将映像文件中的行号与历史数据文件中的行号做一个转换。
+	
+	尽可能保持数据结点行中的位置保持不变，增加和修改都不会影响结点行的位置，但删除会产生空洞，因此需要设计一个黑洞机制，在连续空间中，制造出不连续。分区的开关，会导致分区内的信息
+	发生消失和再现，因此黑洞也是可产生，可消失的。collapsar 
+	
+	当一个分区被删除，会产生一个大黑洞。实验室的设备反复重建删除分区后，会产生很多黑洞。有些黑洞永远不会消失，整体上看，黑洞会越来越大。
+	
+	问题：当新建分区与被删除的分区同名，且各项参数完全相同，如何看待？是否视为原分区复活？
+	答：如果分区有注释，比如分配给某某项目等，可能产生岐义。同时涉及OS中应用的情况，分区可能相同，但OS可能重装，相同的OS可能有不同使用者。因此相关注释不是关联在分区上，而是分区新建的事件指针上。
+	
+	属性修饰的记录方式，有利于数据聚簇存放和显示。却不利于记录变动历史。链表式存放可记录下每一次增删操作。有利于回溯。
+	
+	链表式存放是使用指针形成的单向链表，需要生成一个类似ChildrenMap的反向指针图，比如在查询分区时，可以方便的获得历史上的变动情况，及想应的注释。
+	
+	数据的历史记录，数据的状态记录。基于引用链构成的数据历史记录是表达结点行的绝对位置，但历史记录数据如需显示的话，需要遍厣全部数据，如果结点行有多次的变动，则需要访问每一次的变动历史才能确定最终的结点行信息，影响即时显示的速度。因此增删改的最终状态信息需要保留，以便于快速显示。
+	
+	#CURRENT
+		#ADDED
+			...
+		#DELETED
+	
+
+	...
+		#UPDATED
+			...
+	
+	
+	当一个结点存在多个父结点的情况下，如何处理删除或者修改操作？只有单一父结点的情况下，可以将该结点移入垃圾箱，原位置加入一指向被删除结点的指针，这样可在显示时做出灵活处理。比如以被删除的格式显示信息，（灰色加横线）#DELETE相当于结点行的修饰，表达它的属性，类似于TAG. 当存在多个父结点时，情况变得复杂。需要将所有的父结点一一修改它们的指针. 多父结点的情况下，通过修订表的结点修改，更便利。修订表也同样记录历史。修订表要求在结点访问前被全部载入。
+	
+	修订表与引用链操作的对比。 修订表需要被预载入，因此数据库载入需要进行两次扫描，第一次为装入修订表，第二次是为浏览数据。引用链的好处是直接浏览数据，通过引用链可获得每个结点行
+	的属性。
+	
+	通过修订表，删除操作时，被删除结点移入删除组。
+	
+	修订表的问题，如何表示记录被删除？通过指针代换，指向#NULL来表示当前无记录。
+	
+	持续层信息与session信息的连接
+		通过信息路径的连接。这种连接方式不在意结点行的位置，按字符串进行比较，判断结点行是否在当前路径上。
+		通过结点行位置的连接。session信息绑定HMC硬件信息，以绝对位置为标识，简单快速。但修订行的应用，让被修订内容无法访问。
+		可偿试session信息与结点行的绝对位置绑定。
+		
+	修订行的机制是错误的！无法获得被删除行的信息。
+	
+	#TIMESTEMP 的时间链表。保持一定的时间间隔，发送时间标签，所以的时间标签形成一个时间链表，必须时，可在时间链表内插入详细的时间，比如一台服务器被借用一个月， 中间办了四次培训班， 这四次培训的时间可插入到时间链表中，把同名的服务器分解成四个时期的不同概念，以便于准确备注。时间采用System.currentTimeMillis();
+	
+	MindMap的树结构应当是C链树, 
+	
+	#DELETED
+D1		curr_proc=0.8
+	#UPDATE
+U1		#D1
+			curr_proc=1.6
+U2		#U1
+			curr_proc=2.0
+	..
+		#U2					// curr_proc=1.6
+			...
+			
+	#UPDATE，#COMMENT如何处理？根据预订的格式显示，UPDATE通过tips提示前值，#comment通过红点，点击后打开讨论窗口
+	
+	session信息使用绝对位置绑定。比如将服务器下的LPAR视图以TAB方式显示，可将TAB显示方式绑定在#VIEW=LPAR上，即使VIEW=LPAR进行了修改，通过修改链，仍可访问到SESSION绑定的信息。
+	问题。当服务器有增加时，新增服务器是否自动遵守该规则。该规则可描述为：HMC=/SERVER=/#VIEW=LPAR == TAB
+		若以CSS类似的选择器，即时显示时，性能可能受影响。选择器可扫描数据，标记水线，在水线前的数据说明已经完成选择和规则绑定，水线后的数据则需要调选择器进行处理。选择器处理
+	后，将规则绑定在数据顶层，易于浏览程序读取。
+	
+	以字典式存放，可行否？如果把分区名称当作一个名词，有可能遇到重复，重复的概念如何处理？如果多个引用链指向同一个概念，且各个链有经过不同的途径，汇聚于某一概念。分区名称可以是一个单词，但在不同的服务器中使用多个指针指向该分区，当用户决定给分区名字做注释时，需要先搜索该分区名称，如果在搜索结果的根上注释分区名，则意味着对所有同名分区的共享注释。如果在某一台HMC或者服务器上注释该分区，则生成中间指针与HMC或者服务器绑定。其下所有指名指向中间指针，中间指针指向分区名称。
+	
+	如果在不同的服务器上同名分区发生修改操作，则同名分区被分解成两个字概念，挂接从根往下浏览，分区分的分支上。如果无有可区别的分支，则建立匿名分枝。
+	
+	同样是state=1, LPAR命令中有，IO_SLOT中也有，它们的分叉点是不同的使命令，无论是缺少的部件视图，还是分区视图，分叉点不变。
+	
+	如果将所有节点全部词汇化。则一条命令输出再表现为大篇的引用。
+	
+	MindMap的重构。为了便于访问，将快速访问的信息，放在易于访问的位置，而不常用的信息放在少访问的地方。访问次数的分配。快速访问的信息
+	
+	一维，二维及多维空间。任意结点的父路径构成它的维度，单一结点显然只有一个维度。通过指针，节点可以形成链表，甚至生成为树，它们的共同父结点，形成维度坐标。
+	
+	缺省部件视图中的LPAR=bso(7)和分区视图中的LPAR指向同一个概念，LPAR=bso(7). 两个结点都处在同一服务器, 显示任何链都需要统一成标准过程，从显示一个点，到一个链都如此
+	
+	整体视图的显示
+	
++---------------+	
+| 2014 Sep. 1st |
++---------------+	
+	
+	节点分类。根据沈阳魏博同学的建议，用户希望将服务器根据业务系统进行分类管理。当服务器或者分区，或者板卡发生故障时，会知道哪些系统受到影响，需要通过哪些用户，以提供更好的服务
+	用户也可以根据耗电或者机柜占用情况进行分类，也可以根据应用的的业务负载进行分类，多种不同的分类可以帮助数据中心发现应用部署的不合理情况，比如低负载的应用占用重资源消耗的服务器
+	
+	允许员工建立自己的分类信息，并将它分享。信息类别，员工的组织结构情况，以及服务器的拓扑结构，构成多重路径，普通结点仅以提示的方式显示某些节点的其它父路径，而对于根节点，则显示
+	多重路径
+	
+	文本文件到MindMap的转换。直接以行为单位挂接到文件名节点下即可。所有的变动全部转到在变化日志中。文件的变动记录在日志中。树的子结点在删除后，无法用新的指针在原地替换该结点。
+	
+	每一结点行，与时间存在映谢关系，可以按时间戳加偏移量获得基于时间的URL, time + offset (时间点间隔， 两个时间戳间的记录个数）
+	
+	新增节点行无需要记录新增属性。通过顺序记录，可准确知道子树被创建的时间。只有删除和修改才需要记入属性组。数据新增性天然属性。在某一指定区别内新增数据，可按新增数据显示。
+	
+	示例关于修改项的记录
+	
+	#KVSET
+		state
+s1			Running
+s2			Not Activated
+
+	#DELETE
+d1		#s2
+	#UPDATE
+u1		#s1
+			#d1							// 原数据
+	#DEFAULT
+		HMC=172.16.15.41
+			SERVER=SVRP7720-01-SN10418EP
+				...
+				Status
+					LPAR=P720-01-VIOS
+						#u1				 // state=Running
+							。。。
+	
+	* KV Pair中的=实际是路径，相当于最简单的两层树，=相当于/, KV pair是一个短路径，如果使用全长路径，可以产生复杂表。因此建议将所有的KV pair全部转换成路径的指针来显示。
+	
+	如果没有修订行，子结点中的某一个发生变动后，会自动成为子结点中排序在最后的一名，子结点之间的排列会发生变动。因此还是应用采用修订行！
+	
+	#REVISION
+r1		state=1					//原值
+r2			state=2				//修改一次
+r3				state=0			//修改二次
+
+	#DELETE
+		#r1
+		#r2
+	
+	#UPDATE
+u1		#r2
+			#r1					//原数据
+U2		#r3
+			#r2
+		
+	#DEFAULT
+		HMC=172.16.15.41
+			SERVER=SVRP7720-01-SN10418EP
+				...
+					#2			// 可获得修改历史 r3的绝对行地值是r1. 如果有人对r3进行了注释，#r3这个指针将被删除，它首先将被置入#REVISION, 如下图
+					
+					
+	#REVISION
+r1		state=1					//原值
+r2			state=2				//修改一次
+r3				state=0			//修改二次
+		#r3
+
+	#DELETE
+		#r1
+		#r2
+		
+	#DEFAULT
+		HMC=172.16.15.41
+			SERVER=SVRP7720-01-SN10418EP
+				...
+					#r3			// 可获得修改历史 r3的绝对行地值是r1. 如果有人对r3进行了注释，#r3这个指针将被删除，它首先将被置入#REVISION, 如下图
+					
++---------------+	
+| 2014 Sep. 2cd |
++---------------+	
+
+	* 不需要#DELETE 属性组，仅保留REVISION
+	
+	#REVISION
+r1		state=1					//原值
+r2			state=2				//修改一次
+r3				state=0			//修改二次
+		#r3
+
+-r4		#r2						// ln < 0 意味着被删除
+		
+	#DEFAULT
+		HMC=172.16.15.41
+			SERVER=SVRP7720-01-SN10418EP
+				...
+					#r3			// 可获得修改历史 r3的绝对行地值是r1. 如果有人对r3进行了注释，#r3这个指针将被删除，它首先将被置入#REVISION, 如下图
+	
+	属性修改过程
+	第一次修改，结点行非指针情况
+	1）旧值的父结点为ln=p1, 将旧值移入#REVISION组, ln=r1
+	2) 在#r1下建立新值， 新建state=2，ln=r2
+	3) 建新指针#r2, #r2的父结点指向p1. 			//在读取新指针r2时，getLine(r2).getLineString()获得结点行内容，getLPath(r2).get(1).getLineNumber()获得结点行要替换的内容位置。
+	* 需要修改OrderMap, 当访问结点，载入子结点集合时，以每个结点的实际行号进行排序。
+	
+	第二次及以后的修改。结点行为指针的情况。
+	1) 删除当前指针#r2
+	2）在#r2下建立新值 新建state=3, ln=r3
+	3）建立新指针#r3, #r3的父结点指向p1
+	
+	故经多次修改后，所有新建的值会存储在REVISION下，形成链表，从第一次修改起，建立的指针#r2,会被删除，只有最后的一个指针代表最新的值。如果允许多人对结点行进行修改，则同一结点
+	行可能有不同的修改值，形成讨论。“讨论”修改链中的一个结点，链中的下一个结点将结束“讨论”给出最终的修改。修改只能向一个方向前进。
+	
+	必须使用REVISION的理由，通过REVISION, 可以找到原始修订行的位置，确保对之前某一行的修改。如果没有REVISION, 最新的修改将成为子树结点中的最新一个添加，在不关心位置的情况下，可
+	以不使用REVISION, 但，变换位置给人阅读会带来很大的困难。不寻找原始信息的位置可以提高访问的效率。
+	
+	信息的人工分组和分类。
+	
+	时间
+	地区
+	组织架构
+	BBS
+	应用系统
+	服务器
+	数据中心
+		供电
+		布线
+	
+	
+	应用系统的资源占用
+		应用系统名称，介绍，已分配的服务器名称
+	服务器的分布
+		数据中心情况，机架，服务器
+	服务器的资源占用
+		服务器，占用机架空间，供电要求
+	服务器的利用
+		申请，借入，借出和维修记录等
+		
+	显示服务器的时候，相关的表格和发生关联信息，从服务器可关联到应用系统，从应用系统可关系到企业用户。
+	
+	表格的格式，以及对格式的遵守。第一个人创建格式，后续录入遵从前人的格式。
+	
+	如何录入分类？
+		直接以缩进文本格式录入，转换成MindMap. 
+		
+	录入表格相当于对现在结点行进行说明。如何转换在引用链？录入表格的方式类似RDBMS, 在RDBMS中通过关系运算连接不同的表。
+	
+	所有引用都必须是双向链。当指针指向任一结点时，都需要将该节点提升到根目录，成为一个独立的词汇，并在该词汇下添加子指针，指回引用节点，因此被多个指针指向的节点下有同样多的
+	子结点，以便通过联想的方式找到相关节点。比如建立LPAR视图时，
+	
+	LPARNAME
+L1		bso(7)
+
+L2	#L1
+		...				// PROC 下的 LPARNAME		
+		...				// MEM 下的LPARNAME
+		...				// IOSLOT 下的LPARNAME
+		
+	应用分类
+		OSS
+L3			#L			// LPARNAME=bso(7);
+			...			// 
+		BSS
+			...
+	
+	参见 #1256 
+	* KV Pair中的=实际是路径，相当于最简单的两层树，=相当于/, KV pair是一个短路径，如果使用全长路径，可以产生复杂表。因此建议将所有的KV pair全部转换成路径的指针来显示。
+	
+	#行号 的父路径为key, 子结点路径集合相当于value, 因此#行号相当于如下的KV Pair
+	
+		getLPath(#行号)=getChildren(#行号）
+	
+	因此#与=是对应关系。当形成指针链时，如#L3 -> #L2 // LPARNAME=bso(7) , 若L3的父路径为 应用分类/oss, 则相当于 
+		应用分类/oss = (lparname = bso(7))
+		
+	如果父路径中出现引用，则表示为如下
+		应用分类/(OSS=font/bold, font/italics) = lparname/bso(7)
+	
+	每个#对应一个=, / 代表父子关系
+	#1
+		#2
+			#3
+	
+	表示为 
+		#1/#2/#3
+		k1=v1/k2=v2/k3=v3
+	
+	所有的KV pair都是字典（名字空间）里的词汇！
+	
+	*
+	* 如何获得视图的出发节点
+	*
+	不重复的显示所有节点，缺省视图显示过后，LPARVIEW下所有节点均被显示过，故LPARVIEW意味着同一组数据的另一视角，即观察同一组数据的不同出发点，该另类视点被显示为切换开关，用户
+	可能点击切换开关换一个视点浏览数据！
+	
+2014 Sep. 3th
+	
+	400 830 1832
+	
+	
+		
+2014 Sep. 7th
+	http://www.infoq.com/cn/news/2014/06/google-cayley
+	http://www.infoq.com/cn/articles/graph-nosql-neo4j
+	
+	阅读资料Neo4j 
+	
+	演员
+	张三
+	李四
+	王五
+电影
+	西游记
+	三国演义
+	红楼梦
+	七龙珠
+	变形金钢
+	机器猫
+	阿童木
+#2
+	#6
+	#8
+	#11
+	#12
+#3
+	#6
+	#7
+	#8
+#4
+	#8
+	#9
+	#10
+	#11
+
+找出张三和李四共同主演过的电影
+	
+	
+	1) 建立#行号的反向指针表, reversePointerArray, reversePoint占用4个字节，如果采用数组的方式为每个指针建立一个反向指针的话，将占用大量内存，2G记录*4=8G，因此在2G记录，平均每行
+	数据为8个字节，则不包括childrenMap的情况下，占用内存 DATA 8*2 + parentMap 4*2 + reversePointArray 4 * 2 = 32G, childrenMap占用4G, 则共36G内存使用。 
+	   用HashMap存放反射指针，则反射指针占用量可能会减少，期待数据量中只有1/3的指针，则内存占用为 8 / 3 ~= 3G, 
+	   为2G记录建立反射指针标志，如存在反射指针，则置为1, 共战胜 2G/8 = 256M. 使用标志位，能否比HashMap访问快些？
+	   如果文件中有大量重复信息，比如FileSystem2MindMap中的GMT +08:00, 能否使用指针来代换它，由于大量指针指向它，如果同时产生相应的反射指针，其作用相当于，记录下关于该指针的搜索结
+	   果，节约了搜索时间，但占用了存储空间。
+	   在大型数据结构的情况下，通过即时搜索完成所有的数据是不可能的，需要通过反射指针记录建立必要的关联。在局部可以通过搜索完成。
+	   当一个搜索结果很重要，希望它成为视图来显示时，则需要建立反射指针
+	   反射指针保存在reversePointerArray中，
+	   
+	   数据按分区归类操作。发现相同的分区名称后，通过指代操作分区名称行，由于有指针指向分区名称行，能产生反射行指向原指针位置，在浏览过程中，原指针压栈后，访问被指向结点，这时启动
+	   一个新的浏览函数调用，1）访问父路径，2）按根目录属性操作 3)访问子树。完成后返回到指针调用函数处，继续子树访问。由于反射指针的存在，被引用的分区名称上将提示，是否按反射指针	   的路径进行访问， 即访问所有视图相关的内容。
+	   
+	   显示反射指针时，宜将全部的内容进行整合，以一棵整体树的形式展现出来。
+	   
+	   公用的被指代树就是视图！
+	   
+	   当用户在分区上增加注释语句时，
+	   
+	   
+L1	LPARNAME=bso(7)
+
+	#POST
+P1		借出
+P2		归还
+P3		网卡坏
+		
+	#USER
+U1		jzou3700
+		
+F0	#FORM						// 每一个可输入的表单，谁来创建这个表单？
+		NAME=元表
+F1			LN						// 如果允许将发言接到任意行下，是否更灵活
+				POST
+					USER
+		#F0						// 指向#FORM, 遍历时通过反向指针找到新的FORM, 提供用户输入TITLE框
+
+-------------------------------------------------------------------------------------------------
+P2	NAME=分区注释表单入口点
+		LPAR					
+			POST
+				USER
+-------------------------------------------------------------------------------------------------
+			#P2
+				#U1		
+F2		##P2						//将P2挂接到#F0下. 如果反射指针不存在，则附表消失，通过搜索后可重新找到用户新建表单
+				
+	#F2
+		#L1
+			#P1
+				#U1
+		#L1
+			#P2
+				#U1
+F3		#L1
+			#P3
+				#U1
+
+		
+	分类操作是指纵列信息的合并。比如LPARNAME列，同理，格式相同的时间操作可以按列进行合并，或者按列取集合，统计词频
+	
+	如果录入原始信息？即创建基础树！
+		管理员。管理员界面上有创建树功能，一旦用户表单被创建，则用户可输入数据，发表带用户信息的发言。
+	
+	修订：
+		Revision Tree相当于版本树，当一个修订有多个不同的修改时形成版本树。
+		当两棵树之间有部分相同的子树或者结点相同时，可以用修订来实现两棵树的部分次叉。
+		
+	##操作，Embeded Number Sign Operation. ##ln将#ln下的子树分别转换成单一结点，并以集合的方式加入到当前子结点集中，而#ln视整体子树为单一结点。同理，###, 以孙结点为集体加入到当前的子结点
+	集，#ALL#ln 则把#ln完全展开，每一行被示做一个子结点。
+	
+	利用##操作，结合#REVISION, 可以将整体form代换为另一张。
+	
+	
+	发贴的POST Form提供输入的界面，是否有必要将录入数据罗列在form下，是否放在目的地处更符合发贴者本意？FORM中不需要提供父结点信息，用户一定是在父结点看到FORM表单后才可能添写。有些
+	表单对森林系的所有结点有效，而某些结点仅对特定结点生效。
+	
+	所有表单都需要记录挂接点，但form可能对挂接点有要求，比如只能在特定的挂接点下使用。
+	
+	#行号操作是把指向结点视做单一结点。
+	
+	#&行号操作则是把指向子树嫁接在当前结点下，通过嵌套操作 #&&可以把孙子树下结点嫁接到当前结点上。
+	
+	#&行号						// 起始点
+		criterial1 #			// 将查询到的结点，以指针方式远程调用
+		criterial2 #&　　		// 查询到的结点缺省情况下就是被视为子树安装到当前结点下，可省略
+			criterial1
+	
+	Select name, sex, age from people where name=zhangsan
+	
+	#&people zhangsan && #&root name, sex, age
+	#&people zhangsan && name, sex, age
+	#&people name=zhangsan 后是选择仅显示张三，还是张三定位的树？
+	
+	Select 语句将信息从结构中抽取出来，类似断章取义，无意义。
+	
+	有时候需要简单的显示信息的概要，如何操作？比如显示服务器的当前工作状态，及其它简要情况。CPU / MEM 等。
+	#HOMEPAGE
+h1		#&hmc							// 通过反射指针找到#q1, 判断它是否为#QUERY, 如果则嫁接它的结果
+			server
+				lparname
+					min_proc
+					curr_proc
+					max_proc
+					min_mem
+					curr_mem
+					max_mem
+					LPAR/states
+	#QUERY
+q1		#h1								// 指向查询条件，所以之前的数据均被处理过
+			hmc=172.16.15.41			// 查询结果
+				server=192.168.1.7
+					lparname=bso(7)
+						min_procs=0.1
+						curr_procs=0.4
+						max_procs=0.8
+						min_mem=4096
+						curr_mem=8192
+						max_mem=16384
+						LPAR/state=Running
+				server=192.168.1.1
+					lparname=P7720-vios1
+						min_procs=0.1
+						curr_procs=0.4
+						max_procs=0.8
+						min_mem=4096
+						curr_mem=8192
+						max_mem=16384
+						LPAR/state=Running
+			#q1							// 指向自己是当前查询的阶段性结束标志，当后续发生新数据添加时，可对查询结果进行增量补充
+			
+	问题：查询结果与原数据中相同的部分是不需要消冗，用指针来替换？
+	答：可允许一定级别之上的数据进行消冗，当用户查询时，可提供用户是否需要保留关键字，如需生成，则所有相同
+	
+	当#&ln下无子树时，则直接嫁接指代的子树。
+	
+	问题：如果只有够级别的关键字才能够保证消冗，那么冗余的数据如何保持一致性？如果内存大小发生动态变化，查询结果和原始数据间将出现不同。
+	答：理想方法可能是只有高级别的数据才建立反射指针，低级数据不建立反射指针。但是如何建立分界线？可否采用类似cache的办法，越是低级数据，
+	越可以被遗忘，有限的内存提供给高级别数据使用。反射指针会在关键字上显示点击提示，如果用户不喜欢，可以选择删除某些反射指针，用户的选择
+	可以被记录在关闭反射指针域里
+	
+	#NOREFLECTION
+		hmc
+			level > 3
+		mem
+	
+	#NOREFLECTION也可不放在MindMap中，而是做为用户本身的决定，与session信息放在一起，无法被查询到
+	
+	#HTML
+		#BUTTON
+		#SELECT	
+			anonymous
+1609			借出
+				借入
+	#TEXT
+		
+	#USER
+		ZHANGSAN
+			#1609
+			
+	#POST
+		#1614
+	
+	#1618 		-> 	#1614 			-> 借出
+		#POST			SHANGSAN			#SELECT 借出
+		
+	引用链可以找到数据的完整信息，但在显示时，未必需要显示全部的数据，比如用户信息中存在大量相关的历史记录，一个发贴，仅需要显示用户的概要
+	信息既可。
+	
+	多用户。如何在多个特定的条件下发贴，比如指定用户#USER/zhangsan，及指定目录 #POST, SESSION中保存当前的状态信息，比如用户名称，所在位置等。
+	
+	表单。每个发贴实际是一个表单，是一个字段的表单，如果多个字段，比较明显类似表单。
+	
+	用户可选择多个父结点，类似织毛衣，通过选择多个父结点，在最后一个节点处写入信息，则形成一个带有多个父结点的链表。
+	
+	当选择一个#USER下的用户结点，或者创建一个新用户结点时，需要使用相应的FORM, 新用户创建表单和用户认证表单，此处可独立处理
+	
+	问题：多用户环境下，对他人的贴，有否删除的权利？如何处理
+	答：高权限的用户可以删改低权限用户的权利，可通过删改权利表来实现。
+	用户的访问权限，那些有公有信息，哪引是私有信息？在人员组织架构树中，可逐级建立共享目录，员工可以读取所有领导的共享目录，而写入则只能写入
+	自己的共享目录。文件可以设定共享的深度。
+	
+	#SESSION， #POST, #HTML, #SERVER
+	
+	启动SESSION, 进一步可获得更多的父路径。
+	
+	按住shift键，点击多个父结点，最后选择#FORM, 提交后则成为有多个父结点的表单，
+	
+	缺省用户是guest, 用户无超级权限不能脱离用户身份。
+	
++----------------+	
+| 2014 Sep. 11th |
++----------------+	
+
+	
+	Guard域。用户在Guard域中访问，离开自己所在域时，需要经过gate, HMC信息位于公共区域，所有用户均可访问。
+	
+	通过虚拟地址划分Guard域？
+	
+	Guard软防护? 
+	
+	在用户索引中增加用户表。所以结点行都对应一个用户信息？！将用户信息升级为系统表可以减少在数据文件中记录过多的数据，并降低遍历速度。
+	系统用户为0, 每个结点行分配一个字节，用户信息不可被修改。
+	
+	Relationlinx & UserLinx
+	Role和User的转换
+	设置Role的访问区间。
+	
+	因为每个结点行都带有用户信息，且所有修改都可以被回滚，所以不需要设置删改权限。其实不需要设置读权限，保密的信息置入单独的文件中。
+	
+	单独的用户文件。存放所有用户信息，该文件由特别的浏览程序进行访问，只允许用户读写自己的用户信息。该文件需要完整的权限管理，管理员可以管理
+	全部文件，而组长管理组级信息，成员管理自己的信息。
+	
+	不同的MindMap文件有不同的浏览策略。无权限MindMap文件处理迅速，有权限的文件能提高必要的安全功能，因此需要结点他们的特点，将数据分别存放在
+	不同的文件中。
+	
+	时间发生器。MindMap在写时间戳的时候，首先从时间发生器申请一个序列号，并将之做为时间戳写入#TIMESTAMP
+	
+	#TIME
+		TIME SERVER
+			/* uuid of time server */
+			Time.mmap
+			STEP
+				15min
+		TIME STAMP CHAIN						//时间链的好处是？
+T0			#1
+				#2
+					#3
+						...
+		Year=2014
+			Month=Jan.
+				Day=18
+					Hour=18:00
+						#1
+						#2
+						#3
+						#4
+					Hour=19:00
+						#1
+						#2
+						#3
+						#4
+	
+	首先将#number转换成服务器上的序列号，并获得最接近的时间，将获得的时间记录成上述的结构。
+	
+	时间服务器每秒在最后一行写入一次时间，如果一直没有人申请时间戳，则被下一秒的记录刷新。直到有人申请时间戳后才继续在新的文件结尾部分写入
+	新的时间戳。
+	
+	当建立指针时，检查指针两端结点行的父结点，可以判断它有没有跨域。问题：不同的用户访问同一结点是否有不同的可能？
+	答：在无权限文件中这种情况不存在。在有权限文件中，根据ACL检查访问者的有无通过的权力。在有权限文件中，如果一个节点行没有ACL,可直接访问。
+	如果存在ACL则需要根据ACL做出访问决定。
+	
+	问题：如何处理一个页面，guest用户不显示input field, 而注册用户则显示input field
+	答：如果允许STG部门的工程师和销售对服务器进行标注，不允许HR，财务或者其它部门的员工读写硬件资源信息，该如何操作？有无可能使用无权限的
+	MindMap文件来解决？
+	
+	还是需要使用有权限的MindMap文件。
+	
+	MindMap Guard. 它是一个独立的线程，当浏览器访问到Guard时，需要接受Guard的检查（ACL检查）或者经过ACL时，主动验证,如果合乎条件，则继续，
+	否则返回。如果没有遇到ACL, 则与访问无权限文件相同，不影响访问性能。
+	
+	MindMap内存最大情况占用
+	
+	数据 12 * 2 + Linx 4 * 2 + ULinx 4 * 2 = 40G + ReverseLink 4 * 2 + Reflection Link 2 * 2 = 52G + dictionary ?
+	
+	
++----------------+	
+| 2014 Sep. 12th |
++----------------+	
+	
+	以对HMC资源注释为例，任一HMC资源，均可与HTML form或者Plaint Text Form结合在一起，进行提交, HMC资源亦可与项目信息，
+	人员架构信息结合在一起提交，但对HMC资源进行提交是否需要权限？
+	
+	假设已存在硬件资源项目分配表，当用户访问LPAR资源时，系统上方水平栏目应当提示该表的存在。访问项目信息时亦如此。此时涉及权限问题，即是否对
+	所有人都允许提交相应的表格，还是只争对STG部门的员工？
+	
+	上述项目信息表，Form输入表是否需要权限，只争对有权限的用户显示？当某一个硬件资源是显示根结点，则根据反射连接找到关联的表格，再根据表格的
+	ACL判断用户是否具备读写权限，如果有则正常显示，如果无写权限，则以灰色显示，当用户点击输入框时，提示用户申请写权限。如果无读权，则表格的
+	按钮显示为灰色，用户点击时，提示用户如何申请读权限。
+	
+	权限发生在连接两个结点时，写
+	
+	#FORM. 用户通过使用form对 MindMap进行读写。首先有最基本的系统FORM, add, delete, modify, search. 浏览器参考HotJava浏览器，本身不显示任何
+	功能键，所有功能键都是MindMap中的Form.
+	
+基本的FORM
+	
+	其它更多的FORM也同样是通过基础form创建而来。所有结点行均来自form, 包括HMC收集的服务器信息
+	
+	add									// add不需要日志
+		parentln
+			lineString
+				user
+	delete
+		thisln
+			user
+	modify
+		targetln						// targetln被移入 #REVISION域中，增加新行，将挂接在链尾
+			lineString
+				user
+	move
+		targetln						// 记录日志。数据表现为最新结果，日志记录的是变动。而form是甚于旧数据。
+			newParentln
+	
+	问题：如何通过简单表单，创建复杂表单？
+	
+	问题：基础表单是否只产生日志，不记录操作本身？
+	答：如果记录操作本身的话，属于增量数据日志。如果以最新数据为视图，则日志是减量操作。
+	
+	权限！如何控制权限？请以项目用服务器申请表为例讲述系统权限的设置
+	答：表格存放在
+	
+	SESSION是所有出发点，每个session有自己的home目录，参考操作系统的实现。
+	
+F1	#FORM
+F2		password
+			user
+				password shadow
+					home dir
+						group
+	home/
+		jzou3700/
+			public
+	etc/
+		password
+			#F2
+				password
+			jzou3700
+				q1w2e3r4
+					/home/jzou3700
+						admin
+	
+	可嵌入Java做为application. 示例如下：
+	
+	#Java
+		default
+		com
+			java
+				class=HelloWorld
+					public class HelloWord {
+						public static void main(String[] argv) {
+							System.out.println("Hello, World.");
+						}
+					}
+	opt
+		sample
+			#class=HelloWorld							// 当前的行号需要传给Java, 
+				followed by parameters
+	
+	Java Node Thread是基于行的Java守护线程，它用来维护当前行的子结点，负责当前子结点的维护，增删改查，如果子结点数目过大，则进行分裂，如果
+	删除后结点数据变少，则进行合并。如果产生大量的并发访问，则需要提高主频或者产生相同的镜像来提高响应速度。通过为外界服务获得收入，并在获
+	取资源时便用这些获得的货币。如果能够产生收入的积累，则为积极发展，否则为消退。
+	
+	启动时，浏览器获得guest权限，可访问公有区域文件
+	
+	如果文件中的每一行都被赋予Linx和RLinx, 是否开消太大？如果行的平均长度为20个字节，则额外开销达到8/28 = 28%. 如果使用压缩格式，转换成数据
+	则可大幅减少额外开销。'\n'在数据中出现的概率为1/256, 则 8 / 256 = 3%
+	
+	HMC 信息置于 STG部门下。为简化应用，所有登入的用户均可访问公有信息
+	
+	IBMSTG
+		public
+		private
+	ATS
+		public
+		private
+	CSC
+		public
+		private
+		
+	#IBMSTG
+		#ATS
+		#CSC
+		#Channel
+		#Presales
+		#Sales
+				
+	员工组织架构
+			
+	名字服务，将#keyword转换成对就的行号。还是用$来表达变量？ 上例中可用$STG来表达 IBM STG, 获得它的行号。将$与#号区分开。
+	
+	在FileSystem2MindMap示例中，无法把所有的文件变成变量名，因为可能存在重复。变量名称引入的意义？人工阅读的时候会更加方便. 
+	
+	#ACL	
+		#ln
+			group raud					// read add delete update
+				user1 rad
+				user2 rau
+			// merge group和user中获得的权限，再决定浏览器能否访问该结点，或者能否提交改动。
+			
+	在修改索引将一个结点移动到另了个结点，需要当前结点的删改权限，以及目标父结点的增加权限。
+	
+	四种权限为增删改查和数据库对应而不和文件系统对应。 这是一个基于MindMap的简单OS
+	
+	需要一个显示行号的编辑器，能够使用行号指针。用户可使用此编辑框直接录入一个子树。
+	
+	FileSystem2MindMap需要改进显示部分。tree功能返回Text, #ln同样使用Tree功能调用。如果是实际页面显示 toCategoryGrid时，需要增加显示面积
+	的参数，根据显示面积，浏览器将决定如何显示子树，浏览器显示子树时需要增加一个外框以标识自己的范围。
+	
+	使用虚线来表示#ln指针。以人员架构表为便，虚拟汇报的经理，可通过#ln的方式指向自己管理的人员。
+	问题：此时的反射指针是如何存放的？
+	答。反身指针是父指针，指向自己的父结点。因此在LPAR归类操作中，当CPU MEM IOSLOT中的LPARNAME指向bso(7)时，bso(7)便具有了多个父指针，即反
+	射指针，根据反射指针指向的结果集，将其进行路径累加，即树形拼装后显示出来。
+	
+	LPARNAME 反射指针结果集拼装算法：
+	    1) 结果集行2与行1进行比对，记录相同的父路径
+		2）结果集行3与行2进行比对，仅比对上述相同的父路径即可。
+		。。。
+		记录下最早的分支，
+		
+		简而言之一句话，将LPARNAME插入到链表第一个分支前方。将LPARNAME记录为第一个分支的子结点，即可。浏览时，程序访问到LPARNAME时，通过访问
+	其反射结点，获得CPU/MEM/IOSLOT信息。
+	
+	    浏览器访问到服务器的子结点正常访问是按次序浏览子结点，当浏览到最后插入的LPARNAME时，其子结点已经被访问一，故给LPARNAME做上视图的标志。
+	当用户选择LPARNAME时，浏览器选择子结点首先从LPARNAME开始。LPARNAME成为优选结点，用户将LPARNAME在子结点中的排序升级为第一，则浏览器首先从
+	LPARNAME处开始访问，当它访问完成后，原部件表CPU/MEM/IOSLOT显示为视图。
+	
+		为简易起见，设置一键升级LPARNAME为最优先结点，再按一次则取消升级操作。该键称之为视图键。
+		
++----------------+	
+| 2014 Sep. 13th |
++----------------+	
+	
+	FileSystem2MindMap示例中，当把文件名使用指代操作后，根目录下出现大量的文件信息描述，浏览器如果显示根目录下的大量子结点，将给用户造成困惑。
+	解决方案：在浏览器开始遍历数据前，进行预扫描，将树进行分层(layer)，分层从0开始，每通过一个指针就加1，扫描分层属于创建视图的操作，通过创建
+	视图，浏览器借助分层索引，将数据转换成正确的页面。
+	
+	Vector<byte> view
+	
+	view是一个byte数组。layer用字节表示，最大255层。
+	
+	
+	树的分层和视图。
+
+	问题的引入：将文件目录转换成MindMap, 简单结果如下
+
+	root
+		 dira
+			  fiea
+				 line1
+				 line2
+			  fieb
+				 line1
+				 line2
+
+	如果用一个数据结构来表示文件名，长度等更复杂的信息则
+	root
+		 #dira
+			  #fiea
+				 line1
+				 line2
+			  #fieb
+				 line1
+				 line2
+	dira
+		 length
+			   last modify time
+	filea
+		 length
+			   last modify time
+	fileb
+		 length
+			   last modify time
+	其中#dira是指dira的id也就是它的行号。虽然上述结构可以清晰的表达文件系统的数据结构，但它在浏览显示的时候却不正确，尤其是在只显示顶层限制递归深度时，输出结果让阅读者不明所以。
+
+	通过引入树的分层概念，有一个很好的解决办法。首先对树进行预扫描，遍历所有的结点，为每个结点标层它的层号，出发点是0层，每经过一个#指针加1， 这样遍历后每个结点就拥有了自己的层号，浏览程序在遍历树结构时只显示与当前层号相同的结点，这样住在高楼上的dira, fila, file就不会与root显示为同一个目录下的子结点。
+
+	因为引入指针，可能会形成循环链，所以需要防止进入环路成为死循环，通过与当前路径的比对，发现环路时自动返回，实现不复杂的图遍历。
+
+	引入层号后，树就变得立体了。以前是平房，现在是小楼。预扫描并建立楼层的操作，称之为视图创建。
+
+	视图。视图是用户观察数据的角度，MindMap的子结点是按写放顺序存放的，经过不复杂的遍历后，最后的子结点Z下的孙结点已经被全部或部分遍历过，不再需要被重复显示，那么这个Z结点行就是一个有不同视点的视图，如果用户选择Z先行遍历，就会得到不同的显示结果。也就是平常说的，我们从Z这个角度来看待数据。。。这就是视图的MindMap实现。这也是我挺得意的一个想法。
+
+	用户在浏览数据里，一旦选择了一个子结点的浏览次序，就需要创建视图的过程，就是上述的layer预扫描的过程。通过引下视图的楼层的概念，复杂树可以被正确的浏览。
+
+	当两个子树有共同子树时，先访问者将给子树赋予楼层号，而后访问者，是否需要更改楼层号？如果后访问者能提高更低的楼层号，是否以低楼层号优先？
+	
+	浏览器遍历显示时，同楼层和低楼层的需要被显示，而高楼层结点则被跳过，等待后续显示。
+	
+	局部视图的改变。当用户需要重建局部视图时，自出发点，遇到低层结点，则说明已经被访问过，而高层住户可以被重新调整
+	
++----------------+	
+| 2014 Sep. 14th |
++----------------+	
+	FileSystem2MindMap实现了甚于指针嵌套树的正确遍历和显示，通过layerScan过程。并且正确生成了TreeMap<Integer, Byte> layer.
+	
+	树从不同的结点出发，遍历后会产生不同的layer, 目前它是视图创建的全部内容。
+	
+	问题：如果MindMap数据被更新，视图如何进行修正？
+	答：视图应当具备范围标识，即当前视图的结尾点在何处。可通过定制更新机制，将增量数据加入到视图中。
+	
+	问题：如何将增量数据加入到已有的视图中。
+	答：顺序扫描增量数据，从新增数据的父结点开始，遍历子树，并对结点进行layer标注，就低不就高。因为在访问子结点时，不显示高楼上的子树，但显示楼下的结点。楼层对于结点的
+	另一个意义是在查询时，低楼层的路径被优先显示。
+	
+	在多任务环境下，每个用户产生自己的视图，当原始数据增加时，大量视图都需要更新，因此视图有必要优化减少内存用量。假设支持一千个用户，视图消耗内存量非常可观。因此共享
+	视图是节约内在的好方式。	
+	如果有员工主动整理数据提供更好的视图，然后给大家共享，这种机制如何实现？比如以吉林公安为例，如果用户希望将硬件资源以项目进行分组，有一位管理员建立了合理的视图，共
+	享给其它同事，后又得到领导的推荐将该视图提升到全部门共享的数据，但机房管理人员，希望以布线为视图对资源进行划分，则建有从布线，供电，机架角度的视图。那么这些视图的
+	创建共享机制需要明确。
+	
+	随机生成森林及环路，检查查询的正确性，结点用a.b.c来命名，可用来检查路径。
+	
+	批量增加数据与逐行增加数据的区别？增加数据离不开form, 树和form的关系。
+	
+	为减少用户信息占用的存储量，为一组数据使用染色的方式来标注用户。比如HMC信息属于SYSHMC用户，那么它下面的所有信息都是这个用户赶写的。同理适用于表格。树状结果的用户
+	信息可便于信息权限的操作。
+	
+	由于MindMap是可回滚的文件，因此，不设计写和删改权限，需要保密的信息单独保存。当前版本不处理保密信息。
+	
+	#REVISION
+R1		updated content1
+			userA
+R2		updated content2
+			userB
+R4		rootA
+			B
+				D
+			C
+				E
+R3		#R4
+			userB
+		#ln
+			#r1
+				#r2 
+	
+	/* 优先索引。如果一个节点存在多个反射指名，#REVISION应当排在第一位. 通过REVISION，找到后面的修改。如果REVESION */
+	
+	REVISION格式，无用户情况及多用户情况
+		#ln		指向原始数据
+			<直接内容> 这是无用户的情况
+			#
+		CDATA 	原始记录
+			CDATA	修改记录					//格式1
+				#R2		带用户的修改记录		//格式2
+					#R3		用子树替换CDATA		//格式3
+					
+	
+	多用户情况下，用户可根据用户级别查询当前的MindMap的状态。比如看经理以上级的文字，或者看所有人的文字。
+	
+	FORM！服务器项目申请表。以工作流的形式，传递表单。每个userid需要有一个inbox. 表单可以在不同的inbox中进行转移，通过修改linx可轻松实现。一个表单可能出现在多个用户
+	的inbox中，使用#ln实现，当某人修改了表单后，需要通过显示该表单的客户端程序进行及时的更新。
+	
+	Form可以生成一条记录，而一条记录是一个链表，与前述中的数据链条相比，记录是一个紧凑链，这个紧凑链与指针引用链相比#ln1->#ln2->#ln3有什么区别？
+	
+		
+	#FORM
+F1		服务器资源项目申请表
+			*POWER SERVER
+			*PROJECT
+			WORKFLOW
+				*APPLICANT
+				*APPROVER
+
+	1	POWER SERVER
+	2		P7720-1
+	3		P7740-1
+	4	PROJECT
+	5		ABC
+	6		ICBC
+	7	APPLICANT
+	8		#zhangsan
+	9		#lisi
+	10	APPROVER
+	11		#philip
+	12		#peter
+
+		#F1
+			#2
+				#5
+					#8
+						#11
+		
+			#3
+				#6
+					#9
+						#11
+	
+	form如果套用格式？
+	
++----------------+	
+| 2014 Sep. 15th |
++----------------+	
+	form的输入及知识树的生长。假定form中指定地址一项，用户输入北京海淀后，会记忆地址的结构，下次输入海淀同样知道海淀是北京下辖的一个区，北京等同于北京市，海淀等同于
+	海淀区，所有地点均在字典中排序，当查到北京的#ln时，向上查询，北京市比北京路有更高的级别，因此缺省的北京返回北京市。
+	
+	随着地址数据的丰富，市下会有北京，上海，张家港等，或者这些名词都会指向市，系统需要会自动分词，为每个词汇生成自己的位置。
+	
+	北京海淀中关村软件园28号楼环宇IBM。。。
+	北京丰台中关村软件园28号楼。。。。
+	
+	中关村有不同的园区，如何让系统理解并对应？
+	
+	通过输入形成知识树。
+	
+	通过form建立起不同知识体系之间的连接，比如中关村软件园本身是法人机构，与地址的知识体系实际是两个系统，却可能通过地址描述的方式连接在一起。同理能否把服务器的资源
+	信息与项目信息与人事架构联系在一起，象录入地址的一样录入申请表，比如
+	
+	服务器申请使用表 P7720-01 ABC ZhangSan申请 lisi批准。
+	
+	完整的知识系统需要对语言有一定的理解，至少需要常见单词的解释。建立人，物，时间，空间，事件的知识模型。理解主从关系。
+	
+	用户在输入720-1时系统自动提示相应的服务器，用户输入项目的申请人时同样如此。当多个项目申请提交后，点击服务器时，会提示存在相关的项目申请表。点击服务器或者分区，将
+	以目标对象为显示根节点，显示其子树，同时显示它所有的父结点。项目资源申请表将是关联服务器的父结点之一。
+	
+	FORM表格的设计。以地址项为例，简单的地址仅为一个输入框，而随着知识的建立，逐步建立复杂地址。
+	
+	建立MAP理解地理
+	
+	省份#PATH
+S1		#S8 北京
+			#S3 河北
+			#S2 天津
+S2		天津
+			#S3 河北
+			#S1 北京
+S3		河北
+			#S1 北京
+			#S2 天津
+			#S? 内蒙
+			#山东
+			#山西
+			#河南
+			#辽宁
+S4		辽宁
+			#S5 吉林
+			#S3 河北
+S5		吉林
+			#S4 辽宁
+			#S6 哈尔滨
+S6		哈尔滨
+			#S5 吉林
+S7		上海
+		天津
+		广东
+		江苏
+		山东
+		山西
+		广西
+		陕本
+		湖南
+		湖北
+		。。
+		海南
+S8	北京
+S9		东城
+			#S10
+S10		西城
+			#S9
+			#S11
+		朝阳
+			#
+		海淀
+S11		丰台
+		石景山
+		门头沟
+		通州
+		顺义
+		怀柔
+		密云
+		
+	连通图。所有的省份是一个连通图，但省份与中国不存在连通关系。北京市下属的各个区存在连通关系，但与北京不存在连通关系。城区和北京是隶属关系。
+	
+	城区间存在连通性，因此可放在同一个MindMap层中。而省份放在另一个 MindMap 文件中，通过远程指针映射省份与城区之间的隶属关系。
+	
+	人类通过语言可以建立地图模型。建立这样的模型即可，不需要精确的地图模型，而是近似的结构模型
+	
++----------------+	
+| 2014 Sep. 15th |
++----------------+	
+	建立人体尺寸模型，
+	
+	分区移动。1）删除分区，记录删除时间  2）设置新的锚定节点（父节点）。记录旧节点值。 即使是直接移动分区，也按照此方式记录。
+	
+	用户直接输入下列信息
+	
+	======================
+	服务器资源使用申请表
+		SERVER=P7720-1
+		PROJECT=ABC
+		APPLICANT=...
+		APROVER=Peter/INBOX
+		STATUS=apply
+		+-------------+
+		| Form Submit |
+		+-------------+
+		
+	======================
+	服务器状态备注
+		SERVER=P7720-1
+		COMMENT=工作不稳定，已维修。加电烤机，观察。
+			经ABC项目使用，无异常发现
+			
+	FORM提交后要记录用户信息，Form提交和普通提交的区别。FORM提交需要建立一个表格，强制后续用户使用相同的格式进行数据提交。普通提交则是把当前的结构
+	以相同的树结构安装到锚点。
+	
+	FORM提交后需要建立一个表格，需要将表格置于合理的位置。
+	
+	从使用角度看，FORM应当具备建立，修改，查询，删除，拷贝的功能。修改一个FORM可能涉及增减项，修改字段描述等功能。修改者用户信息也需要包括在里面。通过
+	REVISION功能。
+	
+	指代操作的优化。指代环路。
+	格式一
+		#self comment
+	格式二
+s1		a
+			b
+				c
+					#s1
+						subtree
+	通过格式一的自我指针，可以对当前结点进行信息补充。通过格式二的回溯指针，子树将演变为整个树的二级子树。在多用户环境下，当B用户对A用户表中的某项进行
+	争对性回复时，需要将发贴挂接在争对项下，需要使用回溯指针，以表达原form的边界。
+	
+	回溯指针是树的边界！
+	
+	多级回溯指针是对一段内容的多重修饰。
+	
+	回溯指针构成一个环路，形成面积的概念，能否实现面积的交，并这样的集合运算。
+	
+	遍历时的结点的进入和退出。当一个结点完成进入和退出后，被认为完全访问过，只进入未退出，并非是完全访问过结点。
+	
+	自我指针与回溯指针构成的环路。
+	
+	通过回溯指针，同一个子树具备了两个父结点，即回溯指针本身的父结点和指针指向的父指点，回溯指针可以指向一组回溯指针，为子树设立多个父结点。实现选择性
+	回复，比如选择FORM中有用的数据，进行点评。
+	
+	对特定子树点评，则在该子树下增加#parentln节点，并在#parentln节点下挂接反射指针，比如在服务器节点下挂接服务器使用申请表，维修表，部线图等，浏览器在
+	显示到服务器节点时，将在结点行信息的右上方显示红点，以提示相关的表格
+	
+	#self相当于NULL, 类似于空格。在浏览器中起到占用一个压栈位的功能。它的子树楼层位升高，有可能根据楼层号，以楼层优先的显示模式。
+	
+	由于反射指针的存在，#ancestorln必然对应 #self/#posterityln, 于是可能存在下述的冗余结构。
+	
+1	server
+2		#1					// #parentln
+3		#3					// #self 指针显示为提示信息，因此是不可或缺的。
+			#2				// #sonln
+
+	多个不同的#self意味着什么？连续两个根目录下的#SELF则认为数据文件结束。
+	从回溯指针的起点到目标点之间的路径存在着特别意义，需要加重显示。当用户显示焦点在回溯路径之上时，回溯指针的目标点上出现红点提示，当用户点击红点提示后
+	会显示存在的不同关系表格及回溯路径。
+	
+	比如有维修报告关联到网卡上，点击SERVER时，会看到具体某个IO_SLOT下关联着维修报告。
+	比如有高性能IO设备分配给某个专用的系统或者项目时，也可以通过回溯指针将业务系统或者项目地址，这样在访问业务系统或者项目的，会显示出存在
+	
+	#self 是一个神奇指针，当它没有子树时，表达为空，当它存在子树时，它表达的就是整个子树。
+	
+	问：三种指针的差异。#parentln, #self, #sonln?
+	答：根据反射指针的规律，#parentln是在parentln下建立反射指针提示。#self代换整个子树，比如一个结点有多个回溯指针，分别回溯到不同的位置，从网卡->服务器
+	网卡->业务系统，或者网卡->项目，那么网卡下建立三个不同的回溯指针，但这三个回溯指针关联到同一份维修报告，因此需要将这三个回溯指针通过在其父结点下插入
+	#self来整合起来。整合后，再
+	HMC=192.168.X.X
+		SERVER=172.16.15.41
+			CMD=IO_SLOT
+				ID=FC-CARD-1
+					...
+S1					#self
+						#server
+						#appsystem
+						#project
+					#s1 					// 维修记录中的设备指针，在此处建立反射指针。
+						#维修记录
+		
+	前向指针！回溯指针的反功能指针，它指向自己的某个子节点，含义是子树的缺省视图入口。
+	前向指针也是视图的标志。多前向指针
+		多并列前向指针
+		多串行前向指针
+	前向指针可用来选择子树中的重要结点，将概要显示出来，比如分区的概要信息。显示空间较小无法展开全部子树时，使用前向指针，找出重点信息来。同时重点信息
+	也是定位整个树的重点。因此可有多重的前向指针，
+	
+	#sonln是方向指针，#parentln是回溯指针。
+	
+1	server
+2		#self 2				// #self 指针显示为提示信息，因此是不可或缺的。
+4			#1				// #sonln
+5		#4
+		
+	问题：#self指针和匿名行的区别？
+	答：#self指针易于定位，而且有不同的名字，可以被别名，用于名字服务。 匿名行可以被以关键字归类，结果无意义，因此不允许在MindMap中使用匿名行。匿名行可做
+	为文件结束标志。
+	
+	通过前向指针可以定义树的重心。比如操作系统可以指向UUID来指定为自己的唯一ID。通过多层次的前向指针，可以定义关键字的辅助定义。根据显示面积，动态的显示
+	简要信息或者明细信息。
+	
+	前向指针的遍历。根据指针的目标结点行父路径，可以判断出该指针是否为直接前向指针。但如果在系统分类中，某业务系统的前向指针指向
+	
++----------------+	
+| 2014 Sep. 17th |
++----------------+	
+	通过#sonln 前向指针或者#parentln回溯指针来强化特定结点行。回溯指针或者前向指针。
+
+	回溯指针和前向指针都是在当前的目标区域内工作，不会增加任何信息，但可以利用它强调树的某些部分。改变浏览次序，对某些结点行或者结点行链进行强调，递归环路
+	部分可以被强调。甚至多次强调。不同的浏览次序在限制递归尝试的情况下，会得出完全不同的结果。
+	
+	关键字和浏览视图。如何设定关键字？分区的唯一关键字就是名称，但在不同的服务器上出现相同名称的分区，就使用父路径进行区分 即服务器名称进行区分。HMC分区无
+	关键字。而OS则可使用UUID进行区分
+	
+	人查找分区，是通过服务器，分区名和OS内安装的文件来识别的，如果这些给定条件完全相同，则选择任一分区对使用者而言无差别。
+	
+	新功用是多用户的讨论，将不同的信息整合在同一个结构中。使用#self / #记录的结构，可能是理想的解决办法。
+	
+	当分区迁移时，系统首先发现A服务器上分区P被删除，并记录，之后发现B分区上新增了分区P1，此时需要将P1与被删除的P进行对比，如果P1与P的主要信息相似，或者相同
+	则可认为P是P1的一个迁移，P1在创建的过程中，一点点与P进行比对，如果已发现的信息与P1相同，并首先认为是移动的信息，如果发现后续从OS中读取的信息不同的，则提
+	示可视为部分迁移，用户可人工将系统视做迁移的数据修改或者拆分。
+	
+	系统会记录下启动的过程，可对比最终状态。可根据系统的状态及时间变化搜索出变化的过程记录。
+	
+	用户可指定时间点，进行对比。
+	
+	对比采集到数据的相同部分。变动过于频繁的数据无法记忆，只有变化频率在一定范围内的数据，才是观察的目标数据。
+	
+	FORM! 如何表达数据和用户的关系。
+	
+	#userln
+start	#self start
+			a
+				b
+					c
+						#start end
+				d
+					e
+						#start end
+		
+	使用#self start定义子树的起始范围，在子树的边界采用 #start end来结束。
+	
+1	#3
+2		content
+3			#1
+	#3, #1 形成指针循环，看上去象一个括号，如何强调，降调结点行？
+	
+	parent
+		#sonln		插入的sonln给son带来两个指针，同时多
+			son
+			
+	#ln被显示时，父路径结点用H1显示， 子村结点用H2显示，遇到内部指针时，遍历后父路径部分加1, 子树部分加2, 累加后忽略指针进行显示。
+	
+	通过指代操作服务器中的分区名称合为在名称结点下形如
+	
+	SERVER=P7720-1
+		...
+		VIEW=LPAR
+			LPARNAME=bso(7)
+				#self
+					#CPU
+					#MEM
+					#IOSLOT
+			LPARNAME=vios(1)
+				#self
+					#CPU
+					#MEM
+					#IOSLOT
+	
+	插入#ln -> view=lpar 后，形为
+	
+	SERVER=P7720-1
+		#L1
+			...
+L1			VIEW=LPAR						// 内联指针不产生反射
+				LPARNAME=bso(7)
+					#self
+						#CPU ln 
+						#MEM ln
+						#IOSLOT ln
+				LPARNAME=vios(1)
+					#self
+						#CPU ln
+						#MEM ln
+						#IOSLOT ln
+	
+	上例中#L1做为一个前向指针，作用是优先显示分区视图，如果在显示完优先视图后，是否继续按原始村结构遍历？如果将两次遍历的次序累加，会有什么效果？
+	
+	如果多个前向联指针指向同一个结点或子结点，代表什么意思？
+	答：不存在共同子结点，因此不可能有多个前向指针存在。只能是多个指针指向同一个结点，这是相名变更有多个实例的情况。多个链表如果希望有共同的关联
+	结点，需要将它们归入同一棵树下，
+	
+	问题：如果REVISION有多个版本，如何合并？
+	答：REVISION下的分支通过指针操作另建子树，整个子树通过指针被视作单一结点。假设一个有五个分支，其中三个被合并成新版本，如果将五个分支全部合并
+	成新秘本，如何选择全部五个分支，当然选择了父结点自然等于选择了全部五个分支，但是否包括3/5的版本？是五个分支的后续，还有五+三全部分版本的后续？
+	
+	V1
+		#self
+			#L0				// 反射指针
+			#L2				// #L2的反射指针, #L2的所有父结点的#self指针，全部打开。
+		V1.1
+		v1.2
+		v1.3
+		v1.4
+		v1.5
+	V1.6
+		#v1.2
+		#v1.3
+		#v1.5
+L0	#V1
+		V2.0				// V2.0合并1.1 ~ 1.5成为新版本，但看不出来是否包括 v1.6的内容。
+
+L1	#self					// 收敛树。V2.1 是 V1 和 V1.6的后续结点，子结点
+		#self
+			#V2.1
+L2		#V1
+		#V1.6
+	#L1
+		V2.1
+		
+	#V1
+		#V2.0				// 通过前向指针，加大V2.0的深度，故V1.x -> V1.6都比 #V2.0浅，V2.0是它们的合并内容，
+			V2.0
+		
+	发散树用来展开，收敛树则用是合并。通过平面翻转和上下翻转两个矩阵操作，可以将发散村变换成收敛村。如何将发散树与收敛树对接？
+	
+	使用SVG绘制页面！SVG!
+	
++----------------+	
+| 2014 Sep. 18th |
++----------------+	
+	建立表单。
+		1）用户首先需要写下表单的名称，描述表单的功能及用法。
+		2）建立输入框。输入框缺省的起点是根目录，表单制定者可限制输入框的起点为服务器或者项目，地址等子树根。
+	
+	匿名输入框和命名输入框。
+		匿名输入框接受任何信息，以任意非字母数字字符为分隔，并且以现有知识库进行分词。知识库挂接在表单下。假定任何数据都是通过表单建立的，那么匿名
+		输入框存在于根目录下。知识库挂接于表单下。文档后，每每通过输入框建立文档后，会产生知识点，挂接于文档后。因为它们是被引用的结点，故层号高于
+		文档，在浏览器显示时，不显示。
+		
+D1		Dictionary
+			#self
+				
+		HMC=...
+			SERVER=...
+				...
+		#D1
+			LPARNAME
+				bso(7)
+					#self
+						#LPAR
+						#CPU
+						#MEM
+				vios1(1)
+				...
+			#bso(7)
+		
+	设立隐藏条件，比如字典内容为非显示内容，除非显式要求显示它。因此可以直接跳过#D1.大大减少了依据layer的判断次数
+	
+		命名输入框，需要指定输入档的名称。比如地址输入框。随着地址的输入，会逐步建立地址的知识体系，比如市，区，县，州等也可以提前建好知识体系帮助系统
+	进行分词。
+		统计大量输入中的相同部分，根据重复的部分建立起词汇，直到输入所有的内容都是被由相应词汇构成，则称之为理解。，不被理解的内容，留做以后解释比对。
+	据前述逻辑，则可人工生成词汇，再根据词汇生成语句，生成大量的语句后，再通过学习程序，学习这些语句，重建词汇甚至语法。
+	
++----------------+	
+| 2014 Sep. 18th |
++----------------+	
+	分词。以字为单位学习文本，建立一个顺序了长链表。发现重复的字后，比如后续字符是否相同，如相同建立词汇，并以词汇替换掉链表中两个或者多个单字。
+	
+	1）建立一个MindMap文件，以单字链表的形式存放自然文本
+			 
+	自
+		从
+			诞
+				生
+					了
+						穿
+							越
+								小
+									说
+										，
+											这
+												时
+													空
+														已
+															经
+																被
+																	穿
+																		成
+																			筛
+																				子
+																					了
+																						。
+																							　
+																								　
+																									卡
+																										滋
+																											—
+																												—
+																													左
+																														眼
+																															皮
+																																被
+																																	扒
+	#DICTIONARY
+		穿
+			#self			// suppose 2 times vocabulary  “穿越” appeared.
+				#D1
+			3
+		越
+			#self
+				#D1
+			2
+D1		#self
+			#穿
+				#越
+		#D1
+			1
+	
+	当读入新字符时，需要检查字典中有无该字，如无则添加，如有，则检测下一个字符是否在
+	
+	聚簇指针存放。即子树的先邻（后邻）即为该子树的引用指针。
+	
+	以后邻聚簇的方式，存放上述文本链。
+	
++----------------+	
+| 2014 Sep. 20th |
++----------------+	
+	昨天写程序，将小说以MindMap链表的形式存放，每一个字都是词汇放在词汇表里。今天需要完成反射指针的基本函数， addSelf
+	
++----------------+	
+| 2014 Sep. 21th |
++----------------+	
+3   现
+
+18	#3
+19		#在
+20			#穿
+21				#越
+22					#了
+
+
+Integer.MAX_VALUE = 2147483647 (10)
+
+18	#23
+20		#穿
+21			#越
+22				#了
+23	#3
+24		#在
+
+18	#现
+19		#在
+23			#self
+20				#穿
+21					#越
+22						#了
+
+
+#19 => #现#在
+#22 => #现#在#self#穿#越#了
+
+取消#REVISION方案。 LINX 高位置1时，表示当明节点过期，-0 表示被删除， 无后续更新。-n 表示更新结点为#n. 取消#REVISION方案后，只保留LOG, 记录LINUX的变化，无论删除移动
+均可处理。与之前的LOG不同，此LOG只记录LINX的变动，记录LINX原值，以便于回溯。
+
+LOG通过链表的方式记录，应当定期与树结点进行交联，帮助回溯过程找到最近的LOG结点。LOG链可能是一个很长的长链，如果从头向下找需要遍历全部的链，通过交联，树结点可通过其父
+结点找到交联的LOG链结点，然后再往后直到当前结点前方最后一个LOG点.
+
+有无可能溯造反向链，LOG出发点就是队尾。如果LOG的出发点是一次性写入结点，就没有可能，如何需要将LOG出发点保持在队尾，就需要不停的修改指向队尾的指针。因此反向链是行不通
+的。但由此产生延伸思考，为树的叶结点，做一个投影。保持树的最新数据。
+
+HMC Information Collection 实际是树的投影。Smart Monitor实际是通过树的投影，重建树结构。
+
+进一步发现穿越是一个词汇，将它从“穿越了”中进行替换。
+
+18	#现
+19		#在
+23			#self
+20				#穿
+21					#越
+24						#self
+22							#了
+
+#22 => “#现#在#穿#越 = #了”， 因为 #了的行地址先于 23#self, 所以忽略后续的分隔符23,24 #self。而调用 #24时，需要考虑到之间已经存在 23#self, 故 24#self 代表穿越两个
+词汇。而#21 则表示“#现#在#穿 = #越#了”, 因为#23，24均在21之后，被忽略。
+
+节点的复制和分裂。
+
+链表中间结点被移走很容易，只需要修改指针即可。将"穿越"二字从上图中链中移走，并可以生成新的指针“#穿越”来替换该词
+
+取消#REVISION方案后，需要LinxLOG, LinxLOG记录LINX被修改的情况。简称仍是LOG. LOG记录使用链表或者平衡二叉村。LOG的树平衡操作是否需要记录日志？不需要。否则增加的日志可能
+引发更多的平衡操作，形成雪崩效应，该效应是扩散的，还是收敛的？需要试验才知道。该效应有无利用价值?
+
++----------------+	
+| 2014 Sep. 23th |
++----------------+	
+
+频率。字符除了重复，还存在出现频率上的特征，高频字符的出现会给文档带来明显的特征。如何设计一个类似听毛细胞的字符聆听系统，字符的出现次数与频率响应单元挂钩。共振的单元
+振动扩散与流水线，共振字符在流水线上顺次流动。。。
+
+颠筛子。类似冒泡法，常出现的字符升级到顶层 ，比如将逗号，英文中的空格升级到顶层后，则文章自然以逗号断句，以空格分隔词汇。
+
+无论以树，还是以链表的存储方式，遍历后的结果一致。因此将链表转换成树的过程是一个学习过程，链表的大纵深无法记忆，通过树的形式，学习程序可以完全记忆大量的文档。人脑是预格式化的记忆体，由一层层的记忆体组成和菜花类似。纵深是有限的。
+
+通过重复统计后，以高频出现的字符为首选视点，比如以逗号出发来遍历全文，是否
+
+	#DICTIONARY
+L1		,
+			#self
+				#xxx
+					我爱北京天安门#,
+				#xxx
+					天安门上太阳升#,
+		“
+			#self
+				#xxx
+					#“	
+						L1
+							#”
+				#xxx
+				#xxx
+
+我爱北京天安门, 天安门上太阳升,伟大领袖毛主席
+1	我
+2		爱
+3			北
+4				京
+5					天
+6						安
+7							门
+8								, 
+									#self
+										#16
+9									天
+10										安
+11											门
+12												上
+13													太
+14														阳
+15															升
+16																#8
+17																	伟
+18																		大
+19																			领
+20																				袖
+21																					毛
+22																						主
+23																							席
+24				
+
+			
+将上述结点重构后，优化成为
+
+							我  				// LINX uplink displayed as left tree
+						爱
+					北
+				京
+			天
+		安
+	门
+																投影
+										天						天
+									安							安
+								门								门
+							上									上
+						太										太
+					阳											阳
+				升												升
+	,															，		
+		#self
+				伟												伟
+					大											大
+						领										领
+							袖									袖
+								毛								毛
+									主							主
+										席						席
+			#16
+16				#8												#8，
+					带											带
+						领										领
+							我									我
+								们								们
+									向							向
+										前						前
+											进					进
+
+父子关系不影响先后顺序。当把“天安门上太阳升”变成#8的子树时，其绝对位置不变，子结点仍按位置位置先后排列，当子结点先于父结点时，则为左子树，否则画为
+右子树。
+
+树等序变换方式，在竖排序列中，提升其中若干结点，根据提升高度建立父子关系，换句话讲，树的投影即为遍历后的顺序，与结点高度无关。因此，结点可在横轴上
+任意移动，只影响树结构，不影响树的排序。
+
+结点的水平移动，涉及上下两个结点的指针变化。高频词汇宜于左侧，相当于完成颠筛子。根据词频统计，可将投影转换成相应的树结点。
+
+当大脑在学习知识时，读取的知识流相当于树的投影，结点间可以建立任意关联，不影响到树的遍历顺序
+
+传统数据结构中使用树建立排序关系。而MindMap则是根据已经顺序，建立是最优的树结构，以词汇分解大块文字，实现对知识流的理解。
+
+词汇的形成。标点符号将文章断成句。在句中寻找重复字符串，形成词汇。用树结构取代知识流，有助于解释后续的知识流. 后续文本流中需要用词汇来替换字符串。词汇意味着，对字符
+串升降级操作是同步的。
+
+词汇的替换，将“天安门”替换成词汇后，将三个字删除，并全部替换为-#天安门
+
+多维树：同一个投影可以生成多个数，每一个LINX创造一棵树。利用树的平移原理，
+
+如何解释分类操作。LPARNAME classification一方面升级了LPARNAME, 另一方向，重新进行了排序。
+
++----------------+	
+| 2014 Sep. 23th |
++----------------+	
+
+嵌套的双层MindMap. 底层的MindMap记录所有的变化，上层的MindMap提供自由的修改操作。可修改的操作在多用户环境中涉及权限，容易复杂化。
+
+多用户环境下的修改，对同一结点行，不同用户给出不同的修改方式。删除操作记做 Line #->ln , 当一个修改有多个不同版本时，通过 #->self结点实现。
+
+-ln		Line
+ln		UpdateLine
+
+L1		Line			{-ln}
+-ln		#self					//意为删除的分支节点
+			Update1
+			Update2
+			Update3
+
+分词！
+
+正则表达式在MindMap中的应用。大脑是如何找到正则表达式的规律的？
+
+如何处理引号，括号等对称的运算符？
+答：以英文为例，通过分类统计，出现频率最高的是字母，因此，以字母为高优先级绘制权重树，更接近人类的理解。字母也数字的组合，字母与符号的各种不同组合可制成不同的权重树，
+哪一个是最优的？如何实现，
+
+如何理解人阅读习惯？即能象电脑一样聪明的学习，也可以模仿人一样的理解，以排除一些明显的错误。例如丢失引号，括号等。
+答：使用人一样的小buffer来阅读数据，一次一个段落。确定段落大小，如果没有明确段落被发现，则说明是非人阅读文字，可能是机器文件，数据文件。如何发现段落？
+
+人类在阅读小说时，会复现场景。并理解小说中人物，故事的发展变化规则，与自身理解相对照，发现新的规则，或者体验美好的场景，而美好的场景构成生活的期待
+
+编写Sample程序 cn.samples.ASCII.java 将通过内码显示字符
+
+人脑是如何从重复中发现规律的？比如连续输入的aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+答：以听毛细胞反馈信息到大脑为便，大量分量的听毛细胞，与大量的脑细胞形成多对多的映射，音乐以不同的频率，影响到所的脑细胞，让人产生愉悦，如果只能对局部产生影响会积累
+不平衡的动能，让人反感，连续的aaaaaaaaaaaaaaa, 反复击发同一处结点行，积累过多不均衡的动能，因此需要一种平衡机制，让输入链尽可能短。过长的不平衡树，等于反感。需要进行
+平衡。连续的a会产生词汇aa, aab, aabaab, 第二个a究竟是aa的尾还是ab的头？一个HTML文件，如何发现它的DTD? 
+
+<HTML><BODY><TABLE><TBODY><TR><TD><TABLE><TBODY><TR><TD>...
+
+学习大量HTML文件后会发现<HTML><BODY>每篇只出现一次。<HTML></HTML>出现的次数一样多。发现学习HTML后的权重树，随着知识模型的建立，树重树的拓扑结构越来越稳定。最终稳定的
+权重树即为结果。嵌套的<TABLE>如何在权重树中体现？
+答：首先要发现嵌套，嵌套和重复的差别是什么呢？单目关键字只有重复，没有嵌套。只是双目关键字，比如（）“” <HTML></HTML>才有嵌套的可能。通过出现的频率和频次，可以发现双目
+关键字。因为它们出现的次数是相同。根据频率树的立体关系，可以忽略掉少量错误导致的误解。嵌套的匹配可人工录入。在已知匹配的情况下，如何在权重树中体现出来？
+
+
+<HTML>
+<BODY>
+
+<TABLE>									1
+<TBODY>
+<TR>
+<TD>
+	Table Descriptions
+	<TABLE>
+	<TBODY>
+	<TR>
+	<TD>
+		Table Description
+		<TABLE>
+		<TBODY>
+		<TR>
+		<TD>
+		</TD>
+		</TR>
+		</TBODY>
+		</TABLE>
+		
+		<TABLE>
+		<TBODY>
+		<TR>
+		<TD>
+		</TD>
+		</TR>
+		</TBODY>
+		</TABLE>
+	</TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+
+</BODY>
+</HTML>
+
+字域统计，<alphabet> 词域统计 <tag></tag>, 语法（嵌套）统计 <TABLE><TBODY>{<TR>}{<TD>}
+
+<TBODY> -> <TR> {1..N} 还是如何发现重复的问题。嵌套和重复购成了数据的千变万化。重复是指连续重复，只有转变成连续重复才能算全部的理解了文本。
+
+词法分析后的结果， {<tag> CDATA} 
+语法分析后的结果 
+	<HTML>
+		<BODY>
+			{
+				<CDATA>
+				<TABLE>
+					<TBODY>
+						{ 
+							<TR>
+							{
+								<TD>
+								<CDATA>
+								</TD>
+							}
+							</TR> 
+						}
+					</TBODY>
+				</TABLE>
+			}
+		</BODY>
+	</HTML>
+
+事实上只要发现嵌套，文档就体现出结构化特征。用户在ZTOP中提交文本，比如申请表，只需要简单格式，不需要进行太复杂的分析。但最好有分词功能。权重树为分词打下了基础。
+
++----------------+	
+| 2014 Sep. 24th |
++----------------+	
+
+：操作符
+
+服务器使用申请表
+	HMC资源 : 
+	Duration
+		Start Date :
+		End Date : 
+	ProjectName : 
+		customer : 
+		contact : 
+		sales : 
+		se : 
+		project owner :
+	Applicant : 
+	Approval :
+	
+如何继续增加第二张表？
+答：使用 ：结尾表示制表，所有叶结点必须使用 : 结尾，而非页结点，可以不使用:结尾。 系统遇到 :结尾时，会自动显示input field, 表格将同样
+可以被layout. 系统具备两种状态，显示和编辑，用户可通过编辑功能，修改整棵树，通过比对编辑器中的文本与原文本的差异，实现改动功能。为了保留与
+子树的对应，如果当前叶结点有子树，则不允许名称修改。
+
+两种修改办法，编辑状态的修改和FORM录入。选择FORM, 并将它挂在特定位置上。比如HTML BBS Input Area, Plain Text form. 它们提交后通过数据链挂接
+在多个位置，目标位置，格式位置，用户位置等。数据链比收敛结构看上去更紧凑些。注意多父路径的显示方式。
+
+任一数据的直系父路径上，必须含有用户标识，以确定数据的用户属性。浏览数据时，用户属性将被压入堆栈中。用户属性不通过指针传导。当使用#ln指针时，
+需要找到目标父路径上的用户权限。
+
+多用户情况下，移动结点后产生日志的情况。
+#PERMISSION
+	#jzou3700
+
+#USER
+	jzou3700
+
+#LOG
+	#LN
+		saved Linx value
+			#permission/#jzou3700
+			
+多用户！ 
+
++----------------+	
+| 2014 Sep. 25th |
++----------------+	
+
+服务器使用申请表
+	HMC : 							// 限定在HMC中进行选择
+	Duration
+		Start Date :
+		End Date : 
+	ProjectName : 					// 最初仅有简单的PROJECT信息，随着补充会逐步增加
+		customer : 
+		contact : 
+		sales : 
+		se : 
+		project owner :
+	Address : 						// 随着输入Address应当建立一个完整的知识图。
+	Applicant : 
+	Approval :
+==========================
+	HMC=172.168.15.41/SERVER=192.168.1.1
+	#		LPARNAME=VIOSA			// 表示#LPARNAME=VIOSA
+	#		LPARNAME=AIXLPAR 
+	
+	Duration Start-End date			// 单独的时间处理程序
+	
+	Project : 						// Project是根目录下的结点
+	
+: 左侧是父路径，是限定条件，而右侧是选择性输入框。类似百度，google.
+
+"jquery autocomplete插件结合ajax使用demo"
+http://my.oschina.net/zimingforever/blog/63877
+
+多用户和FORM!
+
++----------------+	
+| 2014 Sep. 26th |
++----------------+	
+
+多用户的环境下，不同用户存在自己的session, 能否共享系统中心的资源信息？给IBM 丁大师写信，和叶华，文志聊聊需求。核心是介绍可自由扩展的信息系统
+听听他们的意见。
+
+在ORGCHAT环境中，建立通讯关系。
+
+可能的索引包括 Uplink Index, Owner, 树结点的尾地址，即最后的子结点地址，不包括孙结点，特指子结点。当一个大型数据，没有建立索引时，通过尾地址
+可在遍历时及时知道已经完成载入。不需要！因为载入Linux后，生成childrenMap很快，是数据库载入必要的时间开销。
+
+在社交网络环境下进行结构化数据的构造。用户之间进行数据共享。共享以部门为单位，还是组织架构为基础？发生组织架构调整后，如何处理？
+
+管理员签发服务器的使用管理权限，用户收到该权限后，可接受成为自己所拥有的数据，类似游戏中的钥匙。证书内容包括：锁的位置，签发人，
+
+当有人对BBS数据修改时，将通知用户修改多少个未读消息。回复特定人员。按树形展开
+
+方案一：HMC information 需要一个当前结果的快照，否则从第一帧镜像开始，计算大量改动会比较慢。
+方案二：将最新的快照与上一次相对比，建立新旧快照之间的映射表，通过映射表，对外来的指针进行修正。和已经实现过的属性抄袭相似，但需要更正远程指
+针的位置。逆向记录，和以前实现的方式相同，将变化记录在log文件中
+
+时间反向MindMap。以最新的快照数据为基点，记录它的日志。
+
+空间记录。即快照的最新的记录，包括了当前的最新次序。以建立池操作为例，新增加的命令并非出现在子树的最尾端，有可能在其它的任意位置，而以时间记录的文件中，它一定是子树的最后一个结点，与实际的空间位置不符。是否需要增加子树的空间位置？
+
++----------------+	
+| 2014 Sep. 27th |
++----------------+	
+
+完成空白MindMap增删改查！实现:功能，及FORM
+
+彼得潘28182014-09-28 12:35:25
+103.251.131.180 root Un%v7vNh)p7r
+彼得潘28182014-09-28 12:35:52
+root root3306
+彼得潘28182014-09-28 13:20:09
+IP改成 202.10.73.180
+
+http://support.cndns.com
+a632199556/wwt360
+
+Lib/Core/App.class.php
+DEBUG : $group.MODULE_NAMEHome/Users
+Home/Users
+
+	Common/common.php
+		function A($name,$layer='') {
+			...
+			import(@/Action/Home/UsersAction);
+			...
+		}
+
+	[root@HKCLOUDLC6X-AMP-370 public_html]# find . -name "UsersAction.*"
+		./app/Lib/Action/Home/UsersAction.class.php
+		./app/Lib/Action/Admin/UsersAction.class.php
+
++----------------+	
+| 2014 Oct. 1st  |
++----------------+	
+	2300mah * 1.2v = 2.76vah * 3600s= 9936 J / 4.182 = 2377 calroie 
+	2300mah / 8 = 287.5 mh 
+	1.2v/287.5ma = 4.17 o  
+	50% 热转换效率
+	
+	9558 8002 0013 5007819 彤 工行卡 34839.32 
+	
++----------------+	
+| 2014 Oct. 5th  |
++----------------+
+	cn.oldb.ChinaCities.java 将 北京/市辖区/东城区 中的市辖区转换成属性。初步建立指针和反射指针机制，反射指针机制还需要完善，比如回调指针不需要建立反射指针。
+	思考：当北京->市辖区的市辖区的需要被删除，并改成属性后，为避免修改“市辖区”下的大量子结点的linx指针，使用直接callback
+	指针替换“市辖区”结点，即将“市辖区”结点的linux符	号位置1, 则Linx的Integer值为负数。可通过linux < 0来判断结点是否被删除。通过 lineNumber & Integer.MAX_VALUE来获得更新的
+	字符串。被删除指针的子结点不需要更改。#2替换
+	“市辖区”后，使用“市辖区”的行号3, 但它仍拥有自己的行号，这个行号能否得到利用，或者需要避免干什么样的问题？
+	答：根据#ln代表一个树的原则，linx deleteRef同样代表一棵树。上例中#2及其子树一起来替换被删除的"市辖区". 
+	
+	*上述中存在算法不良，当“市辖区”被删除后，直接在linx中指向其父结点北京的id 2（记做-2，以原码的方式存放）即可。
+	
++----------------+	
+| 2014 Oct. 7th  |
++----------------+
+	2014 Oct.5th * 算法导致复杂性。读取节点时，难于区分-parentln和-targetln, 需要借助日志才能实现。因此此算法并不简捷。
+	
+	当更新结点指向父结点时，表示与父结点合并，子结点依然存在。如果更新结点是#selfln结点时，表示此结点及之下的结点被全删除
+	如果，#ln指向其下某个子树，则以新视图展现。
+	
+	* 有没有可能利用鼠标技术，通过对地面的跟踪获得汽车的行进轨迹？或者通过里程和指南针，获得行进方向。里程可能通过OBD接口
+	获得。
+	
+	越是树根的结点越重要，节点莲载入处理，需要实现#ln的载入。
+	
+	实现基于MindMap的对比操作。
+	
++----------------+	
+| 2014 Oct. 8th  |
++----------------+
+	root/subdir/subdir = { xxx { yyy, bbb, ccc }, { c, cc, ddd } } 
+	
++----------------+	
+| 2014 Oct. 9th  |
++----------------+
+	#ln 的载入，如何实现？tree(visited, ln) 
+	visited 已经访问过的结点， 
+	ln 目标结点行
+	
+	//
+	// 记录访问过的路径，避免内容重复显示。#ln链具有多条父路径。
+	//
+	tree2string(ln) {
+		Vector<Path> visited = new Vector<Path>();		// 保存多条父路径。
+		_tree2string(visited, ln);
+	}
+	
+	_tree2string(visited, ln) {
+		Path path = getPath(ln);
+		visited.add(path);
+		__tree2string(visited, path, ln);
+	}
+	
+	__tree2string(visited, path, ln) {
+		if ( thisLineString is "#ln" ) {
+			if ( it's not callback reference ) {
+				_tree2string(visited, ln);
+			} else {
+				display thisln;
+			}
+		} else {
+				display thisln;
+		}
+		foreach children {
+			if ( child is #ln ) {
+				Path newPath = new Path(visited);
+				newPath.add(child);
+				__tree2string(visited, newPath, child);
+			}
+		}
+	}
+	
++----------------+	
+| 2014 Oct. 12th |
++----------------+
+	#ln指定一个树时，需要显示它的path及子树。path也是一种特殊的子树，应当以统一的形式展现出来。#ln的子树以#为indent来展现， path则以/为indent展现。
+	如果以行的形式展现path时，形如/root/subdir/subdir/，如果subdir是#ln, 则需要以{}形式将子树转换成行显示。在ZTOP界面上显示时，则可以subdir中有意义的字符串
+
++----------------+	
+| 2014 Oct. 14th |
++----------------+
+	完成ChinaCities的同义变形，下一步用ZTOP来显示ChinaCites. 进一步研究输入的问题，如何对ChinaCities进一步添加完善数据。
+	
+	将数据与空间相结点，即将数据以平面的方式展开并操作。添写数据前，需要添加空白空间，有了空白空间才有填写数据的地方，类似于取出白纸。
+	在当前树插入空间。选择任一子结点，插入空白，则可填写数据做为其子结点。
+	扩展当前结点外延。增加当前节点的子树或者父路径。左增加父结点，每次仅允许增加单结点，右增加子结点，可以树的方式增加
+	增加当前结点内涵。为当前节点建立更丰富的内涵信息。	实现结点内涵增加功能
+	
+	ZshServer.java
+		doGet() 
+			WebCommand webCommnad = WebCommandPool.getByName(webcommandName);
+			webCommand.process(URL);
+	
+	WebCommand Implements Session
+		process(URL)
+			if ( URL.command == 'command' ) {
+				zSession.commandAction();
+			}
+		
+		display(zSession) {
+		}
+			
+		Run() {
+			ZSession zSession = SessionPool.get(URL);
+			process(zSession);
+			display(zSession);
+		}
+
++----------------+	
+| 2014 Oct. 15th |
++----------------+
+	如何通过对自然语言进行统计来获得词汇？
+	
+	汽车收音机密码 0106, 按1键9下获得0，按二键一下获得1， 按4键6下获得6， 然后按 >> 三秒
+	
++----------------+	
+| 2014 Oct. 16th |
++----------------+
+	频率树如何与词汇树结合？
+	
+	链表即是树。通过指代操作，词汇被替换成单一的指针引用。一些长的短语中可能包括高频小词汇，比如<html><head...中html是高频词汇，如何
+	
++----------------+	
+| 2014 Oct. 16th |
++----------------+
+	将字符，数字，汉字等概念预置入MindMap中，当扫描HTML源代码时，需要获得<words><words>的重复序列，如何通过相似的重复找出其中的规律？比如<html>和</html>都
+与html相关，如何建立其间的联系？如何发现<tagname attributes...>的与</tagname>之间的规律？如何通过程序语言的源文件获取语法定义？
+	如果不能实现自然语言的识别和理解，只能通过表格的方式实现输入。
+	
++----------------+	
+| 2014 Oct. 20th |
++----------------+
+	http://localhost:8686/screensplit
+	随机对屏幕进行分块，分块大小相似，并以不同背景色区分。问题：如何根据已经树的权重，进行分块显示，权重大的节点占有相对较大的空间。
+	
++----------------+	
+| 2014 Oct. 23th |
++----------------+
+	CTSI项目启动。争对X86进行监控。
+	
+	Account linuxAccount = new Account(hostname, username, password);
+	BatchJob batchJob = new BatchJob(linuxAccout);
+	batchJob.add(command);
+	batchJob.add(command);
+	batchJob.add(command);
+	batchJob.add(command);
+	batchJob.add(command);
+	batchJob.add(command);
+	batchJob.exec();
+	
++----------------+	
+| 2014 Oct. 24th |
++----------------+
+	郭工 BJTelecom-IDCOffice D41461588E23E3D356E1C63472B46BE42310AB090EFDAA53E22F90914B59399C
+	
+	手机保镖应用，主要特色一键响铃，甚至设计一个蓝牙的硬件，提供一键响铃的功能，在夜行，酒吧等不安全环境下，呼叫支援，记录自己所在的位置。 手机热键可支持
+	
++----------------+	
+| 2014 Oct. 27th |
++----------------+
+	使用=跨越边界。/是相邻父子结点的分界符，如果爷孙节点中以匿名结点连结，可用=来表示。
+	
++----------------+	
+| 2014 Oct. 28th |
++----------------+
+	记录每一次获取的命令输出，只记录有变动的输出，无变动不记录。
+	表的HTML格式输出。
+	DIFF移植
+	
+北小生 2014-10-28 14:35:17
+龙宇就读于斯坦福大学商学院，获MBA学位；之前毕业于电子科技大学，获电子工程学学士学位。 2011年3月9日，龙宇入选达沃斯世界经济论坛2011年度“全球青年领袖”，中国内地同时获此殊荣的还包括我国千人计划代表、互动百科创始人兼CEO潘海东、著名青年演员周迅等。
+贝塔斯曼 投资人
+
+陈维广 蓝驰创投
+	
+地址104.194.79.217
+用户名：baozissh.sinaapp.com
+密码：qun280076575﻿
+
++----------------+	
+| 2014 Oct. 28th |
++----------------+
+	以原文做比对，还是
+	
++----------------+	
+| 2014 Nov. 3th  |
++----------------+
+	房租 ICBC 9558 8002 0013 5007819 彤 000 
+	183000
+	3000
+	478
+	584
+	982
+	38.76
+	16.64
+	3000
+	5250.6
+	1760.22
+	18.00
+	5.00
+	
++----------------+	
+| 2014 Nov. 4th  |
++----------------+
+	tree2KVP 等以后进行优化实现。
+	diff debug
+	
+	Weixin : g2qqg2
+	
+	
++----------------+	
+| 2014 Nov. 6th  |
++----------------+
+	交泽丰苑302房租 5500* = 16500
+	转10万到 彤 95588 日本旅行
+	
++----------------+	
+| 2014 Nov. 12th |
++----------------+
+	LinuxBatchJob已经可以正常工作，如何恢复保存的旧数据？实际上它只处理了PS一个命令。
+	展现PSMonitor的当前数据
+
++----------------+	
+| 2014 Nov. 15th |
++----------------+
+	完成perl版本的硬盘文件系统遍历。速度远逊于find, 偿试C或者Java版本加速。
+	完成安全包检查perl版本，需要为用户提供哪些信息？
+	总安装包数：xxxx，应安装文件数：xxxx 实际安装文件数
+	非包文件列表
+	...
+	
+	进一步检查安装文件完整性，相对于安装文件，增减情况
+	选择特定配置文件进行检查。文件的历史变动情况
+	设备属性的变化情况
+	数据库变化情况。
+	
++----------------+	
+| 2014 Nov. 16th |
++----------------+
+	磁盘使用率可视化显示，使用TREEMAP可直观的显示磁盘利用率，未来可将Oracle的利用情况与系统空间合并在同一个图中显示，让管理员更加直观的看到磁盘空间利用情况。不同的存储应当以不同的色彩或背景来展示，以显示出它们之间性能和安全性的差异。
+	进一步可仿造青花瓷的花纹样式显示，青花瓷纹的样式分为两步
+	1）将每个显示结点的权重以正方形面积的方式表示，计算正方形边长
+	2）将代表每个结点的正方形，以某种次序在平面上铺满
+	3）连接每个正方形的圆心后形成多边形，计算每个多边形重心，连接这些重心，形成多边形图B
+	4）则多线形图B中每个结点所在的多边形，可近似表达结点的权重。（边缘部分有问题）
+	
++----------------+	
+| 2014 Nov. 16th |
++----------------+
+	1*) 进程监控 
+	2）文件扫描，安装包检查，变动监控
+	3）存储空间检查，TreeMap图
+	4）系统工况检查，监查网络或者应用系统的响应时间是否及时
+		4.1) 通过全国多个网站访问，全国范围内监控托管站的稳定情况。
+		4.2）检查服务器及网络的架构，实测系统最高负载，寻找系统瓶颈，优化架构方案
+	5）资源利用率检查，长时间监察系统的运行情况，找到富裕的资源，设计相应的方案提高资源的利用率。
+	
++----------------+	
+| 2014 Nov. 21th |
++----------------+
+    LinuxPSMonitor遇到网络故障时，会出现抓到空页的情况，导致mindMap重新被初始化，3th Line失去为空，从来出现null指针现象
+	
+	废除删除操作！在全链表情况下，当一个结点需要删除时，通过移动其它链上即可，通过命名一个删除空间，所以被删除结点移入后即可，当linx被修改前，首先将原始值写入日志 Journal, 然后修改linx值。写入日志的#refence要求产生反射指针，当回溯显示时，某一结点可通过反射的指针轻易找到曾经的子结点。
+
+	修改项。两结点间的存在一条以上的回溯结点产生的路径，即为修改项
+
++----------------+	
+| 2014 Nov. 22th |
++----------------+
+	childrenMap实际是linx的反向指针，同理，需要给#reference建立反射指针，命名为rchildren. 即为远程子结点。
+	
+	完成一个ps的界面，类似SmartMonitor。http://localhost:8686/zsh?cmd=psmon, 显示扫描的记录，提供内容回溯的能力。
+	
+	泽丰物业 1700, 5250
+
++----------------+	
+| 2014 Nov. 28th |
++----------------+
+	
+	转换
+Using Word for command line conversion of DOC files to XML
+14 September 2007
+
+
+Or to RTF, or to whatever.
+I've written before about using OpenOffice to convert Microsoft Office files to OpenOffice files (and hence XML) with a shell prompt command that starts up OpenOffice with the MS Office file, does a Save As, and then quits OpenOffice. Because it can be done from the command line, this makes conversion of multiple files with a batch file or shell script much easier.
+
+[Word and Word XML icons]
+I recently had to do the same thing with Word to convert Word files to MS XML, and it turned out to be similar: you write a macro that does the SaveAs and then quits, and you start up Word from the command line naming the file to convert and the macro to do the conversion.
+
+The macro I wrote yesterday could use some refinement, but it works:
+
+Sub SaveAsXML()
+NewFilename = (Replace(ActiveDocument.FullName, ".doc", ".xml"))
+ActiveDocument.SaveAs FileName:=NewFilename, FileFormat:=wdFormatXML
+Application.Quit
+End Sub
+(It seems like I have to write a bit of VB code about every three years, so with any luck that's it until 2010. I was sorry to hear that in my nephew's first year at the University of Kansas, the "Intro to Programming" course uses VB. As I said to my sister, "But you're not living in a Seattle suburb anymore!") If you want this to save as something other than XML, see the other options for the FileFormat parameter.
+
+My word2xml.bat batch file to tell Word to start up with a given file and run the macro looks like this:
+
+"C:\Program Files\Microsoft Office\OFFICE11\winword" %1 /mSaveAsXML 
+There are other command line options for winword.exe besides /m, but none looked very interesting to me.
+
+As with my command line trick for converting MS Office files to OpenOffice files, this technique can get filed with quick and dirty perl scripts: if you have a batch of files that need a one-time conversion some afternoon, it's great, but it's not really fast, so if you're building a production system that needs to perform this conversion every day, there are some other options that will be more complex to set up but will run more quickly because they won't require starting up and shutting down the word processor for every document.
+
+As far as what to do with the Word XML files once I have them, well, don't get me started...
+
++----------------+	
+| 2014 Nov. 29th |
++----------------+
+	replace TBatchJob with UnixBatchJob. 
+	
+	Account account = new Account(....);
+	Unix batchJob = new UnixBatchJob(account);
+	batchJob.add("uname -a");
+	batchJob.add("mount");
+	batchJob.exec();
+	MindMap mindMap = batchJob.getResult();
+	System.out.println(mindMap.tree());
+	
+	
++----------------+	
+| 2014 Dec. 1st |
++----------------+
+	
+Mon Dec  1 08:42:02 2014
+        -       4049    oracle 
+        +       4857    oracle  sys_semtimedop
+Mon Dec  1 08:42:39 2014
+        +       4901    sh      do_wait
+        +       4902    emdctl  poll_schedule_timeout
+Mon Dec  1 08:42:42 2014
+        -       4901    sh 
+        -       4902    emdctl 
+Mon Dec  1 08:44:43 2014
+        +       5039    sh      do_wait
+        +       5040    emdctl  poll_schedule_timeout
+Mon Dec  1 08:44:46 2014
+        -       5039    sh 
+        -       5040    emdctl 
+Mon Dec  1 08:46:47 2014
+        +       5166    sh      do_wait
+        +       5167    emdctl  poll_schedule_timeout
+Mon Dec  1 08:46:50 2014
+        -       5166    sh 
+        -       5167    emdctl 
+Mon Dec  1 08:47:17 2014
+        +       5195    sh      do_wait
+Mon Dec  1 08:47:20 2014
+        -       5195    sh 
+Mon Dec  1 08:48:51 2014
+        +       5317    sh      do_wait
+        +       5318    emdctl  poll_schedule_timeout
+Mon Dec  1 08:48:54 2014
+        -       5317    sh 
+        -       5318    emdctl 
+Mon Dec  1 08:49:21 2014
+        +       5346    sh      do_wait
+        +       5347    emdctl  poll_schedule_timeout
+Mon Dec  1 08:49:24 2014
+        -       5346    sh 
+        -       5347    emdctl 
+Mon Dec  1 08:50:55 2014
+        +       5459    sh      do_wait
+        +       5460    emdctl  poll_schedule_timeout
+Mon Dec  1 08:50:58 2014
+        -       5459    sh 
+        -       5460    emdctl 
+Mon Dec  1 08:52:02 2014
+        -       4857    oracle 
+        +       5536    oracle  sys_semtimedop
+Mon Dec  1 08:53:30 2014
+        +       5630    sh      do_wait
+        +       5631    emdctl  poll_schedule_timeout
+Mon Dec  1 08:53:33 2014
+        -       5630    sh 
+        -       5631    emdctl 
+Mon Dec  1 08:55:34 2014
+        +       5761    sh      do_wait
+        +       5762    emdctl  poll_schedule_timeout
+Mon Dec  1 08:55:37 2014
+        -       5761    sh 
+        -       5762    emdctl 
+Mon Dec  1 08:57:38 2014
+        +       5891    sh      do_wait
+        +       5892    emdctl  poll_schedule_timeout
+Mon Dec  1 08:57:41 2014
+        -       5891    sh 
+        -       5892    emdctl 
+Mon Dec  1 08:59:42 2014
+        +       6030    sh      do_wait
+        +       6031    emdctl  poll_schedule_timeout
+Mon Dec  1 08:59:45 2014
+        -       6030    sh 
+        -       6031    emdctl 
+Mon Dec  1 09:01:46 2014
+        +       6178    sh      do_wait
+        +       6179    emdctl  poll_schedule_timeout
+Mon Dec  1 09:01:49 2014
+        -       6178    sh 
+        -       6179    emdctl 
+Mon Dec  1 09:02:01 2014
+        -       5536    oracle 
+        +       6199    oracle  sys_semtimedop
+Mon Dec  1 09:03:50 2014
+        +       6317    sh      do_wait
+        +       6318    emdctl  poll_schedule_timeout
+Mon Dec  1 09:03:53 2014
+        -       6317    sh 
+        -       6318    emdctl 
+Mon Dec  1 09:04:20 2014
+        +       6346    sh      do_wait
+        +       6347    emdctl  0
+Mon Dec  1 09:04:23 2014
+        -       6346    sh 
+        -       6347    emdctl 
+Mon Dec  1 09:05:54 2014
+        +       6446    sh      do_wait
+        +       6447    emdctl  poll_schedule_timeout
+Mon Dec  1 09:05:57 2014
+        -       6446    sh 
+        -       6447    emdctl 
+Mon Dec  1 09:06:25 2014
+        +       6471    sh 
+        +       6472    emdctl 
+Mon Dec  1 09:06:28 2014
+        -       6471    sh 
+        -       6472    emdctl 
+		
++----------------+	
+| 2014 Dec. 2cd  |
++----------------+
+	visited CTSI 
+	
++----------------+	
+| 2014 Dec. 3th  |
++----------------+
+
+1	星
+2	期
+3	#2
+4	一
+5	#2
+6	二
+7	#2
+8	三
+9	#2
+10	四
+11	#2
+12	五
+13	#2
+14	六
+15	#2
+16	日
+17	天
+18  气
+19  晴
+20  朗
+21  下
+22  雨
+23  #4			星期一
+24  #18			天气
+25  #20			晴朗
+26
+27  #24			星期一天气
+28  #20			晴朗
+29  #28			星期一天气晴朗
+30	#6			星期二
+31	#8			星期三
+32	#10			星期四
+33	#12			星期五
+34	#14			星期六
+35	#16			星期日
+36  #18	
+反向指针
+	星期 #2
+		#4
+			一
+		#6	
+			二
+		#8	
+			三
+		#10
+			四
+		#12
+			五
+		#14
+			六
+		#16
+			日 
+
+如何表示链表和表格
+
+	A	B	C
+1	a1  b1	c1
+2   a2  b2	c2
+3	a3	b3	c3
+
+1	A=a1	B=b1	C=c1
+2	A=a2	B=b2	C=c2
+3	A=a3	B=b3	C=c3
+
+A=a1
+	B=b1
+		C=c1
+A=a2
+	B=b2
+		C=c2
+A=a3
+	B=b3
+		C=c3
+		
+1	A
+2	=
+3	#2
+4	a1
+5	b
+6	=
+7	#7
+8	b1
+9	c
+10	=
+11	#10
+12	c1
+13	#4
+14	#8
+15	#14
+16	#12
+
+13	#2
+11	a2
+12  #5
+13	b2
+14  #8
+15  c2
+
+链表
+a
+	b
+		c
+			d
+				e
+					f
+1	a
+2	b
+3	#2 	ab
+4	c
+5	#4 	abc
+6	d
+7	#6  abcd
+8	e
+
+ababcabcdabcde
+#8	abcde
+
+/
+	usr
+		bin
+	include
+	etc
+		
+1	bin
+2	null
+3	usr
+4	#2
+41	include
+42	null
+5	etc
+6	null
+7	#4
+71	#42
+72	#71
+8	#6
+9	/
+10	#8
+11  #0
+12  #11
+
+
+二叉树表示链表，二叉树表示文件目录的自然树。
+
+波兰树，逆波兰树。
+
+北京智远时代科技有限公司，
+
+友谊欢乐时的欢乐，友谊是伤心时的抚慰，寂寞时的陪伴，友谊是你前进时的赞许，失意时的鼓励，困难的援手
+
+报表即界面设计
+
+
+进程监控
+	进程变化历史总结，每天启动运行的进程数量，月报告。频繁启停的进程名称及次数。
+		
+性能监控
+	主机利用率
+	网络IO
+	存储IO
+
+文件系统检查
+	安装包检查，每三方软件标识
+
+存储空间分配
+	Hash图
+
+文件变动分析
+	根据时间，文件变动日志。
+
++----------------+	
+| 2014 Dec. 3th  |
++----------------+
+
+ echo 1 > /sys/module/printk/parameters/time
+ 
+ 
+ 2010-03-24 02:22
+上篇文章写的是投资组合的计算，其中用到的大量数据不太好找。各种免费的股票软件基本上也只能一次导出一只股票的历史价格，我不想傻傻地坐在电脑面前点鼠标点上十几二十个小时。
+
+下面把获得方法详细写出来，希望对大家有用，对自己也是个记录。
+
+查看了各大财经网站的情况后，发现yahoo能提供些不错的免费午餐。在yahoo财经上下载股票的“历史价格”时，能看到“XML数据下载”这一项。这比分页的HTML数据好解析多了。至于网上流行的sina股票数据接口嘛，不提供历史价格，只有当前价格（或者有我不知道）。点击链接，发现是：
+http://yahoo.compass.cn/stock/xml/000001.ss_day.xml
+
+很好。一看就明白。数据有：
+
+<label ref="date">行情日期</label>
+<label ref="open">开盘价</label>
+<label ref="high">最高价</label>
+<label ref="low">最低价</label>
+<label ref="close">收盘价</label>
+<label ref="volume">成交量</label>
+<label ref="amount">成交额</label>
+
+这下发达了！
+
+使用python，很容易写出多线程的抓取网页程序。
+线程库：threading
+网页抓取：urllib2
+XML解析：xml.dom
+HTML解析：SGMLPaser
+
+注意，由于数据较多，使抓取失败的因素是很多的，所以做好出错处理。一次抓不下来，我抓2次！我就是这么无耻地处理的：发现抓取失败，就循环他5次！谁让你提供了免费午餐？我有义务履行套利者的义务。用钱买数据？钱多烧的吧？（如果你发现哪款免费行情软件能下载所有股票的所有历史数据的，别告诉我）。
+
+而在yahoo财经上，发现总市值不好抓取，不在其源代码中出现。用了ajax？也没找到相关的javascript代码。算了，对web技术咱也不太熟。
+
+后来发现在baidu财经上提供的信息比较好抓取，就用它了。
+
+至于公司代码嘛，一两千个，手工一个个查也很费劲。还好，交易所主页都能方便找到。这方面深交所比上交所做得好点，直接有EXCEL文件下载。
+
+几经调试，OK。全抓下来了。相关python代码可点击下面的链接下载。
+http://ishare.iask.sina.com.cn/f/7166441.html
+
+友情附上上市公司代码文件。fetch_market_cap.py/ fetch_data.py是主程序，其它的是模块。具体见readme.
+
+抓取来的数据都是CSV文件，用python/perl/awk/sed处理都方便至极。
+买数据？笑话！将免费进行到底。
+
++----------------+	
+| 2015 Jan. 7th |
++----------------+
+科大讯飞，国金证券，三泰电子，乐视网，汤臣倍健，网宿科技 。
+科大讯飞所以平台类公司。将来智能穿戴一旦爆发，人机交互可能只能靠语音，语音识别了。
+三泰电子不用多说，想像空间无比巨大。
+乐视网未来的创业板霸主。
+汤臣倍健见证消费新蓝筹的崛起。
+网宿科技见证视频行业的崛起，从三g到四g各类，网站，对流量的需求。
+
+赵丹阳表示，牛市第一浪快结束了，这个位置可能需要调整，消化甚至还要一定的回吐；第二浪快要开始，第二浪的整理消化结束之后，然后才进入主升浪，这一轮牛市刚刚开始。
+
+头羊：北京，中国， 兴业。　北京银行长期引于银行整体行情，属于补涨。兴业银行表现领先于银行整体版块。
+创业版：
+
++----------------+	
+| 2015 Jan. 12th |
++----------------+
+昨天所有下跌的热门股票都标记为1, 到早盘结束，简单平均上涨4%. 今天早盘下跌的股票标记为2.
+
+
++----------------+	
+| 2015 Jan. 20th |
++----------------+
+2015年13，14日，沪市在经过地量反弹后，快速接近3400点，主力现疲态。尾盘半小时出现小幅放量下跌完成周末收官，14，15两天的反弹迅速，却无不敢越政策红线，周一主力选择跳
+水大盘全天下跌7.7%，所有金融股跌停，酿成股灾。经政府各种辟谣后，今天沪指反弹1.82%, 证券仍积弱，银行涨跌互现。市场人气趋弱，为政府将居民存款赶进股市制造了障碍。股
+市的快牛被强按牛头后，可能迅速转成熊市。政府的经济改革面临挑战。
+
+当前股市显弱势格局，当振荡收敛后，随着成交量的萎缩，有可能进一步下探到2950. 但现在回调对牛市的未来的影响很大，冲过3500,再回调是理想结果。未来有更大的想象空间。
+
++----------------+	
+| 2015 Jan. 22th |
++----------------+
+沪指小幅涨0.59%，尾盘放量向上，预示明日大涨。中石油已经多次接近12.90压力线，明日选择突破的可能性很大。汤臣倍健今日换手达9%, 明日可能随大盘涨
+
+伊利1月6日高点下损失8%， 茅台，上汽，银行等蓝筹均有相近的损失。
+
+1月6日，蓝筹下降后小盘般发力，1月20日，航天信息，中航资本等均有好表现。
+
++----------------+	
+| 2015 Jan. 26th |
++----------------+
+下一高点在3478附近，仅比当前点位3383高2.8%, 一两天的涨幡即可轻易超跃，下一次回调低点在3200, 因此极可能形成在3200到3520间的宽幅震荡。3200 * 110% = 3520
+还有4%的涨幅，当金融股启动后，即可立刻离场，争取做到180. 
+
++----------------+	
+| 2015 Jan. 27th |
++----------------+
+做数据钝化，性能监控数据不需要小数。通过钝化可以极大的减少数据存储空间，提供以对数的试
+
++----------------+	
+| 2015 Jan. 29th |
++----------------+
+贵州茅台，上汽集团，
+
++----------------+	
+| 2015 Feb. 14th |
++----------------+
+茄子面：油煎肉丁，蒜辨，将肥肉炸透。葱姜炒，逐渐加酱油，保持油温，加酱炒，加水，炒茄子，金针茹，收汤。
+
+hostname
+	db
+	app1
+	app2
+	web1
+	web2
+report
+	CPU Activity
+	I/O and transfer rate statistics
+	Report activity for each block device
+	Report power management statistics
+	Report network devices statistics
+	Report statistics on failures
+	Report queue length and load averages
+	Report status of inode, file and other kernel tables
+	Report task creation and sys switching activity
+	Report swapping statistics
+date
+	2015
+		2
+			1
+				00:00:01
+				00:10:01
+				...
+			2   00:00:01
+				00:10:01
+			...
+		3	
+			1
+			2
+
++----------------+	
+| 2015 Feb. 17th |
++----------------+
+    任务一：进一步优化存储格式，将时间列单独提取出来，取消interval列，将实际的性能数据组成数，即可获得数据的复杂性，如果为全0, 则数据的复杂性为1，即生成树仅一个叶结点，
+根据生成树的复杂性，可知所表示的信息有无实际内容。
+    任务二：将常用的查询条件置于MindMap的顶层，用户可选择查询条件，或者增加查询条件，获得相关的表格数据。多条件查询！
+	实现远程指针，将复杂查询条件做成界面。
+
++----------------+	
+| 2015 Feb. 19th |
++----------------+
+	如果把时间列提取出来，刻除interval列，则可极大的简化表生成树，根据生成树的复杂性，可决定是否显示该表。如此引出问题：
+	将时间列显示在MindMap表头处，#column树下通过"#时间表ln"引用它，则在每个时间结点的父路径与#column结点的关系？
+	
+	通过查询MindMap，生成中间表。分成两步，简单mindMap查询，复杂查询。
+
++----------------+	
+| 2015 Feb. 22th |
++----------------+
+
+$(function () {
+    var data = [
+        { x: Date.UTC(2006, 0, 1), y: 42, href: 'foo' },
+        { x: Date.UTC(2006, 0, 2), y: 53, href: 'http://news.sina.com.cn' },
+        { x: Date.UTC(2006, 0, 3), y: 64, href: 'baz' }
+    ];
+    
+	$('#container').highcharts({
+	    xAxis: {
+	        type: 'datetime'
+	    },
+
+	    plotOptions: {
+            series: {
+                events: {
+                    click: function(event) {
+                         window.location.href = event.point.options.href;
+                    }
+                }
+	        }
+	    },
+	    
+	    series: [{
+	        data: data
+	    }]
+	});
+});
+
++----------------+	
+| 2015 Feb. 28th |
++----------------+
+查询。比如查找时间点timestamp=2015-02-19 02:10:01, 它的ln=222. 如何实现？
+方式一：浏览时所有的输出到临时查询文件中，子循环体开始前记录当前位置1，结束后如果没有查询到目标结点，则将文件尾回滚当前位置1. 缺点：效率不高，遍历了全部结点
+方式二：通过longReferenceMap找到#222的全部的目标结点，将目标结点所有的路径进行累加，获得属于session的访问路径集合，session的tree浏览时，根据访问路径集合，
+
++----------------+	
+| 2015 Mar. 2cd  |
++----------------+
+问题：当一上结点下有大量子结点时，没有索引的情况下，插入新结点会很慢，导致数据增加时越来越慢。
+方案：为子结点建立二叉树，通过增加索引文件来linx2来实现。
+这是一个大功能。需要分解成几个文件。
+
+权宜方案：为子行建立TreeMap<String, ln>, 通过子行string可判断或者直接查找到对行号。解决了插入速度越来越慢的问题，但消耗了大量内存，约一个G, 实际处理数据量仅369K
+
++----------------+	
+| 2015 Mar. 4th  |
++----------------+
+Linx索引
+向上指针表：可以方便的找到父结点及路径，指向父结点的链不便于遍历，还需要建立children数组。
+使用二叉树记录子结点，因此每个结点行的索引一共3*4=12b
+
++----------------+	
+| 2015 Mar. 9th  |
++----------------+
+红黑树
+远程指针
+
+
+      Parentln  CHARREF       FCHILD    CLEFT     CRIGHT    DCHILD	  DCLEFT    DCRIGHT
+000:  0000-0000 0000-0000 ' ' 0000-0001 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000
+001:  0000-0000 0000-006E 'n' 0000-0002 0000-0005 0000-0000 0000-0000 0000-0000 0000-0000
+002:  0000-0001 0000-0061 'a' 0000-0003 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000
+003:  0000-0002 0000-006D 'm' 0000-0004 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000
+004:  0000-0003 0000-0065 'e' 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000
+005:  0000-0000 0000-0073 's' 0000-0006 0000-0008 0000-0000 0000-0000 0000-0000 0000-0000
+006:  0000-0005 0000-0065 'e' 0000-0007 0000-0023 0000-0000 0000-0000 0000-0000 0000-0000
+007:  0000-0006 0000-0078 'x' 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000 0000-0000
+008:  0000-0000 0000-0061 'a' 0000-0009 0000-000B 0000-0000 0000-0000 0000-0000 0000-0000
+
+FCHILD : First Child
+CLEFT : Left Sibling
+CRIGHt : Right Sibling
+DCHILD : first distant child
+DCLEFT : distant Left Sibling
+DCRIGHT : distant Right Sibling
+
+Charef即节点内容，当它小于0x000F FFFF时，为一UTF代码，大于0x0010 0000时，为指针，指向对MindMap表中的表地址，它可以通过乘以32获得表中的绝对内存偏移量。
+元素通过父子结点指针形成树。节点指针采用用双向链表，使用两个节点分别指向左右节点，及子节点链表。
+远程指针指向某一节点所代表的整个树形分支。
+
++----------------+	
+| 2015 Mar. 26th |
++----------------+
+增加结点，及子结点的红黑树平衡实现，但删除结点的红黑树平衡还未实现。
+
+MindMap3的一个结点为4*8=32个字节。除上述标准格式外，还可设置特殊格式，以提高数据的紧凑性。比如
+
+最简单向索引格式。仅设置 parentln， 其余的28个字节，可自由存放数据。
+简单双向索引格式。设置parentln, Fisrt Child, Left Sibling.
+双向二叉树格式。设置parentln, first child, left sibling, right sibling.
+远程索引树。即全索引结构，当Charef为索引时，即是远程子结点的parentln.
+
+Document变量。在变量结点下定义，它的子结点均只定义parentln, 其余为字符变量，每行可定义14字节。所有
+子树的空间合并成一个document, 使用\x0为结尾，合并时去掉\x0字符。可方便的对document进行插入，删除操
+作。document的子结点索引，通过额外的内存空间实现。
+
+Page.可设置4K, 8K, 16K, 32K...的页面，将紧凑数据置入page中，以提高CPU载入数据的效率。在变量Page下插
+入时不得大于页面尺寸。删除时空间不回收。以页面为单位进行空间再分配。
+
+add a page
+	buffer += buffer size				// reserver all spaces for children
+	
+add a line into the page
+	do {
+		theLastOne = next;
+		next = getRightSibling();
+	} while (lastChild > 0);
+	set the lastOne + 1 with current line data
+	
+
++----------------+	
+| 2015 Apr. 24th |
++----------------+
+	泉州品尚电子商务有限公司	http://www.psds.com.cn/lxwm.html	李克强访问	关注新三板上市
+
+	
+	renthous831747265
+	
++----------------+	
+| 2015 Oct. 6th  |
++----------------+
+	ServerActivityReport3 收集sar的输出信息后，以MindMap3的方式编码，但是输出需要进行90旋转，以满足highchart的矩阵要求。
+	
+		   Real Time		Sec		
+   23037 25284923.21re      3.22cp   171153k   All
+    6029 25051188.42re      1.60cp    52773k   oracle
+    1678      13.69re       1.14cp    52256k   emdctl
+    2194       0.38re       0.36cp     4332k   unix_chkpwd
+    1978      87.97re       0.10cp    16942k   sshd
+      43       0.04re       0.01cp     1028k   sadc
+       7       0.01re       0.00cp    27024k   ps
+       2       0.00re       0.00cp    28544k   troff
+       2       0.01re       0.00cp     2298k   makewhatis
+      51       0.07re       0.00cp    29312k   crond*
+       2       0.00re       0.00cp    27872k   grotty
+       1       0.00re       0.00cp     7780k   diskUsageTrac.p
+      67       0.00re       0.00cp     1052k   tmpwatch
+       4       3.12re       0.00cp    19776k   pickup
+       4       0.01re       0.00cp     3233k   logrotate
+    5421       0.00re       0.00cp    52416k   tnslsnr*
+    1975      87.50re       0.00cp    16432k   sshd*
+    1680      14.15re       0.00cp    26512k   sh
+     839       0.00re       0.00cp    33840k   perl*
+     608       0.00re       0.00cp  5099520k   oracle*
+      95       0.01re       0.00cp     2324k   awk
+      80       0.00re       0.00cp     3834k   find
+      56       0.03re       0.00cp     2812k   udisks-helper-a
+      31       0.00re       0.00cp     1015k   basename
+      29       0.00re       0.00cp     1012k   logger
+      20       0.00re       0.00cp     2298k   makewhatis*
+      11       0.00re       0.00cp     5424k   cat
+      10       0.00re       0.00cp    17195k   bash*
+	  
+	  

@@ -1,0 +1,682 @@
+Attribute names: 
+
+adapter_descriptions 
+	Indicates a description of the adapter. 
+
+adapter_feature_codes 
+	List of possible feature codes for the I/O adapter sorted by likely match. Each element in the list consists of two feature codes - one for each operating system. This list follows the following format: 
+	aix_feature_code1/linux_feature_code1, /i5_feature_code1,aix_feature_code2/ linux_feature_code2/i5_feature_code2,... 
+	
+adapter_id 
+	Indicates the DRC index of the Host Ethernet Adapter in hexadecimal. 
+	
+adapter_type 
+	Indicates whether the virtual SCSI, virtual fibre channel, or serial adapter is a client or server. Valid values are client and server. 
+	
+addl_vlan_ids 
+	The list of additional IEEE 802.1Q virtual LANs (VLANs) on a virtual Ethernet adapter. 
+	
+alt_console_slot 
+	The location of the virtual I/O slot that contains the alternate console device for the IBM i logical partition. The default value is none. 
+	
+alt_restart_device_attached 
+	Whether this IOP has an alternate restart device. Valid values are: 
+	* 0 - not attached 
+	* 1 - attached 
+	
+alt_restart_device_capable 
+	Whether the IOP is capable of being tagged as the alternate restart device. The default values is 0 (not capable). 
+	
+alt_restart_device_slot 
+	The location of the virtual I/O slot that contains the alternate restart device for the IBM i logical partition. If the load source slot has a value other than none, this attribute is optional. Valid values are: 
+	* Slot number (for virtual I/O) 	
+	* None 
+	
+auto_io_entitled_mem 
+	Indicates whether the I/O entitled memory of the partition is automatically managed. Valid values follow: 
+	* 0 (Not managed/custom) 
+	* 1 (Automatically managed) 
+	This attribute is only displayed by default if the mem_mode attribute is shared. If the value is dedicated and the attribute is requested, the value is null. 
+	
+auto_mem_region_size 
+	Indicates the optimal size of the memory region, as automatically calculated by the firmware. Note: The memory region size applies to the entire system and requires you to reboot the entire system. 
+	
+backing_device 
+	The name of the physical Ethernet adapter that is connected to the shared Ethernet adapter on the VIOS. For example, ent0. 
+	
+backplane_phys_loc 
+	Physical location code of the backplane on which the bus resides. 
+
+bus_drc_index 
+	DRC index, in hex, of the bus. 
+	
+bus_drc_name 
+	DRC name of the bus. 
+	
+bus_grouping 
+	Indicates whether bus grouping is required. Possible values: 
+	* 0 - not required 
+	* 1 - required 
+	
+bus_id 
+	I/O bus unique ID. 
+	
+capabilities 
+	Values currently applied to the system. 
+	
+config 
+	Virtual slot configuration state. Possible values follow: 
+	* empty - no adapter 
+	* ethernet - virtual Ethernet adapter 
+	* fc - virtual fibre channel adapter 
+	* reserved - reserved slot 
+	* scsi - virtual SCSI adapter 
+	* serial - virtual serial adapter 
+	* vasi - virtual asynchronous services interface 
+	* vmc - virtual management channel adapter 
+	
+config_conn_speed 
+	The configured connection speed of the port in megabits per second. This value can be set by the user using chhwres. Possible values are: 
+	* auto 
+	* 10 
+	* 100 
+	* 1000 
+	* 10000 
+config_duplex 
+	Configured duplex value of the port. This value can be set by the user using chhwres. Possible values are: 
+	* auto 
+	* half 
+	* full 
+config_flow_control 
+	Configured flow control value of the port. This value is used for both the receive and transmit flow control. This attribute can also be set using the chhwres command. Possible values are: 
+	* 1 (enabled) 
+	* 0 (disabled) 
+configurable_pool_proc_units 
+	Total number of configurable processing units in the shared processing pool. 
+
+configurable_sys_mem 
+	Total amount, in megabytes, of configurable memory on the managed system. 
+	
+configurable_sys_proc_units 
+	Total number of configurable processing units on the managed system. 
+	
+conn_state 
+	Connection state or link state of the physical port. Possible values are: 
+	* 1 (up) 
+	* 0 (down) 
+	* unavailable 
+	
+cq 
+	Total number of completion queues. 
+	
+console_capable 
+	Whether the IOP is capable of being tagged as the console device. Valid values are: 
+	* 0 - not capable 
+	* 1 - capable 
+	
+console_slot 
+	The location of the virtual I/O slot that contains the console device for the IBM i logical partition. Valid values are: 
+	* Slot number (for virtual I/O) 
+	* None 
+	
+curr_avail_pool_proc_units 
+	Current number of configurable processing units in the shared processing pool that are not assigned to partitions. 
+	
+curr_avail_sys_mem 
+	Current amount, in megabytes, of configurable memory on the managed system that is not assigned to partitions. 
+	
+curr_avail_sys_proc_units 
+	Current number of configurable processing units on the managed system that are not assigned to partitions. 
+	
+curr_conn_speed 
+	Speed of the port in Mbps. Possible values are: 
+	* 10 
+	* 100 
+	* 1000 
+	* 10000 
+	* unavailable 
+	
+curr_duplex 
+	Duplex value of the port. Valid values are: 
+	* half 
+	* full 
+	* unavailable 
+	
+curr_io_entitled_mem 
+	The current I/O entitled memory of the partition in megabytes. This attribute is only displayed, by default, if the value of the mem_mode attribute is Shared. If the value is Dedicated and the attribute is requested, the value is null. 
+
+curr_max_mem 
+	Maximum amount of memory, in megabytes, that can be dynamically assigned to the partition. 
+	
+curr_max_pool_mem 
+	Maximum amount of physical memory that can be assigned to the memory pool without taking the pool offline. This value is in megabytes. 
+	
+curr_max_proc_units 
+	Maximum number of processing units that can be dynamically assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+curr_max_procs 
+	Maximum number of processors or virtual processors that can be dynamically assigned to the partition. 
+	
+curr_max_virtual_slots 
+	Maximum number of virtual slots that can be dynamically configured for the partition. 
+	
+curr_mem 
+	Current amount of memory, in megabytes, assigned to the partition. 
+	
+curr_mem_weight 
+	The current shared memory weight of the partition. Possible values are 0 through 255. This attribute is only displayed by default if the mem_mode attribute is set to the shared value. If the value is dedicated and the attribute is requested, the value is null. 
+
+curr_min_mem 
+	Minimum amount of memory, in megabytes, that can be dynamically assigned to the partition. 
+	
+curr_min_proc_units 
+	Minimum number of processing units that can be dynamically assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+curr_min_procs 
+	Minimum number of processors or virtual processors that can be dynamically assigned to the partition. 
+	
+curr_pool_mem 
+	The amount of physical memory currently assigned to the memory pool in megabytes. 
+	
+curr_port_group_mcs_value 
+	The current MCS value for the port group. 
+	
+curr_proc_mode 
+	Indicates whether the partition is using dedicated or shared processors. The mode cannot change dynamically. Valid values: 
+	* ded - dedicated 
+	* shared - shared 
+	
+curr_proc_units 
+	The current number of processing units assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+curr_procs 
+	The current number of processors or virtual processors assigned to the partition. 
+
+curr_shared_proc_pool_id 
+	The shared processor pool that this partition is currently participating in. This attribute is only valid for partitions using shared processors. 
+	
+curr_sharing_mode 
+	The current sharing mode for a partition. Valid values: 
+	* keep_idle_procs - valid with dedicated processor mode 
+	* share_idle_procs - valid with dedicated processor mode 
+	* share_idle_procs_always - valid with dedicated processor mode 
+	* share_idle_procs_active - valid with dedicated processor mode 
+	* cap - capped mode. valid with shared processor mode 
+	* uncap - uncapped mode. valid with shared processor mode 
+	
+curr_uncap_weight 
+	The current weighted average of processing priority when in uncapped sharing mode. Valid values are 0 - 255. 
+	
+deconfig_sys_mem 
+	The amount of memory, in megabytes, on the managed system that has been unconfigured. This includes memory that has been unconfigured by the system due to hardware failure, and memory that has been manually unconfigured. 
+	
+deconfig_sys_proc_units 
+	The number of processing units on the managed system that have been unconfigured. This includes processing units that have been unconfigured by the system due to hardware failure, and processing units that have been manually unconfigured. 
+	
+description 
+	A description of the I/O adapter which is in the slot. 
+	
+device_name 
+	The Virtual I/O Server device used as a paging space device in the memory pool. 
+	
+direct_console_capable 
+	Whether the IOP is capable of being tagged as the console device for directly attached console. Valid values are: 
+	* 0 - not capable 
+	* 1 - capable 
+	
+drc_index 
+	The DRC index, in hexadecimal, of the I/O slot. 
+	
+drc_name 
+	The DRC name of the I/O slot. 
+	
+feature_codes 
+	The most likely feature code for the I/O adapter. The feature code may be different for each operating system. The adapter_feature_codes attribute should be used to distinguish the feature code specific to each operating system. 
+	
+hsl_pool_id 
+	Whether the logical partition participates in the high-speed Link (HSL) pool. The default value is 0 (does not participate). 
+	
+ieee_virtual_eth 
+	Indicates whether the virtual Ethernet adapter is using IEEE 802.1Q. Valid values follow: 
+	* 0 - No 
+	* 1 - Yes 
+
+ieq 
+	Total number of interruptible event queues. 
+	
+installed_sys_mem 
+	Total amount, in megabytes, of memory installed on the managed system. 
+	
+installed_sys_proc_units 
+	Total number of processing units installed on the managed system. 
+	
+io_pool_id 
+	A unique identifier for an I/O pool. I/O pools are used in some I/O clustering environments. 
+	
+iop 
+	Indicates whether the I/O adapter is an I/O processor. Valid values: 
+	* 0 - no 
+	* 1 - yes 
+	
+iop_info_stale 
+	Indicates whether the information about the I/O processor is stale. Valid values: 
+	* 0 - no 
+	* 1 - yes 
+	
+is_required 
+	Indicates whether the I/O slot or virtual I/O adapter is required for the partition. Valid values: 
+	* 0 - no 
+	* 1 - yes 
+	
+is_trunk 
+	Indicates whether the virtual Ethernet adapter is the trunk or uplink adapter for the virtual LAN. Valid values: 
+	* 0 - no 
+	* 1 - yes 
+	
+lan_console_capable 
+	Whether the IOP is capable of being tagged as the console device for a LAN console. The default values is 0 (not capable). 
+	
+load_source_attached 
+	Whether this IOP has a load source device. Valid values: 
+	* 0 - not attached 
+	* 1 - attached 
+	
+load_source_capable 
+	Whether this IOP is capable of being tagged as the load source device. The default values is 0 (not capable). 
+	
+load_source_slot 
+	The location of the virtual I/O slot that contains the load source for the IBM i logical partition. If the alt_restart_device_slot has a value other than none, then this attribute is optional. Valid values are: 
+	* Slot number (for virtual I/O) 
+	* None 
+
+logical_port_id 
+	The ID of the logical port. 
+	
+logical_port_ids 
+	Logical port IDs defined on the physical port. 
+	
+lpar_id 
+	Partition ID. Valid values are 1 through the maximum number of partitions supported on the managed system (max_lpars). 
+	When using the --rsubtype pgdev flag, this attribute represents the partition ID of the shared memory partition to which this paging device is associated. If no partition is associated, then the value is none. 
+	
+lpar_ids 
+	List of logical partition IDs of logical partitions using a pool. 
+	
+lpar_name 
+	User-defined name for the partition. 
+	When using the --rsubtype pgdev flag, this attribute represents the name of the shared memory partition to which this paging device is associated. If no partition is associated, this attribute is not displayed by default. If no partition is associated but the attribute is requested, the attribute will have a blank value. 
+	
+lpar_names 
+	List of names of logical partitions using a pool. 
+	
+mac_addr 
+	MAC address for the virtual Ethernet adapter. 
+	
+mac_prefix 
+	The first 3 bytes of the MAC address to be assigned to all virtual Ethernet adapters for this managed system. This must be specified as a 3 byte hexadecimal value (for example, 32ab10) and can only be configured in the mkgencfg command. 
+	
+max_io_entitled_mem_usage 
+	The highest level of I/O entitled memory used by the specified logical partition since the value was last reset. 
+	
+max_io_pools 
+	Maximum number of I/O pools supported on the managed system. 
+	
+max_mem_pools 
+	Maximum number of memory pools supported. If the system does not support memory pools, then the value is 0; otherwise, it is 1. 
+	
+max_paging_vios_per_mem_pool 
+	Maximum number of paging Virtual I/O Server (VIOS) partitions that can be assigned to a memory pool. If the system supports memory pools, this value is 1. 
+	
+max_procs_per_lpar 
+	Indicates the largest number of dedicated processors that you can assign as the maximum processors value for a logical partition. 
+	
+max_recv_packet_size 
+	Maximum Transmission Unit (MTU) size of the port. This value can also be changed using the chhwres command. Possible values: 
+	* 1500 (default) 
+	* 9000 (jumbo) 
+	
+max_shared_proc_pools 
+	Maximum number of shared processing pools which are supported on the managed system. 
+	
+max_virtual_procs_per_lpar 
+	Indicates the largest number of virtual processors that can be assigned as the maximum processors value for a logical partition. 
+
+max_vlans_per_port 
+	Indicates the largest number of VLANs that can be specified as additional IEEE 802.1Q VLANs on a virtual Ethernet adapter. 
+	
+mem_mode 
+	Partition memory mode. 
+	* ded: Dedicated memory 
+	* shared: Shared memory 
+	
+mem_region_size 
+	The memory region size, in megabytes, for the managed system. The memory regions size represents the granularity of memory allocation to partitions. 
+	
+min_io_entitled_mem 
+	The minimum I/O entitled memory required for the logical partition to function with the current I/O configuration. 
+	
+min_proc_units_per_virtual_proc
+	Minimum number of processing units that are required for each virtual processor assigned to a partition. 
+	
+mr 
+	Total number of memory regions. 
+	
+nieq 
+	Total number of non-interruptible event queues. 
+	
+num_wwpns_remaining 
+	The number of worldwide port names that remain to be allocated on the managed system. 
+	
+op_console_attached 
+	Whether this IOP has an operations console device. This attribute is only shown if iop is 1. This attribute is current only if vpd_stale is 0. Valid values are: 
+	* 0 - not capable 
+	* 1 - attached 
+	
+op_console_capable 
+	Whether this IOP is capable of being tagged as the console device for operations console. This attribute is only shown if iop is 1. This attribute is current only if vpd_stale is 0. The default value is 0 (not capable). 
+	
+op_console_slot 
+	The location of the virtual I/O slot that contains the directly attached Operations Console device for the IBM i logical partition. The default value is none. 
+	
+optimal_io_entitled_mem 
+	The amount of I/O entitled memory that would satisfy the requested configuration of all I/O devices. 
+	
+paging_storage_pool 
+	The name of default paging storage pool. This attribute is the storage pool from which new paging devices are created. If there is no default paging storage pool, the value is an empty string. 
+	
+paging_vios_id 
+	The partition ID of the paging VIOS partition. 
+	
+paging_vios_ids 
+	A comma-separated list of partition IDs for paging VIOS partitions associated with this memory pool. This attribute is not displayed by default. If requested, the value displayed is 1. 
+
+paging_vios_name 
+	The name of the paging VIOS partition. 
+	
+paging_vios_names 
+	A comma-separated list of partition names for paging VIOS partitions that are associated with this memory pool. This attribute is not displayed by default. If requested, the value displayed is the name of the Virtual I/O Server logical partition. 
+	
+parent_slot_drc_index 
+	The DRC index, in hex, of the parent slot. A value of none indicates there is no parent slot. 
+	
+pci_class 
+	PCI class code for the I/O adapter. This value is displayed in hexadecimal. 
+	
+pci_device_id 
+	ID of the device for this I/O adapter. This value is displayed in hexadecimal. 
+	
+pci_revision_id 
+	Vendor-assigned code indicating the revision number of the I/O adapter. This value is displayed in hexadecimal. 
+	
+pci_subs_device_id 
+	Vendor-assigned code identifying the type of driver that is installed for the I/O adapter. This value is displayed in hexadecimal. 
+	
+pci_subs_vendor_id 
+	ID of the vendor that made the driver for the I/O adapter. This value is displayed in hexadecimal. 
+	
+pci_vendor_id 
+	ID of the vendor that made this I/O adapter. This value is displayed in hexadecimal. 
+	
+pend_avail_pool_proc_units 
+	After system restart, the number of configurable processing units in the shared processing pool that are not assigned to partitions. 
+	
+pend_avail_sys_mem 
+	After system restart, the amount, in megabytes, of configurable memory on the managed system that is not assigned to partitions. 
+	
+pend_avail_sys_proc_units 
+	After system restart, the number of configurable processing units on the managed system that are not assigned to partitions. 
+	
+pend_io_entitled_mem 
+	The pending I/O entitled memory of the partition in megabytes. This attribute is only displayed by default if the mem_mode attribute has a value of shared. If the value is dedicated and the attribute is requested, the value is null. 
+	
+pend_max_mem 
+	After partition restart, the maximum amount of memory, in megabytes, that can be dynamically assigned to the partition. 
+	
+pend_max_pool_mem 
+	The pending value for the maximum amount of physical memory that can be assigned to the memory pool without taking the memory pool offline. This value is in megabytes. 
+	
+pend_max_proc_units 
+	After partition restart, the maximum number of processing units that can be dynamically assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+pend_max_procs 
+	After partition restart, the maximum number of processors or virtual processors that can be dynamically assigned to the partition. 
+	
+pend_max_virtual_slots 
+	After partition restart, the maximum number of virtual slots that can be dynamically created for the partition. 
+	
+pend_mem 
+	The target amount of memory, in megabytes, assigned to the partition. 
+	
+pend_mem_region_size 
+	This is the memory region size of the system after the system is restarted. 
+	
+pend_mem_weight 
+	The pending shared memory weight of the partition. Possible values are 0 - 255. This attribute is only displayed by default if the mem_mode attribute is set to the shared value. If the value is dedicated and the attribute is requested, the value is null. 
+	
+pend_min_mem 
+	After partition restart, the minimum amount of memory, in megabytes, that can be dynamically assigned to the partition. 
+	
+pend_min_proc_units 
+	After partition restart, the minimum number of processing units that can be dynamically assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+pend_min_procs 
+	After partition restart, the minimum number of processors or virtual processors that can be dynamically assigned to the partition. 
+	
+pend_pool_mem 
+	The amount of physical memory to be assigned to the memory pool in megabytes. 
+	
+pend_port_group_mcs_value 
+	Pending MCS value of the port group. Setting the MCS value may require a system restart.
+	
+pend_proc_mode 
+	Indicates whether the partition will be using dedicated or shared processors after restart. Valid values: 
+	* ded: Dedicated 
+	* shared: Shared 
+	
+pend_proc_units 
+	The target number of processing units assigned to the partition. This attribute is only valid for partitions using shared processors. 
+	
+pend_procs 
+	The target number of processors or virtual processors assigned to the partition. 
+	
+pend_shared_proc_pool_id 
+	The shared processor pool that a partition is will participate in after restart. This attribute is only valid for partitions using shared processors. 
+
+pend_sharing_mode 
+	The target sharing mode for a partition. Valid values: 
+	* keep_idle_procs: Valid with pending dedicated processor mode 
+	* share_idle_procs: Valid with pending dedicated processor mode 
+	* cap - capped mode: Valid with pending shared processor mode 
+	* uncap - uncapped mode: Valid with pending shared processor mode 
+	
+pend_uncap_weight 
+	The target weighted average of processing priority when in uncapped sharing mode. Valid values are: 0 - 255. 
+	
+phys_loc 
+	If the device has a physical location code for the slot, this attribute is displayed by default with the physical location code as the value. If the device does not have a physical location code, this attribute is not displayed by default and has a blank value. 
+	
+phys_port_id 
+	The ID of the physical port in the port group (0 or 1). 
+	
+phys_port_ids 
+	List of host Ethernet adapter (HEA) physical port IDs in a port group. 
+	
+phys_port_loc 
+	Location code suffix for the physical port. 
+	
+phys_port_state 
+	State of the physical port. 
+	
+phys_port_type 
+	Speed of the port. 
+	
+port_group 
+	Indicates the Host Ethernet Adapter port group(s). 
+	
+port_vlan_id 
+	Port virtual LAN ID for the virtual ethernet adapter. 
+	
+possible_mem_region_size 
+	The memory region size that is possible of the system. 
+	
+promisc_lpar_id 
+	ID assigned to the promiscuous logical partition. Possible values: 
+	* none 
+	* 1 - 254 
+	
+promisc_lpar_name 
+	Name assigned to the promiscuous logical partition. 
+	
+qp 
+	The total number of queue pairs. 
+	
+recent_alt_restart_device_slot 
+	The previous alternate restart device slot. 
+	recv_flow_control 
+	Receive flow control value of the port 
+	* 1 (enabled) 
+	* 0 (disabled) 
+	* unavailable 
+
+	recv_octets, recv_packets_0_64, recv_packets_65_127, recv_packets_128_255, recv_packets_256_511, recv_packets_512_1023, recv_packets_1024_max, recv_packets_dropped_bad_FCS, recv_packets_dropped_internal_mac_error, recv_packets_dropped_in_range_length_error, recv_packets_dropped_out_of_range_length_error, recv_packets_dropped_frame_too_long, recv_packets_dropped_jabber, recv_symbol_error, recv_code_error, recv_runt_frame, recv_fragments, recv_unsupported_opcode, recv_control_pause_frames, recv_search_busy, recv_packets_dropped_filter, recv_packets_dropped_other, recv_packets_dropped_alignment, default_unicast_QPN, recv_MC_packets, recv_BC_packets, trans_MC_packets, trans_BC_packets, trans_octets, trans_packets_length_0_64, trans_packets_length_65_127, trans_packets_length_128_255, trans_packets_length_255_511, trans_packets_length_512_1023, trans_packets_length_1024_max, trans_packets_dropped_bad_FCS, trans_control_pause_frames, trans_tx_local_fault_packets, trans_tx_remote_fault_packets, trans_tx_packets_dropped_int_MAC_error, trans_packets_retried_single_collision, trans_packets_retried_multiple_collision, trans_packets_signal_quality, trans_packets_deferred, trans_packets_late_collisions, trans_packets_excessive_collisions, trans_packets_no_carrier, recv_overrun_frames_dropped 
+	Performance metric values 
+	
+remote_lpar_id 
+	For client adapters, this specifies the ID of the partition which has the virtual serial/SCSI server adapter for this adapter. For server adapters, this specifies the ID of the partition which has the only client virtual serial/SCSI adapter allowed to connect to this adapter. A value of any indicates that any client virtual serial/SCSI adapter should be allowed to connect to this adapter. 
+	
+remote_lpar_name 
+	The partition name which corresponds to the remote_lpar_id. 
+	
+remote_slot_num 
+	For client adapters, this specifies the virtual slot number of the virtual serial/SCSI server adapter for this adapter. For server adapters, this specifies the virtual slot number of the only client virtual serial/SCSI adapter allowed to connect to this adapter. A value of any indicates that any client virtual serial/SCSI adapter should be allowed to connect to this adapter. 
+	
+required_min_mem_aix_linux 
+	For an AIX or Linux partition, this is the required minimum memory amount, in megabytes, for the maximum memory amount specified with the --maxmem parameter. 
+	
+required_min_mem_os400 
+	The required minimum memory amount, in megabytes, for the maximum memory amount specified with the --maxmem parameter. This attribute only applies for an IBM i logical partition. 
+	
+run_io_entitled_mem 
+	The I/O entitled memory of the partition at run time in megabytes. This attribute is only displayed by default if the mem_mode attribute has a value of shared. If the value is dedicated and the attribute is requested, the value is null. 
+	
+run_mem 
+	Current amount of memory, in megabytes, that the partition has varied on. 
+
+run_mem_weight 
+	The runtime shared memory weight of the logical partition. Possible values are 0 - 255. This attribute is only displayed by default if the mem_mode attribute is set to the shared value. If the value is dedicated and the attribute is requested, the value is null. 
+	
+run_min_mem 
+	The amount of memory, in megabytes, returned by a running partition's operating system to represent the smallest memory assignment which is currently supported by the operating system. If the operating system does not support this feature, then the value is 0. 
+	
+run_proc_units 
+	Number of processing units that are varied on for the partition. 
+	
+run_procs 
+	Number of processors or virtual processors that are varied on for the partition. 
+	
+run_uncap_weight 
+	The operating system's current setting for the weighted average of processing priority when in uncapped sharing mode. Valid values are: 0 - 255. 
+	
+shared_adapter 
+	The name of the shared Ethernet adapter on the VIOS. For example, ent9. 
+	
+shared_proc_pool_id 
+	A unique decimal identifier for a shared processing pool. 
+	
+size 
+	The size of the paging device in megabytes. 
+	
+slot_io_pool_id 
+	A unique decimal identifier of the I/O pool to which the slot is assigned. A value of none indicates that the slot is not assigned to any I/O pools. 
+	
+slot_num 
+	Virtual slot number. 
+	
+slots 
+	A list of slot DRC indices. 
+	
+state 
+	The state of a virtual slot. A virtual slot must be able to transition into the off state before a dynamic reconfiguration of the slot can succeed. Valid states follow: 
+	* 0 - The virtual slot is ready for dynamic reconfiguration. 
+	* 1 - The virtual slot is not yet ready for dynamic reconfiguration. 
+	When using paging devices, state indicates the state of the paging device in 
+	megabytes. Valid states follow: 
+	* Active - The paging device is in use. 
+	* Inactive - The paging device is available. 
+	* Missing backing device - The backing device being used as a paging space device is missing. 
+	* Defined - The backing device being used as a paging space device is defined. 
+storage_pool 
+	If the device comes from a storage pool, this attribute is displayed by default with the storage pool as the value. If the device does not come from a storage pool, this attribute is not displayed by default and has a blank value. 
+	
+supports_hmc 
+	Indicates whether or not the virtual serial adapter is enabled for HMC client support. Valid values: 
+	* 0 - no 
+	* 1 - yes 
+	
+sys_firmware_mem 
+	The amount of memory, in megabytes, on the managed system that is being used by system firmware. 
+	
+sys_firmware_pool_mem 
+	The amount of memory in the shared memory pool that is reserved for firmware use. This is the greater of the current and pending values. 
+	
+trans_flow_control 
+	Transmit flow control value of the port. Possible values are: 
+	* 1 (enabled) 
+	* 0 (disabled) 
+	* unavailable 
+	
+trunk_priority 
+	The valid values are integers between 1 and 15, inclusive. This value is required for a trunk adapter. 
+	
+twinax_attached 
+	Whether the IOP has a twinaxial device. This attribute is only shown if iop is 1. This attribute is current only if vpd_stale is 0. Valid values are: 
+	* 0 - not attached 
+	* 1 - attached 
+	
+twinax_capable 
+	Whether the IOP is capable of being tagged as the console device for a twinaxial console. This attribute is only shown if iop is 1. This attribute is current only if vpd_stale is 0. The default values is 0 (not capable). 
+	
+type 
+	The type of the underlying device. Possible values follow: 
+	* logical - logical device 
+	* phys - physical device 
+	
+unassigned_logical_port_ids 
+	List of logical port IDs in the port group that are not assigned to a partition. 
+	
+unit_phys_loc 
+	Physical location code of the I/O unit. 
+	
+user_def_mac_addr 
+	User defined MAC address for the logical port. 
+	
+valid_port_group_mcs_values 
+	Valid MCS values. 
+	
+virtual_opti_pool_id 
+	The location of the virtual I/O slot that contains the directly attached operations console device for the IBM i logical partition. The default value is 0 (does not participate). 
+
+vlan_id_list 
+	List of virtual LAN IDs that the logical port has access to. 
+	
+vpd_model 
+	Model of the I/O adapter. 
+	
+vpd_serial_num 
+	Serial number of the I/O adapter. 
+	
+vpd_stale 
+	Indicates whether or not type, model, and serial number of the adapter is not current. Valid values: 
+	* 0 - not current 
+	* 1 - current 
+	
+vpd_type 
+	Type of the I/O adapter. 
+	
+wwpns 
+	If the adapter is of type client, the worldwide port names assigned to this adapter are displayed as a comma-separated list. If the adapter is of type server, by default, the attribute is not displayed. If the attribute is requested, the value is null. 
+	
+wwpn_prefix 
+	A 12-character hexadecimal string that is used by the managed system to generate worldwide port names. 
+	--header Display a header record, which is a delimiter separated list of attribute names for the attribute values that will be displayed. This header record will be the first record displayed. This option is only valid when used with the - F option. 
+	-R List information for partitions with resources that can be restored due to a dynamic LPAR operation failure. 

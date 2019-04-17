@@ -1,0 +1,235 @@
+
+{
+   "9.181.159.41" : {
+      "SVRP7720-01-SN10418EP" : {
+         "LPAR" : {
+            "P720_01_VIOS(1)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "2", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "(none)" : {
+                
+            },
+         },
+         "SYS" : {
+             "configurable_sys_proc_units" : "8.0", 
+             "curr_avail_sys_proc_units" : "7.6", 
+             "configurable_sys_mem" : "32768", 
+         },
+      },
+      "SVRP7750-05-SN062DA7P" : {
+         "LPAR" : {
+            "lightpoclpar1263(6)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.8", 
+                "run_procs" : "2", 
+                "run_mem" : "16384", 
+                "mem_mode" : "ded", 
+            },
+            "P750_05_VIOS(1)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "4", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "(none)" : {
+                
+            },
+         },
+         "SYS" : {
+             "configurable_sys_proc_units" : "16.0", 
+             "curr_avail_sys_proc_units" : "14.8", 
+             "configurable_sys_mem" : "131072", 
+         },
+      },
+      "SVRP7720-06-SN064E9ER" : {
+         "LPAR" : {
+            "bso(7)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_VIOC3_22(6)" : {
+                "state" : "Running", 
+                "run_proc_units" : "2.0", 
+                "run_procs" : "2", 
+                "run_mem" : "16384", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_VIOC2_193(5)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "4", 
+                "run_mem" : "6144", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_VIOC1_SWREP(4)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "4", 
+                "run_mem" : "6144", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_NIM_SMIA(3)" : {
+                "state" : "Running", 
+                "run_proc_units" : "1.0", 
+                "run_procs" : "4", 
+                "run_mem" : "8192", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_Director(2)" : {
+                "state" : "Running", 
+                "run_proc_units" : "2.0", 
+                "run_procs" : "4", 
+                "run_mem" : "16384", 
+                "mem_mode" : "ded", 
+            },
+            "P720_06_VIOS(1)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "4", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "(none)" : {
+                
+            },
+         },
+         "SYS" : {
+             "configurable_sys_proc_units" : "8.0", 
+             "curr_avail_sys_proc_units" : "1.4", 
+             "configurable_sys_mem" : "131072", 
+         },
+      },
+      "SVRP7750-11-SN0681F7P" : {
+         "LPAR" : {
+            "BP665(17)" : {
+                "state" : "Open Firmware", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "LPOC1466(10)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "RT1498(8)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "P750_11_VIOS(3)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.6", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "RT232(2)" : {
+                "state" : "Open Firmware", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP625(1)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "RT1548(5)" : {
+                "state" : "Not Activated", 
+                "run_proc_units" : "0.0", 
+                "run_procs" : "0", 
+                "run_mem" : "256", 
+                "mem_mode" : "ded", 
+            },
+            "RT1555(15)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "8192", 
+                "mem_mode" : "ded", 
+            },
+            "LPOC1550(18)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.8", 
+                "run_procs" : "2", 
+                "run_mem" : "8192", 
+                "mem_mode" : "ded", 
+            },
+            "RT1551(19)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP696(4)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP697(6)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP698(7)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP699(9)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP700(11)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "BP701(12)" : {
+                "state" : "Running", 
+                "run_proc_units" : "0.4", 
+                "run_procs" : "1", 
+                "run_mem" : "4096", 
+                "mem_mode" : "ded", 
+            },
+            "(none)" : {
+                
+            },
+         },
+         "SYS" : {
+             "configurable_sys_proc_units" : "32.0", 
+             "curr_avail_sys_proc_units" : "24.6", 
+             "configurable_sys_mem" : "262144", 
+         },
+      },
+   },
+}

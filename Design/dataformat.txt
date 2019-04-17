@@ -1,0 +1,214 @@
+#ORIGINAL
+	a
+		b
+			c
+			e
+		c
+			d
+#UPDATE		change c to CC, e to EE
+	4							# update line #4
+		3						# set its parent to #3
+			CC					# set its content to CC
+	5
+		##						# parent has no change
+			EE
+	root
+		Original
+		classify
+	2							
+		15						# add parent root to the node a
+			##					# content has no change
+	
+		#						# properties of node A
+			properties
+#CLASSIFY
+	LPAR
+		2						# parent node a
+			LPAR matched
+				#P4				# path to node c		p stands for path, from root to current node		s stands for subtree, from current node to all leaves.
+				#P7
+			LPAR unmatched
+				#P5
+	state
+		2	
+			state=0
+				#P5
+				#P7
+			state=1
+				#P4
+#ATTRIBUTES						# record all attributes below
+	xx							# attributes owner node's ln
+		xx						# attributes root ln
+	xx
+	xx
+	
+			
+#!dd							# delete this node only. Keep all its children
+#!ddd							# delete this node and subtree
+								# 首先将删除操作记录在update子树下，然后改写对应数据行
+								
+#update
+	32
+		#!ddd					# 删除分类查询state
+	
+	{32d}
+	{32C} STATE					# 将state改为大写STATE
+	3.1							# add 3.1 and 3.1.1 betwen 3 and CC
+		3.11
+	{11C} 	CC
+	
+# ZED 设计用于构造大型数据结构，允许少量修改，频繁删改的操作会降低操作性能。频繁删除操作，比如查询，应当设计另外的文件。
+# 当增加新的记录后，可自动更新分类查询结果，
+# 注释操作适合应于长期稳定的数据，虚拟化信息有一定变化的可能性，标注注释应当尽量放在比较固定的信息上
+# 信息比对操作不仅应当得到变化的信息，还应当得到不变的部分，将信息进行分为，变化部分，不变部分，进而对变化的频率进行分类，将信息分成不变，偶变，常变，易变等不同信息，信息变化的
+# 的频率能给管理员了解数据的变动情况带来很大帮助
+
+
+
+#ComponetView
+	HMC A
+		SERVER 750
+			PROC
+				LPAR A
+					...
+						...
+				LPAR B
+					...
+						...
+				LPAR C
+					...
+						...
+				SYS
+					...
+						...
+			MEM
+				LPAR A
+					...
+						...
+				LPAR B
+					...
+						...
+				LPAR C
+					...
+						...
+				SYS
+					...
+						...
+			SLOT
+				LPAR A
+					...
+						...
+				LPAR B
+					...
+						...
+				LPAR C
+					...
+						...
+				SYS
+					...
+						...
+		SERVER 780
+			PROC
+				LPAR A
+				LPAR B
+				LPAR C
+				SYS
+			MEM
+				LPAR A
+				LPAR B
+				LPAR C
+				SYS
+			SLOT
+				LPAR A
+				LPAR B
+				LPAR C
+				SYS
+
+#OPENDBS
+	1
+		file:///component.oldb
+#ORIGINAL
+	#OLDB=1
+#ATTRIBUTES
+#UPDATE
+#CLASSIFICATION
+	ViewName=LPAR View Group
+		BasePoint=#BP64
+#			HMC A
+#				SERVER 750
+					LPAR A
+						#DB1,P68							// OLDB=1, lineln=86's path
+						#P81
+						#P94
+					LPAR B
+						...
+					LPAR C
+						...
+					SYS(LPAR unmatched)
+						#P77
+						#P90
+						#P103
+		BaesPoint=#BP104
+#				SERVER 780
+					LPAR A
+						...
+					LPAR B
+						...
+					LPAR C
+						...
+					SYS(LPAR unmatched)
+						...
+	ViewName=state
+		BasePoint=#BP104
+			state Mathed
+				state=1
+					#P116
+				state=0
+					#P117
+				state=active
+					#P118
+					#P119
+			state unmatched
+				State=xxx
+					#106,109 111,114
+
+OLDB://Session_2013_Nov_11_11:11:00_AM				// session DB named with start time, Session 建立在子目录下，父目录的数据为共享
+	#OPENDBS
+		1
+			file:///component.oldb
+	#CLASSIFICATION
+		BasePoint=#DB1,BP130
+			#ClassificationName=750
+				750 matched
+					...
+				750 unmatched
+					...
+		BasePoint=#DB1,BP130
+			#ClassificationName=DNWK03S
+			...
+		BasePoint=#DB1,BP173						// search IO_SLOT for all 750 servers. DB1 should be opened as shared resource.
+			#ClassificatoinName=IO_SLOT
+				IO_SLOT matched	
+					...
+				IO_SLOT unmatched
+					...
+		#ClassificationName=#DB1,
+				
+				
+HyperLink OLDB
+	#HyperLink
+		DbName1
+			lnA
+		DBName2
+			lnB
+			...
+	#Original
+		..
+			#200								// reference to lnA@DBName1
+			#HyperLink item's sequencial ID		#199/ID
+				
+加密前的二进串 :D2:AA:BC:D3:C3:DC:B5:C4:D0:C5:CF:A2
+加密前的信息 :要加密的信息
+加密后的二进串 :E2:DF:76:0F:FA:8A:21:1B:86:AA:95:97:A8:FF:09:C3
+解密后的二进串 :D2:AA:BC:D3:C3:DC:B5:C4:D0:C5:CF:A2
+解密后的信息 :要加密的信息

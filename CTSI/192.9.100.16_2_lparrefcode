@@ -1,0 +1,1109 @@
+name=Server-8231-E2B-SN064B1AR,type_model=8231-E2B,serial_num=064B1AR,ipaddr=192.168.13.107,state=Operating,detailed_state=None,sys_time=01/20/2014 22:09:57,power_off_policy=1,active_lpar_mobility_capable=0,inactive_lpar_mobility_capable=0,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=0,hardware_act
+ive_mem_expansion_capable=0,active_mem_sharing_capable=0,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_optimization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable
+=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,powervm_lpar_remote_restart_capable=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capa
+ble=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_capable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=40,max_power_ctrl_lpars=1,max_suspend_capable_lpars=40,curr_max_lpars_per_hca=16,pend_max_
+lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,
+power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_defaul
+t_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+name=SVRP7710-10-SN069DF9R,type_model=8231-E1C,serial_num=069DF9R,ipaddr=192.168.13.67,state=Operating,detailed_state=None,sys_time=01/20/2014 09:11:10,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_optimization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=0,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capable=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_capable=1,vsi_on_veth_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=80,max_suspend_capable_lpars=80,curr
+_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=manual,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=
+power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_def
+ault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=60,vtpm_version=1
+name=SVRP7750-08-SN0661FBP,type_model=8233-E8B,serial_num=0661FBP,ipaddr=192.168.13.65,state=Operating,detailed_state=None,sys_time=01/20/2014 09:07:18,power_off_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_optimization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capable=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_capable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=320,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=320,max_suspend_capable_lpars=320,c
+urr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type
+=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_de
+fault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+hscroot@localhost:~> 
+
+name=Server-8231-E2B-SN064B1AR,
+type_model=8231-E2B,
+serial_num=064B1AR,
+ipaddr=192.168.13.107,
+state=Operating,
+detailed_state=None,
+sys_time=01/20/2014 22:09:57,
+power_off_policy=1,
+active_lpar_mobility_capable=0,
+inactive_lpar_mobility_capable=0,
+active_lpar_share_idle_procs_capable=1,
+active_mem_expansion_capable=0,
+hardware_act
+ive_mem_expansion_capable=0,
+active_mem_sharing_capable=0,
+addr_broadcast_perf_policy_capable=0,
+bsr_capable=1,
+cod_mem_capable=0,
+cod_proc_capable=1,
+dynamic_platform_optimization_capable=0,
+electronic_err_reporting_capable=1,
+firmware_power_saver_capable=1,
+hardware_power_saver_capable=1,
+hardware_discovery_capable=1,
+hca_capable
+=1,
+huge_page_mem_capable=1,
+lhea_capable=1,
+lpar_avail_priority_capable=1,
+lpar_proc_compat_mode_capable=1,
+lpar_remote_restart_capable=0,
+powervm_lpar_remote_restart_capable=0,
+lpar_suspend_capable=1,
+micro_lpar_capable=1,
+os400_capable=1,
+5250_application_capable=1,
+redundant_err_path_reporting_capable=1,
+shared_eth_failover_capa
+ble=1,
+sni_msg_passing_capable=0,
+sp_failover_capable=1,
+vet_activation_capable=1,
+virtual_fc_capable=1,
+virtual_io_server_capable=1,
+virtual_switch_capable=1,
+vsn_phase2_capable=0,
+vsi_on_veth_capable=0,
+assign_5250_cpw_percent=0,
+max_lpars=40,
+max_power_ctrl_lpars=1,
+max_suspend_capable_lpars=40,
+curr_max_lpars_per_hca=16,
+pend_max_
+lpars_per_hca=16,
+hca_bandwidth_capabilities=25/12.5/6.25,
+service_lpar_id=none,
+"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",
+curr_sys_keylock=norm,
+pend_sys_keylock=norm,
+curr_power_on_side=temp,
+pend_power_on_side=temp,
+curr_power_on_speed=norm,
+pend_power_on_speed=norm,
+power_on_type=power on,
+power_on_option=standby,
+
+power_on_lpar_start_policy=userinit,
+pend_power_on_option=standby,
+pend_power_on_lpar_start_policy=userinit,
+power_on_method=02,
+power_on_attr=0000,
+sp_boot_attr=0000,
+sp_boot_major_type=08,
+sp_boot_minor_type=01,
+sp_version=00070000,
+mfg_default_config=0,
+curr_mfg_default_ipl_source=a,
+pend_mfg_default_ipl_source=a,
+curr_mfg_defaul
+t_boot_mode=norm,
+pend_mfg_default_boot_mode=norm,
+max_vtpm_lpars=null,
+vtpm_version=null
+
+
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155465 000020B9:00007D4C XPMUTRCF: [s-ele]              <l
+abel>{title=${hmc:cleanupResource1(PILparShutdownPanel_WarningMsg_HINTTEXT)}}
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155468 000020B9:00007D4C XJSPEMLF: Evaluating attribute ex
+pression in non-custom tag: ${hmc:cleanupResource1(PILparShutdownPanel_WarningMsg_HINTTEXT)}
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155476 000020B9:00007D4C XPMUTRCF: [jsp-e]              ${
+hmc:cleanupELArtifacts(hmc:cleanupResource2(PILparShutdownPanel_WarningMsg_VALUE,false,true,true,
+true),"PILparShutdownPanel.WarningMsg.VALUE")}
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155479 000020B9:00007D4C XJSPEMLD: Template EL expression:
+ "${hmc:cleanupELArtifacts(hmc:cleanupResource2(PILparShutdownPanel_WarningMsg_VALUE,false,true,t
+rue,true),"PILparShutdownPanel.WarningMsg.VALUE")}"
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155482 000020B9:00007D4C XJSPEMLF: Evaluating template tex
+t expression: ${hmc:cleanupELArtifacts(hmc:cleanupResource2(PILparShutdownPanel_WarningMsg_VALUE,
+false,true,true,true),"PILparShutdownPanel.WarningMsg.VALUE")}
+/var/hsc/log/iqzdtrac.trm.1:1386563606.155514 000020B9:00007D4C XPMUTRCF: [s-ele]               <
+fmt:message>{var=PILparShutdownPanel_WarningMsg_HINTTEXT, key=PILparShutdownPanel.WarningMsg.HINT
+TEXT}
+/var/hsc/log/iqzdtrac.trm.1:1386563610.671820 000020B9:000028D4 XTSKCPTF: [PanelTask:2164:DU:3:TD
+U:0] Warning: frame assigned a default name because the bean used to create it was not explicitly
+ named.
+/var/hsc/log/iqzdtrac.trm.1:1386563614.928651 000020B9:00006AE3 XTSKCPTF: [PanelTask:2145] Warnin
+g, a COMPLETE/CANCEL event occured but this tasklet does NOT appear to be enabled for commit proc
+essing.
+/var/hsc/log/iqzdtrac.trm.1:1386563761.229050 000020B9:00006C83 XFRMCDPF: yesButton[1]=@Secondary
+ObjectWarningForDisruptiveTaskPanel.YesButton
+/var/hsc/log/iqzdtrac.trm.1:1386563761.229069 000020B9:00006C83 XFRMCDPF: noButton[1]=@SecondaryO
+bjectWarningForDisruptiveTaskPanel.NoButton
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231652 000020B9:00006C83 XTSKCXCF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@60f360f3',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231658 000020B9:00006C83 XTSKCXCF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231806 000020B9:00006C83 XTSKCPTF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@60f360f3',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231811 000020B9:00006C83 XTSKCPTF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231850 000020B9:00006C83 XTSKCPTF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@60f360f3',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231861 000020B9:00006C83 XTSKCPTF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231984 000020B9:00006C83 XTSKCPTF: [PanelTask:2165:DU:1:TD
+U:0] assignCaptionText( 'DisplayAreaDescriptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='Inv
+alidStatusObjectListPanel',PB='com.ibm.hwmca.fw.task.TaskBean@60f360f3',DN='null',MP='null',MN='n
+ull',PR='{@TaskConfirmationPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @Inv
+alidStatusObjectListPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @Secondar
+yObjectWarningForDisruptiveTaskPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CE
+/var/hsc/log/iqzdtrac.trm.1:1386563761.231989 000020B9:00006C83 XTSKCPTF:    LL:0,0;, @MissingTar
+getPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDi
+sruptiveTaskPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel
+.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-
+CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @TaskMultiConfirmationPanel.YesButton=CONSOLE-
+/var/hsc/log/iqzdtrac.trm.1:1386563761.232053 000020B9:00006C83 XPMILRLF: LegacyResourceLoader ge
+tMarkupResource(com.ibm.hwmca.fw.task.res.TaskRes,InvalidStatusObjectListPanel,{@TaskConfirmation
+Panel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.Y
+esButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptive
+TaskPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoBut
+ton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiv
+/var/hsc/log/iqzdtrac.trm.1:1386563761.232194 000020B9:00006C83 XPMILRLF: LegacyResourceLoader: n
+ew AUIMLParser(com.ibm.hwmca.fw.task.res.TaskRes,InvalidStatusObjectListPanel,{@TaskConfirmationP
+anel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.Ye
+sButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveT
+askPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButt
+on=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptive
+/var/hsc/log/iqzdtrac.trm.1:1386563761.232217 000020B9:00006C83 XCVTAPSF: utmProps[@SecondaryObje
+ctWarningForDisruptiveTaskPanel.YesButton]=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563761.232222 000020B9:00006C83 XCVTAPSF: utmProps[@SecondaryObje
+ctWarningForDisruptiveTaskPanel.NoButton]=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563761.244646 000020B9:00006C83 XTSKCPTF: [PanelTask:2165:DU:1:TD
+U:0] Warning: frame assigned a default name because the bean used to create it was not explicitly
+ named.
+/var/hsc/log/iqzdtrac.trm.1:1386563797.268458 000020B9:00006CA9 XFRMCDPF: yesButton[1]=@Secondary
+ObjectWarningForDisruptiveTaskPanel.YesButton
+/var/hsc/log/iqzdtrac.trm.1:1386563797.268478 000020B9:00006CA9 XFRMCDPF: noButton[1]=@SecondaryO
+bjectWarningForDisruptiveTaskPanel.NoButton
+/var/hsc/log/iqzdtrac.trm.1:1386563797.270778 000020B9:00006CA9 XTSKCXCF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@6fce6fce',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563797.270782 000020B9:00006CA9 XTSKCXCF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271049 000020B9:00006CA9 XTSKCPTF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@6fce6fce',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271053 000020B9:00006CA9 XTSKCPTF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271093 000020B9:00006CA9 XTSKCPTF: Data='DisplayAreaDescri
+ptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='InvalidStatusObjectListPanel',PB='com.ibm.hwm
+ca.fw.task.TaskBean@6fce6fce',DN='null',MP='null',MN='null',PR='{@TaskConfirmationPanel.NoButton=
+CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.YesButton=CONSOL
+E-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.YesBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButton=CONS
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271098 000020B9:00006CA9 XTSKCPTF:    OLE-CONTRIBUTION:TRU
+E;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiveTaskPanel.NoButton=CONSOLE-CONTRIB
+UTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPT
+ITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%
+No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+, @TaskMultiConfirmationPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271205 000020B9:00006CA9 XTSKCPTF: [PanelTask:2166:DU:1:TD
+U:0] assignCaptionText( 'DisplayAreaDescriptorData[RN='com.ibm.hwmca.fw.task.res.TaskRes',DG='Inv
+alidStatusObjectListPanel',PB='com.ibm.hwmca.fw.task.TaskBean@6fce6fce',DN='null',MP='null',MN='n
+ull',PR='{@TaskConfirmationPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @Inv
+alidStatusObjectListPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @Secondar
+yObjectWarningForDisruptiveTaskPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CE
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271211 000020B9:00006CA9 XTSKCPTF:    LL:0,0;, @MissingTar
+getPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDi
+sruptiveTaskPanel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @MissingTargetPanel
+.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @InvalidStatusObjectListPanel.NoBu
+tton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @TaskConfirmationPanel.YesButton=CONSOLE-
+CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @TaskMultiConfirmationPanel.YesButton=CONSOLE-
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271260 000020B9:00006CA9 XPMILRLF: LegacyResourceLoader ge
+tMarkupResource(com.ibm.hwmca.fw.task.res.TaskRes,InvalidStatusObjectListPanel,{@TaskConfirmation
+Panel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.Y
+esButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptive
+TaskPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoBut
+ton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptiv
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271286 000020B9:00006CA9 XPMILRLF: LegacyResourceLoader: n
+ew AUIMLParser(com.ibm.hwmca.fw.task.res.TaskRes,InvalidStatusObjectListPanel,{@TaskConfirmationP
+anel.NoButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @InvalidStatusObjectListPanel.Ye
+sButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @SecondaryObjectWarningForDisruptiveT
+askPanel.YesButton=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;, @MissingTargetPanel.NoButt
+on=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;, @SecondaryObjectWarningForDisruptive
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271303 000020B9:00006CA9 XCVTAPSF: utmProps[@SecondaryObje
+ctWarningForDisruptiveTaskPanel.YesButton]=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%Yes;CELL:0,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563797.271308 000020B9:00006CA9 XCVTAPSF: utmProps[@SecondaryObje
+ctWarningForDisruptiveTaskPanel.NoButton]=CONSOLE-CONTRIBUTION:TRUE;HELPTITLE:%No;CELL:1,0;
+/var/hsc/log/iqzdtrac.trm.1:1386563797.283332 000020B9:00006CA9 XTSKCPTF: [PanelTask:2166:DU:1:TD
+U:0] Warning: frame assigned a default name because the bean used to create it was not explicitly
+ named.
+/var/hsc/log/iqzdtrac.trm.1:1386563808.377295 000020B9:00006CB0 XFRMCDPF: yesButton[1]=@Secondary
+ObjectWarningForDisruptiveTaskPanel.YesButton
+/var/hsc/log/iqzdtrac.trm.1:1386563808.377313 000020B9:00006CB0 XFRMCDPF: noButton[1]=@SecondaryO
+bjectWarningForDisruptiveTaskPanel.NoButton
+/var/hsc/log/iqzdtrac.trm.1:1386563810.438635 000020B9:000028D4 XTSKCPTF: [PanelTask:2168:DU:3:TD
+U:0] Warning: frame assigned a default name because the bean used to create it was not explicitly
+ named.
+/var/hsc/log/iqzdtrac.trm.1:1386563817.339773 000020B9:00006D17 XFRMCDPF: yesButton[1]=@Secondary
+ObjectWarningForDisruptiveTaskPanel.YesButton
+/var/hsc/log/iqzdtrac.trm.1:1386563817.339793 000020B9:00006D17 XFRMCDPF: noButton[1]=@SecondaryO
+bjectWarningForDisruptiveTaskPanel.NoButton
+/var/hsc/log/iqzdtrac.trm.1:1386563931.913030 000020B9:00006E55 XFRMCDPF: yesButton[1]=@Secondary
+ObjectWarningForDisruptiveTaskPanel.YesButton
+/var/hsc/log/iqzdtrac.trm.1:1386563931.913048 000020B9:00006E55 XFRMCDPF: noButton[1]=@SecondaryO
+bjectWarningForDisruptiveTaskPanel.NoButton
+/var/hsc/log/iqzdtrac.trm.1:1386563932.027710 000020B9:00006E55 XTSKCPTF: [PanelTask:2172:DU:2:TD
+U:0] Warning: frame assigned a default name because the bean used to create it was not explicitly
+ named.
+/var/hsc/log/iqzdtrac.trm.1:1386563935.667453 000020B9:00006E5B XTSKCPTF: [PanelTask:2172] Warnin
+g, a COMPLETE/CANCEL event occured but this tasklet does NOT appear to be enabled for commit proc
+essing.
+/var/hsc/log/iqzdtrac.trm.1:1386563935.667458 000020B9:00006E5B XTSKCPTF: [PanelTask:2172] A WARN
+ING is being logged:
+/var/hsc/log/iqzdtrac.trm.1:1386563935.667460 000020B9:00006E5B XTSKCPTF: [PanelTask:2172] Warnin
+g, a COMPLETE/CANCEL event occured but this tasklet does NOT appear to be enabled for commit proc
+essing.
+/var/hsc/log/iqzdtrac.trm.1:1386563939.825577 00006F73:00006F73 XRCSZPLT: D WARNING! Unable to po
+p route for  , data for server of gateway missing. 
+/var/hsc/log/iqzdtrac.trm.1:1386563939.843650 00006F7F:00006F7F XRCSZPLT: D WARNING! L2tp daemon 
+is not running.
+/var/hsc/log/taskRecorder2.trm:06:44:56.940 task 167 panel 879 display "Validation Errors/Warning
+s - p750client4"
+/var/hsc/log/taskRecorder2.trm:07:39:43.031 task 195 panel 998 display "Validation Errors/Warning
+s - p750client5"
+/var/hsc/log/taskRecorder2.trm:07:39:49.971 task 195 panel 1000 display "Validation Errors/Warnin
+gs - p750client5"
+/var/hsc/log/taskRecorder2.trm:07:39:57.031 task 195 panel 1002 display "Validation Errors/Warnin
+gs - p750client5"
+/var/hsc/log/taskRecorder3.trm:06:27:21.115 task 160 execute bound event radio button set true gr
+p:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:27:21.115 task 160 execute bound event radio group setErrorPane
+lRBSelection(WarningRB)
+/var/hsc/log/taskRecorder3.trm:06:27:28.268 task 160 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:27:53.137 task 160 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:27:54.436 task 160 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:40:33.576 task 170 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:40:35.011 task 170 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:40:35.909 task 170 execute bound event radio button set false g
+rp:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:40:36.992 task 170 execute bound event radio button set true gr
+p:ErrorPanelRB txt:${Mig_Finish_Error_WarningRB_VALUE}
+/var/hsc/log/taskRecorder3.trm:06:40:36.992 task 170 execute bound event radio group setErrorPane
+lRBSelection(WarningRB)
+/var/hsc/log/taskRecorder3.trm:06:30:53.351 task 505 execute normal event table setSelected [1 (S
+ysDir6_3_2_DVD_AIX...,WARNING: Partition...,Read-Only,3.18 GB)]
+/var/hsc/log/uri1.trm:REQUEST URI       =/images/fw/prelogin/warningBar.gif
+/var/hsc/log/uri1.trm:REQUEST URI       =/images/fw/prelogin/warningIcon.gif
+/var/hsc/log/uri1.trm:       servletPath=/images/fw/prelogin/warningIcon.gif
+/var/hsc/log/uri1.trm:       servletPath=/images/fw/prelogin/warningBar.gif
+/var/hsc/log/uri1.trm:REQUEST URI       =/images/fw/prelogin/warningIcon.gif
+/var/hsc/log/uri1.trm:       servletPath=/images/fw/prelogin/warningIcon.gif
+/var/hsc/log/uri1.trm:REQUEST URI       =/images/fw/prelogin/warningBar.gif
+/var/hsc/log/uri1.trm:       servletPath=/images/fw/prelogin/warningBar.gif
+Binary file /var/hsc/log/vterms.log matches
+hscroot@localhost:~> grep WARNING  /var/hsc/log/*
+/var/hsc/log/aca.log:01/20 7:55:07:357 [Thread-105--467960]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:357 [Thread-105--467960]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:620 [Thread-105--467961]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:620 [Thread-105--467961]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:768 [Thread-105--467962]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:768 [Thread-105--467962]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:882 [Thread-105--467963]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:55:07:882 [Thread-105--467963]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:227 [Thread-105--467969]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:228 [Thread-105--467969]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:427 [Thread-105--467970]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:427 [Thread-105--467970]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:557 [Thread-105--467971]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:557 [Thread-105--467971]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:669 [Thread-105--467972]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 1st attempt...
+/var/hsc/log/aca.log:01/20 7:57:00:669 [Thread-105--467972]WARNING: getLoginkeyByName returned pw
+dKey = 50000, for the username = new710, before retrying 2nd attempt...
+/var/hsc/log/acm.log:01/20 7:45:57:321 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:46:33:565 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:569 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:572 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:668 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:691 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:696 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:698 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:795 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:802 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:806 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:808 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:811 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:813 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:818 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:820 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:823 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:46:33:908 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:47:38:68 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:48:28:116 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:49:18:131 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:50:51:567 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:51:41:616 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:52:38:114 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:53:28:160 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:54:18:208 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:55:07:518 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:522 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:524 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:625 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:667 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:670 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:672 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:771 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:780 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:783 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:786 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:789 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:793 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:796 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:07:884 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:55:57:936 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:56:47:969 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:57:00:326 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:329 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:332 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:429 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:458 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:460 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:463 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:559 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:568 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:571 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:574 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:577 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:579 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:584 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:00:671 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:57:50:724 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 7:58:25:425 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:430 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:433 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:528 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:553 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:558 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:560 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:656 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:665 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:668 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:670 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:675 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:677 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:680 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:684 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:687 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:58:25:770 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (No
+ such file or directory)
+/var/hsc/log/acm.log:01/20 7:59:15:824 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:00:47:497 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:01:37:547 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:02:38:352 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:03:28:354 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:04:18:405 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log:01/20 8:05:08:432 WARNING: Got SocketTimeoutException Accept timed out
+/var/hsc/log/acm.log.bk:01/20 7:30:47:563 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:566 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:569 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:668 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:695 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:698 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:701 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:799 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:806 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:809 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:812 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:815 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:819 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:822 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:30:47:911 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:89 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (
+No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:93 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (
+No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:95 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl (
+No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:192 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:224 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:227 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:230 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:323 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:330 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:335 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:338 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:340 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:343 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:346 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:350 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:353 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/acm.log.bk:01/20 7:34:27:434 WARNING: Got Exception: /var/hsc/access/db/acmrole.tbl 
+(No such file or directory)
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.685 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.686 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.687 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.688 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/cimserver.log:2014-01-20 08:01:21.689 [TID-2346--13773] WARNING: one SRC Entry does 
+NOT have any sub-section/optional data!
+/var/hsc/log/hdwr_svr.log:14-01-20 08:01:21.562612 WARNING: BE AWARE::Bad return code in the resp
+onse package? (0x0100 - No Current SRC)
+/var/hsc/log/hdwr_svr.log:14-01-20 08:01:21.569125 WARNING: BE AWARE::Bad return code in the resp
+onse package? (0x0100 - No Current SRC)
+grep: /var/hsc/log/iqyybkup.log: Permission denied
+grep: /var/hsc/log/iqyye4.log: Permission denied
+grep: /var/hsc/log/iqyylog.log: Permission denied
+grep: /var/hsc/log/iqyypell.log: Permission denied
+grep: /var/hsc/log/iqyyprba.log: Permission denied
+grep: /var/hsc/log/iqyytask.log: Permission denied
+grep: /var/hsc/log/iqyyxmsg.log: Permission denied
+/var/hsc/log/iqzdtrac.trm.1:1386563935.667458 000020B9:00006E5B XTSKCPTF: [PanelTask:2172] A WARN
+ING is being logged:
+/var/hsc/log/iqzdtrac.trm.1:1386563939.825577 00006F73:00006F73 XRCSZPLT: D WARNING! Unable to po
+p route for  , data for server of gateway missing. 
+/var/hsc/log/iqzdtrac.trm.1:1386563939.843650 00006F7F:00006F7F XRCSZPLT: D WARNING! L2tp daemon 
+is not running.
+/var/hsc/log/taskRecorder3.trm:06:30:53.351 task 505 execute normal event table setSelected [1 (S
+ysDir6_3_2_DVD_AIX...,WARNING: Partition...,Read-Only,3.18 GB)]
+Binary file /var/hsc/log/vterms.log matches
+hscroot@localhost:~> grep ERROR  /var/hsc/log/*
+/var/hsc/log/cimserver.log:2014-01-20 08:02:22.296 [TID-377e--13777] GET_LIST_OFPLATFORM_EVENTS_L
+OG_EVENTS --> response = {ERROR_TYPE=0, START_OFFSET=8, EVT_LOG_ID_LIST=[Ljava.lang.Object;@31ed3
+1ed, EVENT_SIZE=8, ENTRY_COUNT=2}
+/var/hsc/log/gui_server.log:2013-12-10 04:51:16.148 [TID-7cb9] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-20 02:46:58.269 [TID-5634] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 10:20:34.344 [TID-15b6] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 10:24:43.164 [TID-202c] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 11:58:24.719 [TID-2e9f] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-23 04:08:48.992 [TID-7c64] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-27 07:18:54.085 [TID-17fb] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 01:45:58.850 [TID-70ab] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 08:29:30.779 [TID-1e36] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 08:41:32.983 [TID-26a9] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-09 02:33:44.253 [TID-5fe4] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-09 06:05:09.845 [TID-1a18] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-10 01:46:45.159 [TID-2296] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-13 02:22:15.716 [TID-2525] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 02:59:13.415 [TID-2736] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:01:43.857 [TID-2882] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:12:10.830 [TID-328a] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:12:40.393 [TID-3307] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:13:09.420 [TID-3345] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 04:45:28.204 [TID-2557] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 06:51:22.487 [TID-61a9] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 06:52:39.210 [TID-626b] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:12:52.236 [TID-7865] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:50:27.277 [TID-2468] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:52:31.147 [TID-2931] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:58:43.760 [TID-2e6d] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 08:06:44.157 [TID-3847] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 08:22:35.720 [TID-495d] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-15 04:44:36.890 [TID-4477] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:43:19.989 [TID-11c3] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:52:09.870 [TID-26c6] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:55:05.609 [TID-4b71] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:44:28.310 [TID-7fd3] WAKA VirtualStorageManagementPanel
+Bean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:49:01.263 [TID-4d0] WAKA VirtualStorageManagementPanelB
+ean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:50:29.987 [TID-87f] WAKA VirtualStorageManagementPanelB
+ean -  :: ERROR: Unable to refresh panel data
+grep: /var/hsc/log/iqyybkup.log: Permission denied
+grep: /var/hsc/log/iqyye4.log: Permission denied
+grep: /var/hsc/log/iqyylog.log: Permission denied
+grep: /var/hsc/log/iqyypell.log: Permission denied
+grep: /var/hsc/log/iqyyprba.log: Permission denied
+grep: /var/hsc/log/iqyytask.log: Permission denied
+grep: /var/hsc/log/iqyyxmsg.log: Permission denied
+/var/hsc/log/iqzdtrac.trm.1:1386563954.442022 00001219:00002202 XPCE*SOF:    deregister_fn: ERROR
+!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/iqzdtrac.trm.1:1386563952.629387 000018D7:00002679 XPCE*SOF:    deregister_fn: ERROR
+!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/iqzdtrac.trm.1:1386565972.087946 00002F2C:00002F2F XPCE*SOF:    deregister_fn: ERROR
+!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.478 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM: ----------------------------------------
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM:  [192.168.13.68] - VPD Survey - RMC Failed, rc = 26
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM:  [192.168.13.66] - VPD Survey - RMC Failed, rc = 26
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM:  [192.168.13.69] - VPD Survey - Failed - Active Status < 3
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM:  [192.168.13.70] - VPD Survey - Failed - Active Status < 3
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Li
+ne:2178] ERRORSTREAM: ----------------------------------------
+Binary file /var/hsc/log/vterms.log matches
+hscroot@localhost:~> grep ERROR  /var/hsc/log/*
+/var/hsc/log/cimserver.log:2014-01-20 08:02:22.296 [TID-377e--13777] GET_LIST_OFPLATFORM_EVENTS_LOG_EVENTS --> response = {ERROR_TYPE=0, START_OFFSET=8, EVT_LOG_
+ID_LIST=[Ljava.lang.Object;@31ed31ed, EVENT_SIZE=8, ENTRY_COUNT=2}
+/var/hsc/log/gui_server.log:2013-12-10 04:51:16.148 [TID-7cb9] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-20 02:46:58.269 [TID-5634] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 10:20:34.344 [TID-15b6] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 10:24:43.164 [TID-202c] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-22 11:58:24.719 [TID-2e9f] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-23 04:08:48.992 [TID-7c64] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2013-12-27 07:18:54.085 [TID-17fb] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 01:45:58.850 [TID-70ab] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 08:29:30.779 [TID-1e36] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-08 08:41:32.983 [TID-26a9] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-09 02:33:44.253 [TID-5fe4] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-09 06:05:09.845 [TID-1a18] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-10 01:46:45.159 [TID-2296] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-13 02:22:15.716 [TID-2525] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 02:59:13.415 [TID-2736] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:01:43.857 [TID-2882] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:12:10.830 [TID-328a] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:12:40.393 [TID-3307] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 03:13:09.420 [TID-3345] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 04:45:28.204 [TID-2557] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 06:51:22.487 [TID-61a9] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 06:52:39.210 [TID-626b] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:12:52.236 [TID-7865] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:50:27.277 [TID-2468] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:52:31.147 [TID-2931] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 07:58:43.760 [TID-2e6d] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 08:06:44.157 [TID-3847] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-14 08:22:35.720 [TID-495d] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-15 04:44:36.890 [TID-4477] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:43:19.989 [TID-11c3] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:52:09.870 [TID-26c6] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 08:55:05.609 [TID-4b71] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:44:28.310 [TID-7fd3] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:49:01.263 [TID-4d0] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+/var/hsc/log/gui_server.log:2014-01-16 09:50:29.987 [TID-87f] WAKA VirtualStorageManagementPanelBean -  :: ERROR: Unable to refresh panel data
+grep: /var/hsc/log/iqyybkup.log: Permission denied
+grep: /var/hsc/log/iqyye4.log: Permission denied
+grep: /var/hsc/log/iqyylog.log: Permission denied
+grep: /var/hsc/log/iqyypell.log: Permission denied
+grep: /var/hsc/log/iqyyprba.log: Permission denied
+grep: /var/hsc/log/iqyytask.log: Permission denied
+grep: /var/hsc/log/iqyyxmsg.log: Permission denied
+/var/hsc/log/iqzdtrac.trm.1:1386563954.442022 00001219:00002202 XPCE*SOF:    deregister_fn: ERROR!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/iqzdtrac.trm.1:1386563952.629387 000018D7:00002679 XPCE*SOF:    deregister_fn: ERROR!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/iqzdtrac.trm.1:1386565972.087946 00002F2C:00002F2F XPCE*SOF:    deregister_fn: ERROR!!! Unable to send de-registration to PCE Daemon process
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.478 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM: ----------------------------------------
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM:  [192.168.13.68] - VPD Survey - RMC Failed
+, rc = 26
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM:  [192.168.13.66] - VPD Survey - RMC Failed
+, rc = 26
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM:  [192.168.13.69] - VPD Survey - Failed - A
+ctive Status < 3
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM:  [192.168.13.70] - VPD Survey - Failed - A
+ctive Status < 3
+/var/hsc/log/mksysplan.log:2013-10-24 08:27:35.479 [Thread-105--567437] ldw_mksysplan :: inv: [Line:2178] ERRORSTREAM: ----------------------------------------
+Binary file /var/hsc/log/vterms.log matches
+hscroot@localhost:~> 
+hscroot@localhost:~> 
+hscroot@localhost:~> lssyscfg -r sys
+name=Server-8231-E2B-SN064B1AR,type_model=8231-E2B,serial_num=064B1AR,ipaddr=192.168.13.107,state=Operating,detailed_state=None,sys_time=01/20/2014 22:09:57,powe
+r_off_policy=1,active_lpar_mobility_capable=0,inactive_lpar_mobility_capable=0,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=0,hardware_act
+ive_mem_expansion_capable=0,active_mem_sharing_capable=0,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform
+_optimization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable
+=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,powervm_lpar_remote_restart
+_capable=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capa
+ble=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phas
+e2_capable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=40,max_power_ctrl_lpars=1,max_suspend_capable_lpars=40,curr_max_lpars_per_hca=16,pend_max_
+lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_s
+ys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,
+power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000
+,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_defaul
+t_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+name=SVRP7710-10-SN069DF9R,type_model=8231-E1C,serial_num=069DF9R,ipaddr=192.168.13.67,state=Operating,detailed_state=None,sys_time=01/20/2014 09:11:10,power_off
+_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_opti
+mization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=0,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capa
+ble=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_ca
+pable=1,vsi_on_veth_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=80,max_suspend_capable_lpars=80,curr
+_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER
+7",curr_sys_keylock=manual,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=
+power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,pow
+er_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_def
+ault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=60,vtpm_version=1
+name=SVRP7750-08-SN0661FBP,type_model=8233-E8B,serial_num=0661FBP,ipaddr=192.168.13.65,state=Operating,detailed_state=None,sys_time=01/20/2014 09:07:18,power_off
+_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_opti
+mization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capa
+ble=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_ca
+pable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=320,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=320,max_suspend_capable_lpars=320,c
+urr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,PO
+WER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type
+=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,po
+wer_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_de
+fault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+hscroot@localhost:~> 
+hscroot@localhost:~> lparrefcode
+bash: lparrefcode: command not found
+hscroot@localhost:~> echo $PATH
+/hmcrbin/:/usr/hmcrbin
+hscroot@localhost:~> ls -l /usr/hmcrbin | grep ref
+lrwxrwxrwx 1 root root     22 Aug 12 08:52 lsrefcode -> /opt/hsc/bin/lsrefcode
+lrwxrwxrwx 1 root root     19 Aug 12 08:52 refdev -> /opt/hsc/bin/refdev
+hscroot@localhost:~> lsrefcode
+Usage: lsrefcode -r lpar | sys
+                 -m <managed system>
+                 [-s p | s]
+                 [-n <number of entries>]
+                 [--filter "<filter data>"]
+                 [-F [<attribute names>]]
+                 [--header]
+                 [--help]
+
+Lists reference code entries for partitions or a managed system.
+
+    -r                       - the type of reference codes to be listed:
+                                 lpar - partition reference codes
+                                 sys  - managed system reference codes
+    -m <managed system>      - the managed system's name
+    -s                       - the service processor for which to list
+                               reference codes:
+                                 p - primary service processor
+                                 s - secondary service processor
+    -n <number of entries>   - the number of reference code entries to be listed
+                               for each partition or for the managed system
+    --filter "<filter data>" - filters the reference code entries to be 
+                               listed.  The format is:
+                                 "filter_name1=value,filter_name2=value,..."
+                               or
+                                 ""filter_name1=value1,value2,...",..."
+                               Valid filter names are:
+                                 lpar_ids, lpar_names
+    -F [<attribute names>]   - delimiter separated list of the names of the
+                               attributes to be listed for each reference code
+                               entry.  If no attribute names are specified, 
+                               then all attributes will be listed.
+    --header                 - prints a header of attribute names when -F is
+                               also specified
+    --help                   - prints this help
+hscroot@localhost:~> lssyscfg -r sys
+name=Server-8231-E2B-SN064B1AR,type_model=8231-E2B,serial_num=064B1AR,ipaddr=192.168.13.107,state=Operating,detailed_state=None,sys_time=01/20/2014 22:14:49,powe
+r_off_policy=1,active_lpar_mobility_capable=0,inactive_lpar_mobility_capable=0,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=0,hardware_act
+ive_mem_expansion_capable=0,active_mem_sharing_capable=0,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform
+_optimization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable
+=1,huge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=0,powervm_lpar_remote_restart
+_capable=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capa
+ble=1,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phas
+e2_capable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=40,max_power_ctrl_lpars=1,max_suspend_capable_lpars=40,curr_max_lpars_per_hca=16,pend_max_
+lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER7",curr_sys_keylock=norm,pend_s
+ys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=power on,power_on_option=standby,
+power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,power_on_attr=0000,sp_boot_attr=0000
+,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_default_ipl_source=a,curr_mfg_defaul
+t_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+name=SVRP7710-10-SN069DF9R,type_model=8231-E1C,serial_num=069DF9R,ipaddr=192.168.13.67,state=Operating,detailed_state=None,sys_time=01/20/2014 09:16:02,power_off
+_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_opti
+mization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=0,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capa
+ble=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=1,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_ca
+pable=1,vsi_on_veth_capable=1,assign_5250_cpw_percent=0,max_lpars=80,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=80,max_suspend_capable_lpars=80,curr
+_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,POWER
+7",curr_sys_keylock=manual,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type=
+power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,pow
+er_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_def
+ault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=60,vtpm_version=1
+name=SVRP7750-08-SN0661FBP,type_model=8233-E8B,serial_num=0661FBP,ipaddr=192.168.13.65,state=Operating,detailed_state=None,sys_time=01/20/2014 09:12:10,power_off
+_policy=1,active_lpar_mobility_capable=1,inactive_lpar_mobility_capable=1,active_lpar_share_idle_procs_capable=1,active_mem_expansion_capable=1,hardware_active_m
+em_expansion_capable=0,active_mem_sharing_capable=1,addr_broadcast_perf_policy_capable=0,bsr_capable=1,cod_mem_capable=0,cod_proc_capable=1,dynamic_platform_opti
+mization_capable=0,electronic_err_reporting_capable=1,firmware_power_saver_capable=1,hardware_power_saver_capable=1,hardware_discovery_capable=1,hca_capable=1,hu
+ge_page_mem_capable=1,lhea_capable=1,lpar_avail_priority_capable=1,lpar_proc_compat_mode_capable=1,lpar_remote_restart_capable=1,powervm_lpar_remote_restart_capa
+ble=0,lpar_suspend_capable=1,micro_lpar_capable=1,os400_capable=1,5250_application_capable=0,redundant_err_path_reporting_capable=1,shared_eth_failover_capable=1
+,sni_msg_passing_capable=0,sp_failover_capable=1,vet_activation_capable=1,virtual_fc_capable=1,virtual_io_server_capable=1,virtual_switch_capable=1,vsn_phase2_ca
+pable=0,vsi_on_veth_capable=0,assign_5250_cpw_percent=0,max_lpars=320,max_power_ctrl_lpars=1,max_remote_restart_capable_lpars=320,max_suspend_capable_lpars=320,c
+urr_max_lpars_per_hca=16,pend_max_lpars_per_hca=16,hca_bandwidth_capabilities=25/12.5/6.25,service_lpar_id=none,"lpar_proc_compat_modes=default,POWER6,POWER6+,PO
+WER7",curr_sys_keylock=norm,pend_sys_keylock=norm,curr_power_on_side=temp,pend_power_on_side=temp,curr_power_on_speed=norm,pend_power_on_speed=norm,power_on_type
+=power on,power_on_option=standby,power_on_lpar_start_policy=userinit,pend_power_on_option=standby,pend_power_on_lpar_start_policy=userinit,power_on_method=02,po
+wer_on_attr=0000,sp_boot_attr=0000,sp_boot_major_type=08,sp_boot_minor_type=01,sp_version=00070000,mfg_default_config=0,curr_mfg_default_ipl_source=a,pend_mfg_de
+fault_ipl_source=a,curr_mfg_default_boot_mode=norm,pend_mfg_default_boot_mode=norm,max_vtpm_lpars=null,vtpm_version=null
+hscroot@localhost:~> lssyscfg -r sys -F name
+Server-8231-E2B-SN064B1AR
+SVRP7710-10-SN069DF9R
+SVRP7750-08-SN0661FBP
+hscroot@localhost:~> lsrefcode -m 
+The command entered is either missing a required parameter or a parameter value is invalid. The parameters that are missing or have an invalid value are -m. Plea
+se check your entry and retry the command.
+hscroot@localhost:~> lsrefcode -m Server-8231-E2B-SN064B1AR
+The command entered is either missing a required parameter or a parameter value is invalid. The parameters that are missing or have an invalid value are -r. Plea
+se check your entry and retry the command.
+hscroot@localhost:~> lsrefcode -m Server-8231-E2B-SN064B1AR -r sys
+refcode_num=0,refcode=
+hscroot@localhost:~> lsrefcode -m Server-8231-E2B-SN064B1AR -r lpar
+lpar_name=710vio,lpar_id=1,time_stamp=01/20/2014 21:06:12,refcode=,word2=03400000,fru_call_out_loc_codes=
+lpar_name=cong,lpar_id=2,time_stamp=01/15/2014 17:53:47,refcode=00000000
+lpar_name=cong2,lpar_id=3,time_stamp=01/15/2014 17:54:04,refcode=00000000
+lpar_name=xiaogao,lpar_id=4,time_stamp=01/16/2014 21:25:45,refcode=,word2=03D00000,fru_call_out_loc_codes=
+lpar_name=xiaogao2,lpar_id=5,time_stamp=01/20/2014 21:44:11,refcode=00000000
+lpar_name=cong_test,lpar_id=6,time_stamp=01/17/2014 22:12:13,refcode=00000000
+hscroot@localhost:~> 
+

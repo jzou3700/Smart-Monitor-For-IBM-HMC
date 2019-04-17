@@ -1,0 +1,1047 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>中国电信集团系统集成有限公司-首页</title>
+
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<link href="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/hp051220b.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+.style2 {
+	text-align: left;
+}
+.style3 {
+	text-align: right;
+}
+</style>
+<script type="text/JavaScript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script><script language="JavaScript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var oPopup = window.createPopup(); 
+var popTop=50; 
+function popmsg(msgstr){ 
+	var winstr="<"+"table id=table1 style='border: 1 solid  #000000;display:block'  width='230' height='116' border='0' cellpadding='0' cellspacing='0'  background='/images/pop_background.jpg' >"; 
+		winstr+="<"+"tr"+"><"+"td height='25'> </"+"td"+"></"+"tr"+"><"+"tr"+"><"+"td align='center'><"+"table width='90%' height='110' border='0' cellpadding='0' cellspacing='0'>";  
+		winstr+="<"+"tr"+"><"+"td align='center' valign='top' style='font-size:12px; color: #00000; face: Tahoma' onclick='parent.location.href=\"/news\"'><"+"a"+" href=/news"+" target=_blank>新闻中心</"+"a>["+msgstr+"条新信息]</"+"td"+"></"+"tr"+"></"+"table"+"></"+"td"+"></"+"tr"+"></"+"table>"; 
+		oPopup.document.body.innerHTML = winstr; 
+		popshow(); 
+	} 
+	function popshow(){ 
+		if(popTop>1720){ 
+			clearTimeout(mytime); 
+			oPopup.hide(); 
+			return; 
+		}else if(popTop>1520&&popTop<1720){ 
+			oPopup.show(screen.width-250,screen.height,230,1720-popTop); 
+		}else if(popTop>1500&&popTop<1520){ 
+			oPopup.show(screen.width-250,screen.height+(popTop-1720),230,150); 
+		}else if(popTop<180){ 
+			oPopup.show(screen.width-250,screen.height,230,popTop); 
+		}else if(popTop<220){ 
+			oPopup.show(screen.width-250,screen.height-popTop,230,150); 
+		} 
+		popTop+=10; 
+		var mytime=setTimeout("popshow();",100); 
+	}
+//relDatestr的日期与当前日期比较，返回当前日期-撰写日期的差值
+var new_news=0;
+function compareDate(relDatestr,n)
+{
+var curDate = new Date();
+var relDate=new Date(relDatestr);
+relDate.setDate(relDate.getDate()+n);
+if(curDate>relDate)return 1;
+else return 0;
+}
+function getnewimg(datestr,bl)
+{
+   var str="";
+   var n=7;//几天内new
+   if(compareDate(datestr,n)==0)
+   {
+     if(bl==true)str="<"+"img sr"+"c=\"/images/new.gif\" border=0"+">";
+     else str="";
+     new_news++;//新闻记数加1,n为false表示只记数,不显示
+   }else 
+     {
+        str="";
+     }
+   return str;
+}
+	
+</script></head>
+
+
+<body style="margin-left: 0; margin-top: 0" onload="MM_preloadImages('/images/index_12.jpg','/images/index_13.jpg','/images/index_14.jpg','/images/index_15.jpg','/images/index_16.jpg','/images/index02_12.jpg','/images/index02_13.jpg','/images/index02_14.jpg','/images/index02_15.jpg','/images/index02_16.jpg','/images/index02_ap.jpg','/images/index_ap.jpg')"><script type="text/JavaScript">
+
+
+
+
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+<center>
+<!--顶部:开始-->
+<script src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu.js" type="text/javascript">
+
+
+
+
+</script>
+<script language="javascript">
+
+
+
+
+var firstrun=true;
+var imgl=new window_list();
+var showmenu=false;//显示菜单标记
+var timeid=null;
+function do_hideall()
+{
+ if(showmenu==false)
+ {
+  imgl.chgwindow("null");
+ }
+}
+function noneshow()
+{
+ showmenu=false;
+ timeid=setTimeout("do_hideall()",1000);//开始计时
+}
+function show_menu()
+{
+   showmenu=true;
+   clearTimeout(timeid);//销毁记时
+}
+function chg_img(imgid)
+{
+ if(firstrun==true)//如果是第一次运行，则先进行初始化
+ {
+ imgl.addwindow("img_index","/images/topmenu_1.2.png","/images/topmenu_1.png","null","title_1");
+ imgl.addwindow("img_news","/images/topmenu_2.2.png","/images/topmenu_2.png","submenu_news","title_2");
+ imgl.addwindow("img_product","/images/topmenu_3.2.png","/images/topmenu_3.png","submenu_products","title_3");
+ //imgl.addwindow("img_case","/images/ctsi_02.2_10.jpg","/images/ctsi_02_10.jpg","submenu_case","title_4");
+ imgl.addwindow("img_services","/images/topmenu_4.2.png","/images/topmenu_4.png","submenu_services","title_khfw");
+ imgl.addwindow("img_friend","/images/topmenu_5.2.png","/images/topmenu_5.png","submenu_friend","title_5");
+ imgl.addwindow("img_dqgz","/images/topmenu_6.2.png","/images/topmenu_6.png","null","title_8");
+ imgl.addwindow("img_about","/images/topmenu_7.2.png","/images/topmenu_7.png","submenu_about","title_6");
+ imgl.addwindow("img_jobs","/images/topmenu_8.2.png","/images/topmenu_8.png","null","title_7");
+ imgl.cid=imgl.wdata[0].id;
+ imgl.c_n=0;
+ firstrun=false;
+ }
+ show_menu();//标记为显示
+ //如果已经选择则返回
+ if(imgl.cid==imgid)return;
+ //改变选项动作
+ imgl.chgwindow(imgid);
+ //附加动作：改变img_center图片显示
+ //if(imgl.cid=="img_hotnew")document.getElementById("img_center").src="/images/index_title_center1.gif";
+ //if(imgl.cid=="img_cpty")document.getElementById("img_center").src="/images/index_title_center2.gif";
+}
+</script><noscript><iframe src='http://www12.chinatelecom.com.cn/MessagePost/pvs?sid=8&cid=&aid=&cname=main' width=0 height=0></iframe></noscript>
+<table style="display:none">
+<tbody><tr>
+  <td>
+   <script language="javascript">
+
+
+
+
+document.write("<"+"img ");
+document.write("src"+"='");
+document.write("http://www12.chinatelecom.com.cn/MessagePost/pvs?sid=8");
+document.write('&cid='+'');
+document.write("&aid=");
+document.write("&cname=main");
+document.write("'>");
+</script><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/pvs.htm"></td></tr></tbody></table>
+<div style="height: 100px; width: 1000px">
+ <table style="width: 1000px; height: 96px" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+   <td style="width: 199px; height: 96px;" align="left" valign="top">
+   <table style="width: 100%" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+     <td style="height: 71px" align="left" valign="top">
+     <div style="position: absolute; width: 195px; height: 96px; z-index: 1" id="layer1" align="center">
+      <a href="http://www.chinatelecom.com.cn/" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_01.jpg" border="0"></a></div>
+     </td>
+    </tr>
+    <tr>
+     <td>&nbsp;</td>
+    </tr>
+   </tbody></table>
+   </td>
+   <td style="width: 579px; background-image: url('/images/index_02.jpg'); height: 96px;">
+   </td>
+   <td style="width: 222px; background-image: url('/images/index_03.jpg'); height: 96px;" align="right" valign="bottom">
+   <table cellpadding="0" cellspacing="0">
+    <tbody><tr>
+     <td align="right"><a href="http://219.142.70.7:7090/telecomoa" target="_blank">内部通道</a> | 
+     <a href="http://www.ctsi.com.cn/others/02/">法律声明</a><br>
+      | <a href="https://ict.chinatelecom.com.cn/">ICT业务信息共享平台</a></td>
+     
+    </tr>
+    <tr>
+     <td>
+     <iframe name="I1" id="I1" marginwidth="1" marginheight="0" border="0" style="height: 24px; float: left; width: 180px" src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/top_search.htm" frameborder="0" scrolling="no">
+     您的浏览器不支持嵌入式框架，或者当前配置为不显示嵌入式框架。
+     </iframe></td>
+    </tr>
+   </tbody></table>
+   </td>
+  </tr>
+ </tbody></table>
+</div>
+<!--顶部:结束-->
+<!--顶层菜单:开始-->
+<div style="width: 1000px">
+ <table style="width:100%;height:16px" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+   <td style="height: 5px;width:100%" align="left" valign="top"><div style="position: absolute; width: 300px; height: 459px; z-index: 5;" id="layer1">
+     <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" height="516" width="282">
+       <param name="movie" value="/images/index_left.swf">
+       <param name="quality" value="high">
+       <param name="menu" value="false">
+  <param name="wmode" value="transparent">
+       <embed src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_left.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" menu="false" wmode="transparent" height="516" width="282">
+     </object><!--<img src='/images/000011.jpg' width='282' height='516'>-->
+   </div></td>
+  </tr>
+ </tbody></table>
+ <table style="padding: 0px; margin: 0px; width: 100%">
+  <tbody><tr>
+   <td style="width: 280px" align="left" valign="top"></td>
+   <td style="height:24px" align="left" valign="top">
+   <div style="position: absolute; width: 710px; height: 20px; z-index: 4;" id="DIVmenu" align="left">
+    <a href="http://www.ctsi.com.cn/index.html">
+    &nbsp;&nbsp;&nbsp;&nbsp;<img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_1.png" name="img_index" id="img_index" style="border: 0px" onmousemove="chg_img('img_index')" onmouseout="noneshow()" height="20" width="44"></a><a href="http://www.ctsi.com.cn/news/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_2.png" name="img_news" id="img_news" style="border: 0px" onmousemove="chg_img('img_news')" onmouseout="noneshow()" height="20" width="85"></a><a href="http://www.ctsi.com.cn/products/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_3.png" name="img_product" id="img_product" style="border: 0px" onmousemove="chg_img('img_product')" onmouseout="noneshow()" height="20" width="86"></a><!--<a href="/case/"><img src='/images/ctsi_02_10.jpg' style='border: 0px' width='91' height='20' id='img_case' onMouseMove="chg_img('img_case')" onmouseout='noneshow()'></a>--><a href="http://www.ctsi.com.cn/services/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_4.png" name="img_services" id="img_services" style="border: 0px" onmousemove="chg_img('img_services')" onmouseout="noneshow()" height="20" width="85"></a><a href="http://www.ctsi.com.cn/friends/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_5.png" name="img_friend" id="img_friend" style="border: 0px" onmousemove="chg_img('img_friend')" onmouseout="noneshow()" height="20" width="99"></a><a href="http://www.ctsi.com.cn/djgz/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_6.png" name="img_dqgz" id="img_dqgz" style="border: 0px" onmousemove="chg_img('img_dqgz')" onmouseout="noneshow()" height="20" width="86"></a><a href="http://www.ctsi.com.cn/about/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_7.png" name="img_about" id="img_about" style="border: 0px" onmousemove="chg_img('img_about')" onmouseout="noneshow()" height="20" width="85"></a><a href="http://www2.ctsi.com.cn/jobs/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/topmenu_8.png" name="img_jobs" id="img_jobs" style="border: 0px" onmousemove="chg_img('img_jobs')" onmouseout="noneshow()" height="20" width="83"></a>   </div>
+   <!--子菜单设置-->
+   <div style="position: absolute; width: 226px; height: 41px; z-index: 3; padding-left: 70px; display: none;" id="submenu_news">
+    <table style="width: 100%; height: 41px;" onmousemove="show_menu()" onmouseout="noneshow()" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td valign="bottom">
+      <table cellpadding="0" cellspacing="1"><tbody><tr>
+      
+      <td><a href="http://www.ctsi.com.cn/news/01/index.html" class="cl">公司新闻</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/news/ict/index.html" class="cl">ICT动态</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/news/02/index.html" class="cl">热点专题</a></td>
+   
+      </tr></tbody></table>
+      </td>
+     </tr>
+    </tbody></table>
+   </div>
+   <div style="position: absolute; width: 280px; height: 41px; z-index: 3; padding-left: 160px; display: none" id="submenu_products">
+    <table style="width: 100%; height: 41px;" onmousemove="show_menu()" onmouseout="noneshow()" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td valign="bottom">
+      <table cellpadding="0" cellspacing="1"><tbody><tr>
+      
+      <td><a href="http://www.ctsi.com.cn/products/01/index.html" class="cl">产品介绍</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/products/02/index.html" class="cl">解决方案</a></td>
+   
+      </tr></tbody></table>
+      </td>
+     </tr>
+    </tbody></table>
+   </div>
+   <!--
+   <div style="position: absolute; width: 350px; height: 41px; z-index: 3; padding-left: 250px; display: none" id="submenu_case">
+    <table style='width: 100%; height: 41px;' cellspacing='0' cellpadding='0' onmousemove='show_menu()' onmouseout='noneshow()'>
+     <tr>
+      <td valign='bottom'>
+      <table cellpadding='0' cellspacing='1'><tr>
+      
+      <td><a href='case/ctsikhq/index.html' class='cl'>客户群</a></td>
+   
+      <td><a href='case/cgaldx/index.html' class='cl'>典型案例</a></td>
+   
+      </tr></table>
+      </td>
+     </tr>
+    </table>
+   </div>
+   -->
+   <div style="position: absolute; width: 350px; height: 41px; z-index: 3; padding-left: 250px; display: none;" id="submenu_services">
+    <table style="width: 100%; height: 41px;" onmousemove="show_menu()" onmouseout="noneshow()" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td valign="bottom">
+      <table cellpadding="0" cellspacing="1"><tbody><tr>
+      
+      <td><a href="http://www.ctsi.com.cn/services/service01/index.html" class="cl">客户服务体系</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/services/service02/index.html" class="cl">我们的优势</a></td>
+   
+      </tr></tbody></table>
+      </td>
+     </tr>
+    </tbody></table>
+   </div>
+   <div style="position: absolute; width: 350px; height: 41px; z-index: 3; padding-left: 320px; display: none;" id="submenu_friend">
+    <table style="width: 100%; height: 41px;" onmousemove="show_menu()" onmouseout="noneshow()" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td valign="bottom">
+      <table cellpadding="0" cellspacing="1"><tbody><tr>
+      
+      <td><a href="http://www.ctsi.com.cn/friends/01/index.html" class="cl">战略联盟</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/friends/02/index.html" class="cl">合作厂商</a></td>
+   
+      </tr></tbody></table>
+      </td>
+     </tr>
+    </tbody></table>
+   </div>
+   <div style="position: absolute; width: 659px; height: 41px; z-index: 3; padding-left: 0px; display: none;" id="submenu_about" align="right">
+    <table style="height: 41px;" onmousemove="show_menu()" onmouseout="noneshow()" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td valign="bottom">
+      <table cellpadding="0" cellspacing="1"><tbody><tr>
+      
+      <td><a href="http://www.ctsi.com.cn/about/03/index.html" class="cl">总经理致辞</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/01/index.html" class="cl">公司简介</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/07/index.html" class="cl">组织结构</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/02/index.html" class="cl">公司资质</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/gsywdw-gywm/index.html" class="cl">业务定位</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/gswh-gywm/index.html" class="cl">企业文化</a></td>
+   
+      <td><a href="http://www.ctsi.com.cn/about/subc/index.html" class="cl">分支机构</a></td>
+         </tr></tbody></table>
+      </td>
+     </tr>
+    </tbody></table>
+   </div>
+   <!--子菜单设置结束--></td>
+  </tr>
+ </tbody></table>
+</div>
+<!--顶层菜单:结束-->
+<!--内容区域:开始-->
+<script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+var imgl2=new window_list();
+var firstrun2=true;
+function chg_imgp(imgp_id)
+{
+ if(firstrun2==true)
+ {
+ imgl2.addwindow("img_p1","/images/index02_12.jpg","/images/index_12.jpg","null","");
+ imgl2.addwindow("img_p2","/images/index02_13.jpg","/images/index_13.jpg","null","");
+ imgl2.addwindow("img_p3","/images/index02_14.jpg","/images/index_14.jpg","null","");
+ //imgl2.addwindow("img_p4","/images/index02_15.jpg","/images/index_15.jpg","null","");
+ imgl2.addwindow("img_p5","/images/index02_16.jpg","/images/index_16.jpg","null","");
+ imgl2.addwindow("img_p6","/images/index_ap.jpg","/images/index02_ap.jpg","null","");
+ //imgl2.addWindow("img_p6","/images/index_ap.jpg","/images/index02_ap.jpg","null","");
+ imgl2.cid=null;
+ imgl2.c_n=-1;
+ firstrun2=false;
+ }
+ if(imgl2.cid==imgp_id)return;
+ //改变选项动作
+ imgl2.chgwindow(imgp_id);
+}
+</script>
+<script language="JavaScript">
+
+
+
+
+
+
+
+
+
+
+
+
+function getlinkstr(strlink,str_m)
+{
+var str_link=strlink;
+var str_href="href";
+if(str_m!=null&&str_m!="")str_href=str_m+"=";//特征，默认为"href",
+var str_temp="";
+var n_begin=str_link.indexOf(str_href); //初始化地址的起始位置
+var n_end=-1; //初始化地址的终止位置
+if(n_begin>=0)//如果开始位置存在
+  {
+    n_begin+=str_href.length;
+ str_temp=str_link.substring(n_begin,n_begin+1);//取href=后的第一个字符
+ //如果此字符不为'或"号，那么地址的终止符必为空格或>,否则为'或"
+ if(str_temp!="'"&&str_temp!="\"")
+ {
+     str_temp=" ";//先给str_temp赋值为空格
+ }
+ else
+ {
+     n_begin+=1;//跳过'或"号
+ }
+ n_end=str_link.indexOf(str_temp,n_begin);//搜索终止位置
+ if(n_end==-1)n_end=str_link.indexOf(">",n_begin);//如果不存在，则搜索>号
+ if(n_end>n_begin)//如果终止位置存在，终止位置一定大于起始位置
+ {
+    str_temp=str_link.substring(n_begin,n_end);//取得地址
+    return str_temp;
+ }
+  }
+  return null;
+}
+var imgcounts=0;
+var imgUrl1=new Array();
+var imgLink1=new Array();
+var adNum1=0;
+
+imgcounts++;
+imgUrl1[imgcounts]=getlinkstr("<img src='products/W020101014732513385316.jpg' alt='安全运营服务'>","src");
+imgLink1[imgcounts]="products/t20101013_65384.html";
+
+imgcounts++;
+imgUrl1[imgcounts]=getlinkstr("<img src='products/01/zyfwjs/W020070919413897343993.jpg' alt='C:\Documents and Settings\A1\桌面\ITSL View.jpg'>","src");
+imgLink1[imgcounts]="products/01/zyfwjs/t20070919_32750.html";
+
+imgcounts++;
+imgUrl1[imgcounts]=getlinkstr("<img src='products/01/zyfwjs/W020070313652523770239.jpg' alt='全球眼'>","src");
+imgLink1[imgcounts]="products/01/zyfwjs/t20070205_23667.html";
+
+imgcounts++;
+imgUrl1[imgcounts]=getlinkstr("<img src='products/01/zyfwjs/W020070315407966597499.jpg' alt='新视通'>","src");
+imgLink1[imgcounts]="products/01/zyfwjs/t20070313_23666.html";
+
+var jumpUrl1=imgLink1[imgcounts];
+var imgPre1=new Array();
+var j=0;
+for (i=1;i<=imgcounts;i++) {
+ if( (imgUrl1[i]!="") && (imgLink1[i]!="") ) {
+  j++;
+ } else {
+  break;
+ }
+}
+function playTran1(){
+ if (document.all)
+  imgInit.filters.revealTrans.play();
+}
+var key=0;
+function nextAd1(){
+ if(adNum1<j)adNum1++ ;
+ else adNum1=1;
+ 
+ if( key==0 ){
+  key=1;
+ } else if (document.all){
+  imgInit.filters.revealTrans.Transition=23;
+  imgInit.filters.revealTrans.apply();
+             playTran1();
+ }
+ document.images.imgInit.src=imgUrl1[adNum1];
+ theTimer=setTimeout("nextAd1()", 5000);
+}
+function goUrl1(){
+ jumpUrl1=imgLink1[adNum1];
+ jumpTarget='_blank';
+ if (jumpUrl1 != ''){
+  if (jumpTarget != '') 
+   window.open(jumpUrl1,jumpTarget);
+  else
+   location.href=jumpUrl1;
+ }
+}
+</script>
+<!--飘-->
+<span id="img" style="position: absolute; z-index: 999; display: none; top: 0px;" onmouseover="mystop()" onmouseout="start()"><a href="http://www.ctsi.com.cn/news/02/cxzy/" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/logo_zxcy.png" border="0"> </a></span>
+<script language="JavaScript">
+
+
+
+
+
+
+
+
+
+
+
+
+var xPos = 0;var yPos = 0; var step = 1;var delay = 10;var height = 0; var Hoffset = 0;var Woffset = 0; var yon = 0;var xon = 0; var xon = 0; var interval;
+var img = document.getElementById('img');
+img.style.top = 0;
+function changePos(){
+width = document.body.clientWidth;
+height = document.body.clientHeight;
+Hoffset = img.offsetHeight;
+Woffset = img.offsetWidth;
+img.style.left = xPos + document.body.scrollLeft;
+img.style.top = yPos + document.body.scrollTop;
+if (yon) {
+yPos = yPos + step;
+}else {
+yPos = yPos - step;
+}
+if (yPos < 0) {
+yon = 1;
+yPos = 0;
+}
+if (yPos >= (height - Hoffset)) {
+yon = 0;
+yPos = (height - Hoffset);
+}
+if (xon) {
+xPos = xPos + step;
+}
+else {
+xPos = xPos - step;
+}
+if (xPos < 0) {
+xon = 1;
+xPos = 0;
+}
+if (xPos >= (width - Woffset)) {
+xon = 0;
+xPos = (width - Woffset);
+}
+}
+function start() {
+img.visibility = 'visible';
+interval = setInterval('changePos()', delay);
+}
+function mystop()
+{
+clearInterval(interval)
+}
+ //start();
+</script>
+<div style="width: 1000px;">
+ <table style="width: 100%;" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+   <td style="width: 306px" align="left" valign="top">
+   <div style="position: absolute; width: 300px; height: 459px; z-index: 1;" id="layer1">
+    &nbsp;<br>
+    </div>
+   </td>
+   <td align="left" valign="top">
+   <table style="width: 100%; height: 16px" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+     <td></td>
+    </tr>
+   </tbody></table>
+   <table style="width: 100%;">
+    <tbody><tr>
+     <td style="width: 475px;" valign="top">
+     <table style="width: 100%" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td>
+       &nbsp;<a href="http://www.ctsi.com.cn/products/01/t20070202_22429.html" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_12.jpg" id="img_p1" style="border:0px" onmousemove="chg_imgp('img_p1')" onmouseout="chg_imgp('null')" height="84" width="103"></a><a href="http://www.ctsi.com.cn/products/01/t20070202_22489.html" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_13.jpg" id="img_p2" style="border:0px" onmousemove="chg_imgp('img_p2')" onmouseout="chg_imgp('null')" height="84" width="92"></a><a href="http://www.ctsi.com.cn/products/01/t20070202_22490.html" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_14.jpg" id="img_p3" style="border:0px" onmousemove="chg_imgp('img_p3')" onmouseout="chg_imgp('null')" height="84" width="93"></a><a href="http://www.ctsi.com.cn/products/01/t20080925_44607.html" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index02_ap.jpg" id="img_p6" style="border:0px" onmousemove="chg_imgp('img_p6')" onmouseout="chg_imgp('null')" height="84" width="93"></a><a href="http://www.ctsi.com.cn/products/01/t20070202_22492.html" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_16.jpg" style="border:0px" id="img_p5" onmousemove="chg_imgp('img_p5')" onmouseout="chg_imgp('null')" height="84" width="84"></a></td>
+      </tr>
+     </tbody></table>
+     <table style="width: 100%; height: 20px" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td></td>
+      </tr>
+     </tbody></table>
+     <table style="width: 100%;" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td style="width: 17px">&nbsp;</td>
+       <td valign="top">
+       <table style="width: 98%; height: 110px" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+         <td style="width: 7px" rowspan="2" valign="top">
+         <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_23.jpg" height="50" width="5"></td>
+         <td style="height: 20px; background-image: url('/images/index_26.jpg')" valign="top">
+         <table style="width: 100%; height: 20px" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+           <td>
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_24.jpg" height="16" width="121"></td>
+           <td style="width: 45px">
+           <a href="http://www.ctsi.com.cn/news/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_27.jpg" style="width:41px;height:16px;border:0px"></a></td>
+          </tr>
+         </tbody></table>
+         </td>
+        </tr>
+        <tr>
+         <td style="height: 90px" class="style1">
+         
+         <table style="width: 100%">
+         
+          <tbody><tr>
+           <td style="width: 334px" class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/01/t20130510_101155.html">以企业为家  畅谈公司未来发展——记五四青年节与...</a><script language="javascript">
+
+
+
+
+
+//document.write(getnewimg("2013/05/10",true));</script></td>
+           <td><span class="L15">[2013/05/10]</span></td>
+          </tr>
+          <tr>
+           <td style="width: 334px" class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/djgz/t20121016_92521.html">展党员风采 树先进模范</a><script language="javascript">
+
+
+
+
+
+//document.write(getnewimg("2012/10/16",true));</script></td>
+           <td><span class="L15">[2012/10/16]</span></td>
+          </tr>
+          <tr>
+           <td style="width: 334px" class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/01/t20120907_91022.html">2012“智慧宁夏”高峰论坛邀请函</a><script language="javascript">
+
+
+
+
+
+//document.write(getnewimg("2012/09/07",true));</script></td>
+           <td><span class="L15">[2012/09/07]</span></td>
+          </tr>
+         </tbody></table><script language="javascript">
+
+
+
+
+
+getnewimg("2012/08/10",false);
+
+getnewimg("2012/07/03",false);
+
+getnewimg("2012/06/19",false);
+
+getnewimg("2012/06/13",false);
+
+getnewimg("2012/05/29",false);
+
+getnewimg("2012/05/29",false);
+
+getnewimg("2012/05/28",false);
+
+getnewimg("2012/04/20",false);
+
+getnewimg("2012/04/20",false);
+
+getnewimg("2012/03/09",false);
+
+getnewimg("2012/01/18",false);
+
+getnewimg("2011/08/12",false);
+
+getnewimg("2011/03/22",false);
+
+getnewimg("2010/04/26",false);
+
+getnewimg("2010/02/11",false);
+
+getnewimg("2009/10/16",false);
+
+getnewimg("2009/08/12",false);
+
+getnewimg("2009/03/19",false);
+
+getnewimg("2009/01/23",false);
+
+getnewimg("2009/01/22",false);
+
+getnewimg("2008/12/25",false);
+
+getnewimg("2008/09/02",false);
+
+getnewimg("2008/08/29",false);
+
+getnewimg("2008/08/28",false);
+
+getnewimg("2008/07/15",false);
+
+getnewimg("2008/06/23",false);
+
+getnewimg("2008/05/16",false);
+
+getnewimg("2008/04/28",false);
+
+getnewimg("2008/04/08",false);
+
+getnewimg("2008/03/28",false);
+
+</script>
+         </td>
+        </tr>
+       </tbody></table>
+       <table style="width: 98%">
+        <tbody><tr>
+         <td style="width: 300px">
+         <table style="width: 100%; height: 130px" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+           <td style="width: 7px" rowspan="2" valign="top">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_23.jpg" height="50" width="5"></td>
+           <td style="height: 20px; background-image: url('/images/index_26.jpg')" valign="top">
+           <table style="width: 100%; height: 20px" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+             <td><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_ictd.jpg" height="17" width="138">&nbsp;</td>
+             <td style="width: 45px">
+             <a href="http://www.ctsi.com.cn/news/ict/"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_27.jpg" style="width:41px;height:16px;border:0px"></a></td>
+            </tr>
+           </tbody></table>
+           </td>
+          </tr>
+          <tr>
+           <td style="height: 120px" class="style1" valign="bottom">
+       <table style="width: 100%">
+         
+          <tbody><tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20130308_98268.html" title="中国电信教育信息化基地落户兰州" target="_blank">中国电信教育信息化基地落户兰州</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2013/03/08",true));</script></td>
+          </tr>
+          <tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20120929_92124.html" title="甘肃万维成立云计算应用软件与服务中心" target="_blank">甘肃万维成立云计算应用软件与服务中心</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2012/09/28",true));</script></td>
+          </tr>
+          <tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20120214_81824.html" title="“计生E通”夺得ICT业务发展开门红" target="_blank">“计生E通”夺得ICT业务发展开门红</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2012/02/14",true));</script></td>
+          </tr>
+          <tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20110901_76540.html" title="宁夏公司以系统集成牵手IT企业" target="_blank">宁夏公司以系统集成牵手IT企业</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2011/08/31",true));</script></td>
+          </tr>
+          <tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20110708_75016.html" title="两个重大外包呼叫中心项目落户无锡" target="_blank">两个重大外包呼叫中心项目落户无锡</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2011/07/08",true));</script></td>
+          </tr>
+          <tr>
+           <td class="style2">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/ctsi_02_46.jpg" height="7" width="7">&nbsp;<a href="http://www.ctsi.com.cn/news/ict/t20110415_71453.html" title="武汉将实现福利院网上订房" target="_blank">武汉将实现福利院网上订房</a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+//document.write(getnewimg("2011/04/15",true));</script></td>
+          </tr>
+         </tbody></table>
+     </td>
+          </tr>
+         </tbody></table>
+         </td>
+         <td style="width: 5px"></td>
+         <td valign="top">
+         <table style="width: 100%; height: 130px" cellpadding="0" cellspacing="0">
+          <tbody><tr>
+           <td style="width: 7px" rowspan="2" valign="top">
+           <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_23.jpg" height="50" width="5"></td>
+           <td style="height: 20px; background-image: url('/images/index_26.jpg')" valign="top">
+           <table style="width: 100%; height: 20px" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+             <td>
+             <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/p_hot.jpg" height="17">&nbsp;</td>
+            </tr>
+           </tbody></table>
+           </td>
+          </tr>
+          <tr>
+           <td style="height: 110px" align="center"><br>
+     <a href="javascript:goUrl1()"><img style="border:0px solid #FFFFFF; FILTER: revealTrans(duration=2,transition=6)" src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/W020101014732513385316.jpg" name="imgInit" class="pic1" border="0" width="124"></a><script language="javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+nextAd1();</script>
+           </td>
+          </tr>
+         </tbody></table>
+         </td>
+        </tr>
+       </tbody></table>
+       </td>
+      </tr>
+     </tbody></table>
+     </td>
+     <td valign="top">
+     <table style="width: 100%; height: 83px" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td align="center" height="100" valign="top">
+       <a href="mailto:gm@ctsi.com.cn" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/gmmail2.jpg" border="0" height="100" width="160"></a></td>
+      </tr>
+     </tbody></table>
+     <table style="width: 100%; height: 7px" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td></td>
+      </tr>
+     </tbody></table>
+     <table style="width: 100%; height: 246px" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+       <td style="width: 7px" rowspan="2" valign="top">
+       <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_23.jpg" height="50" width="5"></td>
+       <td style="height: 20px; background-image: url('/images/index_26.jpg')" valign="top">
+       <table style="width: 100%; height: 20px" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+         <td>
+         <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_contact.jpg" height="16">&nbsp;</td>
+         <td style="width: 45px"><a href="http://www.ctsi.com.cn/services/service01/" target="_blank"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_27.jpg" style="width:41px;height:16px;border:0px"></a></td>
+        </tr>
+       </tbody></table>
+       </td>
+      </tr>
+      <tr>
+       <td class="style1">
+       <table style="width: 100%; height: 225px" cellpadding="0" cellspacing="0" height="225" width="196">
+        <tbody><tr>
+         <td height="38" valign="bottom"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/phone.jpg" height="29" width="166"></td>
+        </tr>
+        <tr>
+         <td height="38" valign="bottom">
+         <a href="mailto:suport@ctsi.com.cn"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/email.jpg" border="0" height="29" width="166"></a></td>
+        </tr>
+        <tr>
+         <td height="38" valign="bottom"><!--<a href="http://www2.ctsi.com.cn/message/"><img src='/images/gbook.jpg' width='166' height='29' border='0'></a>--><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_44.jpg" height="29" width="166"></td>
+        </tr>
+        <tr>
+         <td height="27" valign="bottom">
+         <script language="JavaScript" src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/CT_Link_To.js">
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+         <select onchange="MM_jumpMenu('parent',this,0)" name="menu1" style="width: 160px"> <option value="http://www.chinatelecom.com.cn">中国电信集团公司</option><option value="#">----控股子公司----</option> <option value="http://www.chinatelecom-h.com">中国电信股份有限公司</option> <option value="#" selected="selected">系统集成有限责任公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.ctid.com.cn/">信元公众信息</option> <option value="#">-----分公司-----</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.tjtele.com/">天津公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hbtele.com/">河北公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.shanxitele.com/">山西公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.nmgtele.com/">内蒙古公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.lntele.com">辽宁公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.jltele1000.com/index.jsp">吉林公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hljtele.com/">黑龙江公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.sdtele.com/">山东公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hntele.com/">河南公司</option> <option value="#">----事业单位----</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.ctbri.com.cn/">北京研究院</option> <option value="http://tel.xuxn.com/Telxuxn/2004/10/sttri.htm">上海研究院</option><option value="http://www.gsta.com/default.aspx">广州研究院</option> <option value="http://www.ctmuseum.cn/">中国电信博物馆</option> <option value="#">----全资子公司----</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.shanghaitelecom.com.cn/">上海公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.telecomjs.com">江苏公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.zjtelecom.com.cn/">浙江公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.ahtelecom.com.cn/">安徽公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.fjtelecom.com/">福建公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.online.jx.cn/">江西公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hbtelecom.com.cn/">湖北公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hntelecom.net.cn/">湖南公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.gdtel.com.cn">广东公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.hk.hi.cn/">海南公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.nn.gx.cn">广西公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.cqtelecom.com.cn">重庆公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.sctel.com.cn/">四川公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.gzdx.com.cn">贵州公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.yninfo.com/">云南公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.tibetonline.net/telcom/index.asp">西藏公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.xaonline.com">陕西公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.gansutelecom.com">甘肃公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.qhtelecom.com.cn">青海公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.nxtelecom.com.cn">宁夏公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.xjtelecom.com.cn">新疆公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.bjtelecom.net">北京公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.ctnt.com.cn">北方电信有限公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.chinatelecomeurope.com/en/index.asp">中国电信欧洲公司</option><option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.chinatelecomusa.com">中国电信美国公司</option> <option value="http://www2.chinatelecom.com.cn/goto/?url=http://www.chinatelecom.com.hk">中国电信香港公司</option> <option value="http://www.ctbri.com.cn/publish/qkjj.jsp">《信息网络》杂志</option> <option value="#">------其他-------</option> <option value="http://www.yellowpage.com.cn">中国电信黄页</option> <option value="#">-----内部通道----</option> <option value="http://www.chinatelecom.com.cn/sxgz/">思想政治工作网</option> <option value="http://www.ct1000.com">大客户事业部网</option><option value="http://dxwh.chinatelecom.cn/">网络运行维护网</option> <option value="http://www.chntel.com">内部办公网</option></select></td>
+        </tr>
+        <tr>
+         <td height="38" valign="bottom"><img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_fzjg.jpg" usemap="#Map2" border="0" height="29" width="166"></td>
+        </tr>
+        <tr>
+         <td height="38" valign="bottom">
+         <img src="%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E9%9B%86%E5%9B%A2%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8-%E9%A6%96%E9%A1%B5_files/index_46.jpg" usemap="#Map" border="0" height="29" width="166"></td>
+        </tr>
+        
+        <!--<tr>
+         <td height='44' valign='bottom'><img src='/images/h3c_logo.jpg' width='56' height='30'> <img src='/images/cisco_logo.jpg' width='50' height='30'> <img src='/images/index_47.jpg' width='65' height='29'></td>
+        </tr>-->
+       </tbody></table>
+       </td>
+      </tr>
+     </tbody></table>
+     </td>
+    </tr>
+   </tbody></table>
+   </td>
+  </tr>
+ </tbody></table>
+</div>
+<!--内容区域：结束-->
+<!--底部：开始-->
+<div style="height: 86px; width: 1000px" align="left">
+ <div style="position: absolute; width: 1000px; height: 86px; z-index: 2;" id="layer2" align="right">
+  <table style="width: 100%" cellpadding="0" cellspacing="0">
+   <tbody><tr>
+    <td>&nbsp;</td>
+    <td style="width: 881px; height: 86px; background-image: url('images/index_bottom.gif')" align="right" valign="bottom">
+    <table style="width: 80%; height: 30px;" cellpadding="0" cellspacing="0">
+     <tbody><tr>
+      <td align="right"><font color="#ffffff" size="2">版权所有：中国电信集团系统集成有限责任公司</font>&nbsp;&nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank"><font color="#ffffff" size="2">京ICP备05080548号</font></a>&nbsp;&nbsp;</td>
+     </tr>
+    </tbody></table>
+    </td>
+   </tr>
+  </tbody></table>
+ </div>
+</div>
+<!--底部：结束-->
+</center>
+<map name="Map"><area shape="rect" coords="129,7,164,22" href="http://www.ctsi.com.cn/friends"></map>
+<script language="javascript">
+
+
+
+
+
+
+
+
+
+
+//if(new_news>0)popmsg(new_news);</script>
+<map name="Map2">
+  <area shape="rect" coords="130,8,164,24" href="http://www.ctsi.com.cn/about/subc/" target="_blank">
+</map>
+</body></html>

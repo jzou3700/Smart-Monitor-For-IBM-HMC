@@ -1,0 +1,250 @@
+
+
+ ----------------------------------------------------------
+  Partitions On Managed System:  Server-8231-E2B-SN064B1AR
+  OS/400 Partitions not listed
+ ----------------------------------------------------------
+   1)    710vio                               Running
+   2)    cong2                                Not Activated
+   3)    cong                                 Not Activated
+   4)    cong_test                            Not Activated
+   5)    xiaogao2                             Running
+   6)    xiaogao                              Running
+
+
+ Enter Number of Running Partition (q to quit): 1
+1
+    Opening Virtual Terminal On Partition 710vio . . .
+
+
+ Open in progress  
+ 
+ Open Completed. 
+  IBM Virtual I/O Server
+
+                        login: padmin
+padmin's Password: 
+Last unsuccessful login: Thu Jan 16 08:16:45 CST 2014 on /dev/pts/1 from 192.168.6.102
+Last login: Mon Jan 20 00:44:03 CST 2014 on /dev/pts/1 from 192.168.14.166
+
+$ viosmgr -t vrm -f query_storage -s pv -I -L -V 2
+rksh: viosmgr:  not found.
+$ oem_setup_env
+# viosmgr -t vrm -f query_storage -s pv -I -L -V 2
+# lsmap -all -field svsa physloc lun vtd backing -fmt ,
+ksh: lsmap:  not found.
+# exit
+$ lsmap -all -field svsa physloc lun vtd backing -fmt ,
+vhost0,U8231.E2B.064B1AR-V1-C13,0x8100000000000000,cong13lv,cong13,0x8200000000000000,vtopt0,/var/vio/VMLibrary/aix7.1a.iso
+vhost1,U8231.E2B.064B1AR-V1-C14,0x8100000000000000,cong14vg,cong14,0x8200000000000000,vtopt1,/var/vio/VMLibrary/aix7.1a.iso
+vhost2,U8231.E2B.064B1AR-V1-C15,0x8200000000000000,vtopt2,/var/vio/VMLibrary/aix7.1a.iso,0x8100000000000000,vtscsi0,hdisk2
+vhost3,U8231.E2B.064B1AR-V1-C16,0x8200000000000000,vtopt3,/var/vio/VMLibrary/aix7.1a.iso,0x8100000000000000,vtscsi1,hdisk3
+vhost4,U8231.E2B.064B1AR-V1-C17,0x8200000000000000,vtopt4,/var/vio/VMLibrary/aix7.1a.iso,0x8100000000000000,vtscsi2,hdisk4
+$ lsmap -all
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost0          U8231.E2B.064B1AR-V1-C13                     0x00000003
+
+VTD                   cong13lv
+Status                Available
+LUN                   0x8100000000000000
+Backing device        cong13
+Physloc               
+Mirrored              N/A
+
+VTD                   vtopt0
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost1          U8231.E2B.064B1AR-V1-C14                     0x00000002
+
+VTD                   cong14vg
+Status                Available
+LUN                   0x8100000000000000
+Backing device        cong14
+Physloc               
+Mirrored              N/A
+
+VTD                   vtopt1
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost2          U8231.E2B.064B1AR-V1-C15                     0x00000004
+
+VTD                   vtopt2
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi0
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk2
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L0
+Mirrored              false
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost3          U8231.E2B.064B1AR-V1-C16                     0x00000005
+
+VTD                   vtopt3
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi1
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk3
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L1000000000000
+Mirrored              false
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost4          U8231.E2B.064B1AR-V1-C17                     0x00000006
+
+VTD                   vtopt4
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi2
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk4
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L2000000000000
+Mirrored              false
+
+$ 
+$ lssp -field Pool -fmt , 
+rootvg
+$ lssp
+Pool              Size(mb)   Free(mb)  Alloc Size(mb)    BDs Type       
+rootvg              279552     203264             256      2 LVPOOL     
+$ lsnports -field name fabric tports aports swwpns awwpns -fmt ,
+System doesn't have NPIV capable ports or no NPIV ports with the link up.
+
+$ lsmap -all -npiv -field name clntid physloc fc fcphysloc -fmt ,
+$ lsmap
+Command requires one of the following options: -all -vadapter -plc
+
+Usage: lsmap {-vadapter ServerVirtualAdapter | -plc PhysicalLocationCode |
+             -all} [-type BackingDeviceType | -net | -npiv]
+             [-field FieldName ...] [-fmt Delimiter]
+       lsmap -ams {-vtd PagingDevice | -all}
+             [-type BackingDeviceType]
+             [-field FieldName ...] [-fmt Delimiter]
+       lsmap -clustername ClusterName {-all | -hostname HostName}
+             [-field Fieldname ...] [-fmt Delimiter]
+       lsmap -suspend {-vadapter ServerVirtualAdapter | -all}
+             [-type BackingDeviceType]
+             [-field FieldName ...] [-fmt Delimiter]
+
+$ lsmap -all
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost0          U8231.E2B.064B1AR-V1-C13                     0x00000003
+
+VTD                   cong13lv
+Status                Available
+LUN                   0x8100000000000000
+Backing device        cong13
+Physloc               
+Mirrored              N/A
+
+VTD                   vtopt0
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost1          U8231.E2B.064B1AR-V1-C14                     0x00000002
+
+VTD                   cong14vg
+Status                Available
+LUN                   0x8100000000000000
+Backing device        cong14
+Physloc               
+Mirrored              N/A
+
+VTD                   vtopt1
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost2          U8231.E2B.064B1AR-V1-C15                     0x00000004
+
+VTD                   vtopt2
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi0
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk2
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L0
+Mirrored              false
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost3          U8231.E2B.064B1AR-V1-C16                     0x00000005
+
+VTD                   vtopt3
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi1
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk3
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L1000000000000
+Mirrored              false
+
+SVSA            Physloc                                      Client Partition ID
+--------------- -------------------------------------------- ------------------
+vhost4          U8231.E2B.064B1AR-V1-C17                     0x00000006
+
+VTD                   vtopt4
+Status                Available
+LUN                   0x8200000000000000
+Backing device        /var/vio/VMLibrary/aix7.1a.iso
+Physloc               
+Mirrored              N/A
+
+VTD                   vtscsi2
+Status                Available
+LUN                   0x8100000000000000
+Backing device        hdisk4
+Physloc               U78AB.001.WZSGU1D-P1-C5-T2-W50050768021007B0-L2000000000000
+Mirrored              false
+
+$   
